@@ -60,6 +60,6 @@ jobs:
       - name: Login to Heroku
         run: heroku container:login
       - name: Push Docker Image
-        run: heroku container:push web -a kpiBoard
+        run: heroku container:push web -a kpiboard
       - name: Release Docker Container
-        run: heroku container:release web -a kpiBoard
+        run: heroku container:release web -a kpiboard

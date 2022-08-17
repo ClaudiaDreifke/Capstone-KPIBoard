@@ -2,7 +2,7 @@ FROM openjdk:18
 
 ENV ENVIRONMENT=prod
 
-LABEL maintainer="xx@web.de"
+LABEL maintainer="claudia.dreifke@gmail.com"
 
 ADD backend/target/kpiBoard.jar kpiBoard.jar
 
