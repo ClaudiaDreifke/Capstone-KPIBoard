@@ -6,4 +6,4 @@ LABEL maintainer="xx@web.de"
 
 ADD backend/target/kpiBoard.jar kpiBoard.jar
 
-CMD [ "sh", "-c", "java -jar /kpiBoard.jar" ]
+CMD [ "sh", "-c", "java -Dserver.port=$PORT -jar /kpiBoard.jar" ]
