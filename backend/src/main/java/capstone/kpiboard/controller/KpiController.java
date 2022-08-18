@@ -24,5 +24,5 @@ public class KpiController {
     public List<Kpi> getAllMyKpi() {
         return kpiService.getAllMyKpi();
     }
-    
+
 }
