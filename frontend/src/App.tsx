@@ -10,7 +10,16 @@ export default function App() {
         .then(response => response.data)
         .then(setMessage)
 
-  return (
-   <h1>{message}</h1>
-  );
+    const [kpi, setKpi] = useState();
+
+    axios.get("/api/my-kpi")
+        .then(response => response.data)
+        .then(setKpi)
+
+    return (
+        <>
+            <h1>{message}</h1>
+            <div>{kpi}</div>
+        </>
+    );
 }
