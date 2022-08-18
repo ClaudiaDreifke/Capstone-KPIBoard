@@ -6,8 +6,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -16,9 +17,8 @@ class KpiControllerIntegrationTest {
     MockMvc mockMvc;
 
     @Test
-    void getAllMyKpiTest() throws Exception {
-        mockMvc.perform(get("/api/my-kpi"))
-                .andExpect(status().isOk());
+    void getKpiByTypeTest() throws Exception {
+        mockMvc.perform(get("/api/my-kpi/ANZAHL_TRUCKINGS"))
+                .andExpect(status().is(404));
     }
-
 }

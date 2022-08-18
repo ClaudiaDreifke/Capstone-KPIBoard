@@ -2,10 +2,7 @@ package capstone.kpiboard.model;
 
 import org.springframework.data.annotation.Id;
 
-public record Kpi(
-        @Id String id,
-        int month,
-        double value,
-        KpiType kpiType
-) {
+import java.util.List;
+
+public record Kpi(@Id KpiType kpiType, List<KpiValue> kpiValues) {
 }

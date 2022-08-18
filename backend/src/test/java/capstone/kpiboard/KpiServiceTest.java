@@ -1,33 +1,40 @@
 package capstone.kpiboard;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import capstone.kpiboard.model.Kpi;
-import capstone.kpiboard.model.KpiRepo;
-import capstone.kpiboard.model.KpiService;
-import capstone.kpiboard.model.KpiType;
+import capstone.kpiboard.model.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+
 
 class KpiServiceTest {
 
     private final KpiRepo testKpiRepo = mock(KpiRepo.class);
     private final KpiService testKpiService = new KpiService(testKpiRepo);
-    private final List<Kpi> testList = List.of (
-            new Kpi("123", 1, 250, KpiType.ANZAHL_TRUCKINGS),
-            new Kpi("134", 2, 260, KpiType.ANZAHL_TRUCKINGS),
-            new Kpi("156", 3, 270, KpiType.ANZAHL_TRUCKINGS));
+
+    private final Kpi numberOfTruckings = new Kpi (KpiType.ANZAHL_TRUCKINGS, List.of( new KpiValue("1-22", 250.0), new KpiValue("2-22", 260.0)));
+
 
     @Test
-    void getAllMyKpiTest(){
+    void getKpiByTypeTestWithKpiExists(){
         //given
-        when(testKpiRepo.findAll()).thenReturn(testList);
+        when(testKpiRepo.existsById(numberOfTruckings.kpiType())).thenReturn(true);
+        when(testKpiRepo.findById(numberOfTruckings.kpiType())).thenReturn(Optional.of(numberOfTruckings));
         //when
-        List<Kpi> actual = testKpiService.getAllMyKpi();
+        Kpi actual = testKpiService.getKpiByType(numberOfTruckings.kpiType());
         //then
-        Assertions.assertArrayEquals(testList.toArray(), actual.toArray());
+        Assertions.assertEquals(numberOfTruckings, actual);
+    }
+
+    @Test
+    void getKpiByTypeTestWithKpiDoesntExists(){
+        //given
+        when(testKpiRepo.existsById(numberOfTruckings.kpiType())).thenReturn(false);
+        //then
+        verify(testKpiRepo, times(0)).findById(numberOfTruckings.kpiType());
     }
 }
