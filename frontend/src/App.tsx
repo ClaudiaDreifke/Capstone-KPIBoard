@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css';
+import './styling/App.css';
 
 import AddKpi from "./components/AddKpi";
 import useKpi from "./hooks/useKpi";
