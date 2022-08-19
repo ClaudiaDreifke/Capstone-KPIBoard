@@ -11,8 +11,8 @@ export default function useKpi() {
         });
     };
 
-    const addNewKpi = (type: string, targetValue: number, targetMathOperation: string) => {
-        const newKpi: NewKpi = {type: type, targetValue: targetValue, targetMathOperation: targetMathOperation}
+    const addNewKpi = (name: string, targetValue: number, targetValueOperator: string) => {
+        const newKpi: NewKpi = {name: name, targetValue: targetValue, targetValueOperator: targetValueOperator}
         return axios.post("/api/admin/add-kpi", newKpi)
             .then((response) => {
                     return response.data

@@ -2,7 +2,7 @@ import {FormEvent, useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import {Kpi} from "../model/Kpi";
 import useKpi from "../hooks/useKpi";
-import {InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
+import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import '../styling/AddKpi.css'
 
 
@@ -35,21 +35,20 @@ export default function AddKpi(props: AddKpiProps) {
 
 
     return (
-        <>  <p>Kennzahl hinzufügen</p>
+        <>  <h2>Kennzahl hinzufügen</h2>
             <form className="add-kpi-form" onSubmit={onKpiSubmit}>
-                <input type={"text"} placeholder={"Name"} value={type} onChange={event => setType(event.target.value)}/>
-                <InputLabel>bitte wählen</InputLabel>
+                <p>Name</p><input type={"text"} value={type} onChange={event => setType(event.target.value)}/>
+                <p>Zielwert</p><input type={"number"} value={targetValue}
+                                      onChange={event => setTargetValue(event.target.valueAsNumber)}/>
+                <p>Zielwert größer/kleiner</p>
                 <Select
                     className={"selector"}
                     value={targetMathOperation}
-                    label={"größer"}
                     onChange={handleSelectChange}>
-                    <MenuItem value={"Greater"}>größer</MenuItem>
-                    <MenuItem value={"Less"}>kleiner</MenuItem>
-                    <MenuItem value={"Equal"}>gleich</MenuItem>
+                    <MenuItem value={"GREATER"}>größer</MenuItem>
+                    <MenuItem value={"LESS"}>kleiner</MenuItem>
+                    <MenuItem value={"EQUALS"}>gleich</MenuItem>
                 </Select>
-                <input type={"number"} value={targetValue} placeholder={"Zielwert"}
-                       onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 <button type={"submit"}>hinzufügen</button>
             </form>
         </>

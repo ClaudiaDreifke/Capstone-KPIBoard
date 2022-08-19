@@ -1,8 +1,9 @@
 export type Kpi = {
-    type: string,
+    name: string,
     values: number[],
     targetValue: number,
-    targetMathOperation: string
+    targetValueOperator: string
 }
+
 
 export type NewKpi = Omit<Kpi, "values">;
