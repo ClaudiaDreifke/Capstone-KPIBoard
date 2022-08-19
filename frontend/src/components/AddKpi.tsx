@@ -28,14 +28,14 @@ export default function AddKpi(props: AddKpiProps) {
     }
 
     return (
-        <>
+        <>  <p>Kennzahl hinzufügen</p>
             <form className="add-kpi-form" onSubmit={onKpiSubmit}>
                 <input type={"text"} value={type} onChange={event => setType(event.target.value)}/>
                 <input type={"text"} value={targetMathOperation}
                        onChange={event => setTargetMathOperation(event.target.value)}/>
                 <input type={"number"} value={targetValue}
                        onChange={event => setTargetValue(event.target.valueAsNumber)}/>
-                <button type={"submit"}></button>
+                <button type={"submit"}>hinzufügen</button>
             </form>
         </>
     )
