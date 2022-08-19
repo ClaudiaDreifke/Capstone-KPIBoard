@@ -11,4 +11,7 @@ public class KpiService {
         this.kpiRepo = kpiRepo;
     }
 
+    public Kpi addNewKpi(Kpi newKpi) {
+    return kpiRepo.save(newKpi);
+    }
 }
