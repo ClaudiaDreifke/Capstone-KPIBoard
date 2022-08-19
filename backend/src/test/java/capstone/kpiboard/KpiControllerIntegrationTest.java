@@ -27,9 +27,9 @@ class KpiControllerIntegrationTest {
                 .contentType(APPLICATION_JSON)
                         .content("""
                                 {
-                                "type": "Anzahl Truckings",
+                                "name": "Anzahl Truckings",
                                 "targetValue": 250.0,
-                                "targetGreaterOrLess": "greater"
+                                "targetValueOperator": "GREATER"
                                 }
                                 """))
                 .andExpect(status().is(201))
