@@ -48,7 +48,7 @@ export default function AddKpi(props: AddKpiProps) {
                     <MenuItem value={"Less"}>kleiner</MenuItem>
                     <MenuItem value={"Equal"}>gleich</MenuItem>
                 </Select>
-                <input type={"number"} placeholder={"Zielwert"} value={targetValue}
+                <input type={"number"} value={targetValue} placeholder={"Zielwert"}
                        onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 <button type={"submit"}>hinzufügen</button>
             </form>
