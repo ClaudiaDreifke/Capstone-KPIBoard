@@ -28,7 +28,6 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "type": "Anzahl Truckings",
-                                "values": [],
                                 "targetValue": 250.0,
                                 "targetGreaterOrLess": "greater"
                                 }
@@ -36,6 +35,7 @@ class KpiControllerIntegrationTest {
                 .andExpect(status().is(201))
                 .andReturn();
         String content = result.getResponse().getContentAsString();
+        Assertions.assertTrue(content.contains("values"));
         Assertions.assertTrue(content.contains("Anzahl Truckings"));
 
     }

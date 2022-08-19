@@ -11,7 +11,7 @@ public class KpiService {
         this.kpiRepo = kpiRepo;
     }
 
-    public Kpi addNewKpi(Kpi newKpi) {
-    return kpiRepo.save(newKpi);
+    public Kpi addNewKpi(NewKpi newKpi) {
+        return kpiRepo.save(newKpi.withValueList());
     }
 }
