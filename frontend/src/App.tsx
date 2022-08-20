@@ -1,17 +1,17 @@
 import React from "react";
 
 import AddKpi from "./components/AddKpi";
-import useKpi from "./hooks/useKpi";
+import {ToastContainer} from "react-toastify";
 
 
 export default function App() {
 
-    const {addNewKpi} = useKpi();
 
     return (
         <>
             <h1>KPI-Board</h1>
-            <AddKpi addNewKpi={addNewKpi}/>
+            <AddKpi/>
+            <ToastContainer/>
         </>
     );
 }
