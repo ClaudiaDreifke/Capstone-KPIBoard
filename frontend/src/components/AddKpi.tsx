@@ -38,7 +38,7 @@ export default function AddKpi() {
         <>  <h2>Kennzahl hinzufügen</h2>
             <form className="add-kpi-form" onSubmit={onKpiSubmit}>
                 <p>Name</p><input type={"text"} value={name} onChange={event => setName(event.target.value)}/>
-                <p>Zielwert größer/kleiner</p>
+                <p>Zielwert größer/kleiner/gleich</p>
                 <Select
                     className={"selector"}
                     value={targetValueOperator}
