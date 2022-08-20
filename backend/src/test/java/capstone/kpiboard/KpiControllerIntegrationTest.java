@@ -28,8 +28,12 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
+                                "targetForKpi":
+                                {
+                                "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueOperator": "GREATER"
+                                "targetValueUnit": "ANZAHL"
+                                }
                                 }
                                 """))
                 .andExpect(status().is(201))

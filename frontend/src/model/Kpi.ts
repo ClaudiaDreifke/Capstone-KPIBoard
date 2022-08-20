@@ -1,8 +1,9 @@
+import {TargetForKpi} from "./TargetForKpi";
+
 export type Kpi = {
     name: string,
     values: number[],
-    targetValue: number,
-    targetValueOperator: string
+    targetForKpi: TargetForKpi,
 }
 
 

@@ -10,10 +10,8 @@ public record NewKpi(
         @NotNull
         String name,
         @NotNull
-        Double targetValue,
-        @NotNull
-        TargetValueOperator targetValueOperator) {
+        TargetForKpi targetForKpi) {
     public Kpi withValueList() {
-        return new Kpi(name(), new ArrayList<>(), targetValue(), targetValueOperator());
+        return new Kpi(name(), new ArrayList<>(), targetForKpi());
     }
 }

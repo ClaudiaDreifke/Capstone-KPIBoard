@@ -1,10 +1,7 @@
 package capstone.kpiboard;
 
 import capstone.kpiboard.controller.KpiController;
-import capstone.kpiboard.model.Kpi;
-import capstone.kpiboard.model.KpiService;
-import capstone.kpiboard.model.NewKpi;
-import capstone.kpiboard.model.TargetValueOperator;
+import capstone.kpiboard.model.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -18,7 +15,7 @@ class KpiControllerTest {
     @Test
     void addNewKpiTest() {
         //given
-        NewKpi newTestKpi = new NewKpi("Anzahl Truckings", 250.0, TargetValueOperator.GREATER);
+        NewKpi newTestKpi = new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
         Kpi testKpi = newTestKpi.withValueList();
         Mockito.when(testKpiService.addNewKpi(newTestKpi)).thenReturn(testKpi);
         //when

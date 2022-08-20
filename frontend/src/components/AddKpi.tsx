@@ -9,41 +9,55 @@ export default function AddKpi() {
 
     const {notify, addNewKpi} = useKpi();
 
-    const [type, setType] = useState<string>("")
-    const [targetMathOperation, setTargetMathOperation] = useState<string>("")
+    const [name, setName] = useState<string>("")
+    const [targetValueOperator, setTargetValueOperator] = useState<string>("")
     const [targetValue, setTargetValue] = useState<number>(0)
+    const [targetValueUnit, setTargetValueUnit] = useState<string>("")
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        addNewKpi(type, targetValue, targetMathOperation)
-            .then(() => setType(""))
-            .then(() => setTargetMathOperation(""))
+        addNewKpi(name, {targetValueOperator, targetValue, targetValueUnit})
+            .then(() => setName(""))
+            .then(() => setTargetValueOperator(""))
             .then(() => setTargetValue(0))
-            .catch((error) => {
-                notify(error.message)
+            .then(() => setTargetValueUnit(""))
+            .catch(() => {
+                notify("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
             })
     }
 
-    const handleSelectChange = (event: SelectChangeEvent<string>) => {
-        setTargetMathOperation(event.target.value)
+    const handleSelectTargetValueOperatorChange = (event: SelectChangeEvent<string>) => {
+        setTargetValueOperator(event.target.value)
     }
 
+    const handleSelectTargetValueUnitChange = (event: SelectChangeEvent<string>) => {
+        setTargetValueUnit(event.target.value)
+    }
 
     return (
         <>  <h2>Kennzahl hinzufügen</h2>
             <form className="add-kpi-form" onSubmit={onKpiSubmit}>
-                <p>Name</p><input type={"text"} value={type} onChange={event => setType(event.target.value)}/>
-                <p>Zielwert</p><input type={"number"} value={targetValue}
-                                      onChange={event => setTargetValue(event.target.valueAsNumber)}/>
+                <p>Name</p><input type={"text"} value={name} onChange={event => setName(event.target.value)}/>
                 <p>Zielwert größer/kleiner</p>
                 <Select
                     className={"selector"}
-                    value={targetMathOperation}
-                    onChange={handleSelectChange}>
+                    value={targetValueOperator}
+                    onChange={handleSelectTargetValueOperatorChange}>
                     <MenuItem value={"GREATER"}>größer</MenuItem>
                     <MenuItem value={"LESS"}>kleiner</MenuItem>
                     <MenuItem value={"EQUALS"}>gleich</MenuItem>
                 </Select>
+                <p>Zielwert</p><input type={"number"} value={targetValue}
+                                      onChange={event => setTargetValue(event.target.valueAsNumber)}/>
+                <p>Zielwert Einheit</p>
+                <Select
+                    className={"selector"}
+                    value={targetValueUnit}
+                    onChange={handleSelectTargetValueUnitChange}>
+                    <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
+                    <MenuItem value={"PROZENT"}>%</MenuItem>
+                </Select>
+
                 <button type={"submit"}>hinzufügen</button>
             </form>
         </>
