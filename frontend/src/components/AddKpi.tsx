@@ -7,7 +7,7 @@ import '../styling/AddKpi.css'
 
 export default function AddKpi() {
 
-    const {notify, addNewKpi} = useKpi();
+    const {addNewKpi, notify} = useKpi();
 
     const [name, setName] = useState<string>("")
     const [targetValueOperator, setTargetValueOperator] = useState<string>("")

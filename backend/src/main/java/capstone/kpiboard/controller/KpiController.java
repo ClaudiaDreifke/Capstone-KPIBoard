@@ -24,8 +24,8 @@ public class KpiController {
     }
 
     @GetMapping("/admin/all-kpi")
-    public List<Kpi> getAllKpiAdmin() {
-        return kpiService.getAllKpiAdmin();
+    public List<Kpi> getAllKpisAdmin() {
+        return kpiService.getAllKpisAdmin();
     }
 
 

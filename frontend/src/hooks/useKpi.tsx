@@ -1,9 +1,33 @@
-import {NewKpi} from "../model/Kpi";
+import {Kpi, NewKpi} from "../model/Kpi";
 import axios from "axios";
 import {toast} from "react-toastify";
+import {useEffect, useState} from "react";
 
 
 export default function useKpi() {
+
+    const [kpis, setKpis] = useState<Kpi[]>([])
+
+    useEffect(() => {
+        getAllKpisAdmin()
+    }, [])
+
+    const addNewKpi = (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => {
+        const newKpi: NewKpi = {name: name, targetForKpi: targetForKpi}
+        return axios.post("/api/admin/add-kpi", newKpi)
+            .then((response) => {
+                    getAllKpisAdmin()
+                    return response.data
+                }
+            );
+    }
+
+    const getAllKpisAdmin = () => {
+        axios.get("/api/admin/all-kpi")
+            .then((response) => response.data)
+            .then(setKpis)
+    }
+
 
     const notify = (message: string) => {
         toast.error(message, {
@@ -11,15 +35,6 @@ export default function useKpi() {
         });
     };
 
-    const addNewKpi = (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => {
-        const newKpi: NewKpi = {name: name, targetForKpi: targetForKpi}
-        return axios.post("/api/admin/add-kpi", newKpi)
-            .then((response) => {
-                    return response.data
-                }
-            );
-    }
-
-    return {notify, addNewKpi}
+    return {kpis, addNewKpi, getAllKpisAdmin, notify}
 
 }

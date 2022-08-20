@@ -46,7 +46,7 @@ class KpiControllerIntegrationTest {
     }
 
     @Test
-    void getAllKpiAdminTest() throws Exception {
+    void getAllKpisAdminTest() throws Exception {
 
         mockMvc.perform(get
                         ("/api/admin/all-kpi")
