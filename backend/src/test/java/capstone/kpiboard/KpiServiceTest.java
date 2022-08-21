@@ -17,7 +17,7 @@ class KpiServiceTest {
     void addNewKpiTest() {
         //given
         NewKpi newTestKpi = new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
-        Kpi testKpi = newTestKpi.withValueList();
+        Kpi testKpi = newTestKpi.withValueListAndId();
         Mockito.when(testKpiRepo.save(testKpi)).thenReturn(testKpi);
         //when
         Kpi actual = testKpiService.addNewKpi(newTestKpi);

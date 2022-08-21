@@ -37,27 +37,31 @@ export default function AddKpi() {
     return (
         <>  <h2>Kennzahl hinzufügen</h2>
             <form className="add-kpi-form" onSubmit={onKpiSubmit}>
-                <p>Name</p><input type={"text"} value={name} onChange={event => setName(event.target.value)}/>
-                <p>Zielwert größer/kleiner/gleich</p>
-                <Select
-                    className={"selector"}
-                    value={targetValueOperator}
-                    onChange={handleSelectTargetValueOperatorChange}>
-                    <MenuItem value={"GREATER"}>größer</MenuItem>
-                    <MenuItem value={"LESS"}>kleiner</MenuItem>
-                    <MenuItem value={"EQUALS"}>gleich</MenuItem>
-                </Select>
-                <p>Zielwert</p><input type={"number"} value={targetValue}
-                                      onChange={event => setTargetValue(event.target.valueAsNumber)}/>
-                <p>Zielwert Einheit</p>
-                <Select
-                    className={"selector"}
-                    value={targetValueUnit}
-                    onChange={handleSelectTargetValueUnitChange}>
-                    <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
-                    <MenuItem value={"PROZENT"}>%</MenuItem>
-                </Select>
-
+                <label htmlFor={"name-input"}>Name<input id={"name-input"} type={"text"} value={name}
+                                                         onChange={event => setName(event.target.value)}/></label>
+                <label htmlFor={"target-value-operator-input"}>Zielwert größer/kleiner/gleich
+                    <Select
+                        id={"target-value-operator-input"}
+                        value={targetValueOperator}
+                        onChange={handleSelectTargetValueOperatorChange}>
+                        <MenuItem value={"GREATER"}>größer</MenuItem>
+                        <MenuItem value={"LESS"}>kleiner</MenuItem>
+                        <MenuItem value={"EQUALS"}>gleich</MenuItem>
+                    </Select>
+                </label>
+                <label htmlFor={"target-value-input"}>Zielwert<input id={"targetValue"} type={"number"}
+                                                                     value={targetValue}
+                                                                     onChange={event => setTargetValue(event.target.valueAsNumber)}/>
+                </label>
+                <label htmlFor={"target-value-unit-input"}>Zielwert Einheit
+                    <Select
+                        className={"selector"}
+                        value={targetValueUnit}
+                        onChange={handleSelectTargetValueUnitChange}>
+                        <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
+                        <MenuItem value={"PROZENT"}>%</MenuItem>
+                    </Select>
+                </label>
                 <button type={"submit"}>hinzufügen</button>
             </form>
         </>

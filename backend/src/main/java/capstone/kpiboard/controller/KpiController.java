@@ -21,6 +21,4 @@ public class KpiController {
         return kpiService.addNewKpi(newKpi);
     }
 
-
-
 }
