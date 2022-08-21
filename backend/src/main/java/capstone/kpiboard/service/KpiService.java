@@ -16,7 +16,7 @@ public class KpiService {
     }
 
     public Kpi addNewKpi(NewKpi newKpi) {
-        return kpiRepo.save(newKpi.withValueList());
+        return kpiRepo.save(newKpi.withValueListAndId());
     }
 
     public List<Kpi> getAllKpisAdmin() {

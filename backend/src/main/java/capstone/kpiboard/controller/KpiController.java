@@ -28,5 +28,4 @@ public class KpiController {
         return kpiService.getAllKpisAdmin();
     }
 
-
 }
