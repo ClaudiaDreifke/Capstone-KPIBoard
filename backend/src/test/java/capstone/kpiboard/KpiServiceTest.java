@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-
 import static org.mockito.Mockito.mock;
 
 @Service
@@ -35,8 +34,8 @@ class KpiServiceTest {
     void getAllKpisAdminTest() {
         //given
         List<Kpi> testList = List.of(
-                new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL)).withValueList(),
-                new NewKpi("Verspätungsquote", new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PROZENT)).withValueList());
+                new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL)),
+                new Kpi("12345", "Verspätungsquote", List.of(260.0, 270.0), new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PROZENT)));
         Mockito.when(testKpiRepo.findAll()).thenReturn(testList);
         //when
         List<Kpi> actual = testKpiService.getAllKpisAdmin();
