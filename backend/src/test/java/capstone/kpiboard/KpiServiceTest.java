@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 
 @Service
@@ -17,8 +20,8 @@ class KpiServiceTest {
     void addNewKpiTest() {
         //given
         NewKpi newTestKpi = new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
-        Kpi testKpi = newTestKpi.withValueListAndId();
-        Mockito.when(testKpiRepo.save(testKpi)).thenReturn(testKpi);
+        Kpi testKpi = new Kpi("122345", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        Mockito.when(testKpiRepo.save(any(Kpi.class))).thenReturn(testKpi);
         //when
         Kpi actual = testKpiService.addNewKpi(newTestKpi);
         //then
