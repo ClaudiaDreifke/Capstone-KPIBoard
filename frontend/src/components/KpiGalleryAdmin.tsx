@@ -12,7 +12,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
         <>
             <h2>Kennzahlen-Übersicht</h2>
             <ul>
-                {props.kpis.map(kpi => <SingleKpi key={kpi.name} kpi={kpi}/>)}
+                {props.kpis.map(kpi => <SingleKpi key={kpi.id} kpi={kpi}/>)}
             </ul>
             <AddKpi/>
         </>
