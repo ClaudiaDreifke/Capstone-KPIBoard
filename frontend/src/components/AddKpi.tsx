@@ -22,8 +22,9 @@ export default function AddKpi() {
             .then(() => setTargetValue(0))
             .then(() => setTargetValueUnit(""))
             .catch(() => {
-                notify("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
-            })
+                    notify("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
+                }
+            )
     }
 
     const handleSelectTargetValueOperatorChange = (event: SelectChangeEvent<string>) => {

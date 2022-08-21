@@ -16,10 +16,10 @@ export default function useKpi() {
         const newKpi: NewKpi = {name: name, targetForKpi: targetForKpi}
         return axios.post("/api/admin/add-kpi", newKpi)
             .then((response) => {
-                    getAllKpisAdmin()
                     return response.data
                 }
-            );
+            )
+            .then(getAllKpisAdmin);
     }
 
     const getAllKpisAdmin = () => {
