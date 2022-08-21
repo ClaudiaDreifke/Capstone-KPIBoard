@@ -1,0 +1,31 @@
+package capstone.kpiboard;
+
+import capstone.kpiboard.model.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+
+@Service
+class KpiServiceTest {
+    private final KpiRepo testKpiRepo = mock(KpiRepo.class);
+    private final KpiService testKpiService = new KpiService(testKpiRepo);
+
+    @Test
+    void addNewKpiTest() {
+        //given
+        NewKpi newTestKpi = new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        Kpi testKpi = new Kpi("122345", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        Mockito.when(testKpiRepo.save(any(Kpi.class))).thenReturn(testKpi);
+        //when
+        Kpi actual = testKpiService.addNewKpi(newTestKpi);
+        //then
+        Assertions.assertEquals(testKpi, actual);
+    }
+
+}
