@@ -28,4 +28,10 @@ public class KpiController {
         return kpiService.getAllKpis();
     }
 
+    @DeleteMapping("/kpis/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void deleteKpi(@PathVariable String id) {
+        kpiService.deleteKpi(id);
+    }
+
 }
