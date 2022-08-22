@@ -20,10 +20,10 @@ export default function SingleKpi(props: SingleKpiProps) {
     }
 
     return (
-        <div className={"show-single-kpi"} key={props.kpi.id}>
-            <p>Name: {props.kpi.name}</p>
-            <p> Zielwert: {targetValueOperatorToText()} {props.kpi.targetForKpi.targetValue} {targetValueUnitToText()}</p>
-            <div>Werte: {props.kpi.values}</div>
-        </div>
+        <section className={"show-single-kpi"} key={props.kpi.id}>
+            <p className={"description-single-kpi"}>Name: {props.kpi.name}</p>
+            <p className={"description-single-kpi"}> Zielwert: {targetValueOperatorToText()} {props.kpi.targetForKpi.targetValue} {targetValueUnitToText()}</p>
+            <div className={"description-single-kpi"}>Werte: {props.kpi.values}</div>
+        </section>
     )
 }
