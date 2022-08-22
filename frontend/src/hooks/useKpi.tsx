@@ -12,6 +12,12 @@ export default function useKpi() {
         getAllKpisAdmin()
     }, [])
 
+    const getAllKpisAdmin = () => {
+        axios.get("/api/admin/all-kpi")
+            .then((response) => response.data)
+            .then(setKpis)
+    }
+
     const addNewKpi = (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => {
         const newKpi: NewKpi = {name: name, targetForKpi: targetForKpi}
         return axios.post("/api/admin/add-kpi", newKpi)
@@ -21,13 +27,6 @@ export default function useKpi() {
             )
             .then(getAllKpisAdmin);
     }
-
-    const getAllKpisAdmin = () => {
-        axios.get("/api/admin/all-kpi")
-            .then((response) => response.data)
-            .then(setKpis)
-    }
-
 
     const notify = (message: string) => {
         toast.error(message, {
