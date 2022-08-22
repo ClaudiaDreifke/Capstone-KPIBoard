@@ -10,7 +10,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -23,8 +25,8 @@ class KpiControllerIntegrationTest {
     @Test
     @DirtiesContext
     void addNewKpiTest() throws Exception {
-        MvcResult result = mockMvc.perform(post("/api/admin/add-kpi")
-                .contentType(APPLICATION_JSON)
+        MvcResult result = mockMvc.perform(post("/api/kpis")
+                        .contentType(APPLICATION_JSON)
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
@@ -41,7 +43,18 @@ class KpiControllerIntegrationTest {
         String content = result.getResponse().getContentAsString();
         Assertions.assertTrue(content.contains("values"));
         Assertions.assertTrue(content.contains("Anzahl Truckings"));
+    }
 
+    @Test
+    void getAllKpisTest() throws Exception {
+
+        mockMvc.perform(get
+                        ("/api/kpis")
+                )
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        []
+                        """));
     }
 
 }

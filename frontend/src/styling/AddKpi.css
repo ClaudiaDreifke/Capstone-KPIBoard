@@ -1,21 +1,38 @@
+h3 {
+    margin: 40px 40px 0 40px;
+}
+
+.add-kpi {
+    align-content: center;
+    border: black solid 1px;
+    background-color: white;
+    text-align: start;
+    margin: 45px;
+    max-width: 500px;
+}
+
 .selector {
-    width: 300px;
+    width: 100px;
     height: 20px;
+    margin: 20px;
 }
 
 form {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr;
-    align-content: center;
+    justify-self: stretch;
+    margin: 40px;
 }
 
 input {
-    width: 300px;
+    width: 100px;
+    margin: 10px;
 }
 
 button {
-    width: 200px;
-    margin: 50px;
+    width: 100px;
+    margin: 20px 0 20px 0;
+    align-content: center;
 }
 
