@@ -8,7 +8,7 @@ h3 {
     background-color: white;
     text-align: start;
     margin: 45px;
-    width: 500px;
+    max-width: 500px;
 }
 
 .selector {
@@ -26,13 +26,13 @@ form {
 }
 
 input {
-    width: 200px;
+    width: 100px;
     margin: 10px;
 }
 
 button {
-    width: 200px;
-    margin: 30px 50% 20px 50%;
-    align-content: end;
+    width: 100px;
+    margin: 20px 0 20px 0;
+    align-content: center;
 }
 

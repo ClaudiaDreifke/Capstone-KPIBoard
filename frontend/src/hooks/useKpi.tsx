@@ -6,21 +6,21 @@ import {useEffect, useState} from "react";
 
 export default function useKpi() {
 
-    const [kpis, setKpis] = useState<Kpi[]>([])
+    const [kpis, setKpis] = useState<Kpi[]>([]);
 
     useEffect(() => {
         getAllKpisAdmin()
     }, [])
 
     const getAllKpisAdmin = () => {
-        axios.get("/api/admin/all-kpi")
+        axios.get("/api/kpis")
             .then((response) => response.data)
             .then(setKpis)
     }
 
     const addNewKpi = (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => {
         const newKpi: NewKpi = {name: name, targetForKpi: targetForKpi}
-        return axios.post("/api/admin/add-kpi", newKpi)
+        return axios.post("/api/kpis", newKpi)
             .then((response) => {
                     return response.data
                 }

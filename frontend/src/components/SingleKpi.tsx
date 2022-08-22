@@ -5,7 +5,6 @@ type SingleKpiProps = {
     kpi: Kpi,
 }
 
-// @ts-ignore
 export default function SingleKpi(props: SingleKpiProps) {
 
     const targetValueOperatorToText = () => {

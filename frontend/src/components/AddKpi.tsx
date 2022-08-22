@@ -1,13 +1,14 @@
 import {FormEvent, useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import useKpi from "../hooks/useKpi";
 import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import '../styling/AddKpi.css'
 
+type AddKpiProps = {
+    addNewKpi: (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => Promise<void>;
+    notify: (message: string) => void;
+}
 
-export default function AddKpi() {
-
-    const {addNewKpi, notify} = useKpi();
+export default function AddKpi(props: AddKpiProps) {
 
     const [name, setName] = useState<string>("")
     const [targetValueOperator, setTargetValueOperator] = useState<string>("")
@@ -16,13 +17,13 @@ export default function AddKpi() {
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        addNewKpi(name, {targetValueOperator, targetValue, targetValueUnit})
+        props.addNewKpi(name, {targetValueOperator, targetValue, targetValueUnit})
             .then(() => setName(""))
             .then(() => setTargetValueOperator(""))
             .then(() => setTargetValue(0))
             .then(() => setTargetValueUnit(""))
             .catch(() => {
-                    notify("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
+                props.notify("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
                 }
             )
     }

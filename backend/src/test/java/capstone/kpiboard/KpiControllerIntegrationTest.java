@@ -25,8 +25,8 @@ class KpiControllerIntegrationTest {
     @Test
     @DirtiesContext
     void addNewKpiTest() throws Exception {
-        MvcResult result = mockMvc.perform(post("/api/admin/add-kpi")
-                .contentType(APPLICATION_JSON)
+        MvcResult result = mockMvc.perform(post("/api/kpis")
+                        .contentType(APPLICATION_JSON)
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
@@ -46,10 +46,10 @@ class KpiControllerIntegrationTest {
     }
 
     @Test
-    void getAllKpisAdminTest() throws Exception {
+    void getAllKpisTest() throws Exception {
 
         mockMvc.perform(get
-                        ("/api/admin/all-kpi")
+                        ("/api/kpis")
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().json("""

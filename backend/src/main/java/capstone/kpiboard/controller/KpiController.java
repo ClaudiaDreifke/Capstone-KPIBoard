@@ -17,15 +17,15 @@ public class KpiController {
         this.kpiService = kpiService;
     }
 
-    @PostMapping("/admin/add-kpi")
+    @PostMapping("/kpis")
     @ResponseStatus(code = HttpStatus.CREATED)
     public Kpi addNewKpi(@RequestBody NewKpi newKpi) {
         return kpiService.addNewKpi(newKpi);
     }
 
-    @GetMapping("/admin/all-kpi")
-    public List<Kpi> getAllKpisAdmin() {
-        return kpiService.getAllKpisAdmin();
+    @GetMapping("/kpis")
+    public List<Kpi> getAllKpis() {
+        return kpiService.getAllKpis();
     }
 
 }

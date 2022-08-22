@@ -31,14 +31,14 @@ class KpiServiceTest {
     }
 
     @Test
-    void getAllKpisAdminTest() {
+    void getAllKpisTest() {
         //given
         List<Kpi> testList = List.of(
                 new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL)),
                 new Kpi("12345", "Verspätungsquote", List.of(260.0, 270.0), new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PROZENT)));
         Mockito.when(testKpiRepo.findAll()).thenReturn(testList);
         //when
-        List<Kpi> actual = testKpiService.getAllKpisAdmin();
+        List<Kpi> actual = testKpiService.getAllKpis();
         //then
         Assertions.assertEquals(testList, actual);
     }

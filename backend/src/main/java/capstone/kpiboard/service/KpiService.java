@@ -19,7 +19,7 @@ public class KpiService {
         return kpiRepo.save(newKpi.withValueListAndId());
     }
 
-    public List<Kpi> getAllKpisAdmin() {
+    public List<Kpi> getAllKpis() {
         return kpiRepo.findAll();
     }
 
