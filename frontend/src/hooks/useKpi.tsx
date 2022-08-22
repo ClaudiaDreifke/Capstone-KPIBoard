@@ -1,6 +1,5 @@
 import {Kpi, NewKpi} from "../model/Kpi";
 import axios from "axios";
-import {toast} from "react-toastify";
 import {useEffect, useState} from "react";
 
 
@@ -28,12 +27,6 @@ export default function useKpi() {
             .then(getAllKpisAdmin);
     }
 
-    const notify = (message: string) => {
-        toast.error(message, {
-            position: toast.POSITION.TOP_LEFT
-        });
-    };
-
-    return {kpis, addNewKpi, getAllKpisAdmin, notify}
+    return {kpis, addNewKpi, getAllKpisAdmin}
 
 }
