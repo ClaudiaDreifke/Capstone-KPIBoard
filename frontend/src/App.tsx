@@ -1,11 +1,11 @@
 import React from "react";
-
+import {HashRouter} from "react-router-dom";
+import AllRoutes from "./components/AllRoutes";
+import Header from "./components/Header";
 import AddKpi from "./components/AddKpi";
 import {toast, ToastContainer} from "react-toastify";
-import KpiGalleryAdmin from "./components/KpiGalleryAdmin";
 import useKpi from "./hooks/useKpi";
 import './styling/App.css'
-
 
 export default function App() {
 
@@ -13,12 +13,13 @@ export default function App() {
 
     return (
         <>
-            <h1>KPI-Board</h1>
-            <main>
-                <AddKpi addNewKpi={addNewKpi}/>
-                <KpiGalleryAdmin kpis={kpis}/>
-                <ToastContainer position={toast.POSITION.TOP_RIGHT}/>
-            </main>
+            <HashRouter>
+                <Header/>
+                <main>
+                    <AllRoutes/>
+                </main>
+            </HashRouter>
+            <ToastContainer position={toast.POSITION.TOP_RIGHT}/>
         </>
     );
 }

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans');
+
+.logout-button {
+    border-radius: 50%;
+    border: white;
+    height: 40px;
+    width: 80px;
+    background-color: #fe832d;
+    color: white;
+    font-weight: bold;
+}
+
+Header {
+    border-bottom: black 1px solid;
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    grid-template-rows: 1fr;
+    justify-items: end;
+    font-family: "DM Sans", sans-serif;
+}
+
+.nav {
+    color: black;
+    font-size: medium;
+    text-decoration: none;
+}
+
+.menu {
+    align-self: end;
+    margin: 12px
+}
+
+.coffee-lover {
+    margin: 10px;
+    justify-self: center
+}
+
+h1 {
+    align-self: end;
+    justify-self: center;
+    font-size: x-large;
+}
