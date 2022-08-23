@@ -1,13 +1,14 @@
 import {FormEvent, useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import useKpi from "../hooks/useKpi";
 import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import '../styling/AddKpi.css'
+import {toast} from "react-toastify";
 
+type AddKpiProps = {
+    addNewKpi: (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => Promise<void>;
+}
 
-export default function AddKpi() {
-
-    const {notify, addNewKpi} = useKpi();
+export default function AddKpi(props: AddKpiProps) {
 
     const [name, setName] = useState<string>("")
     const [targetValueOperator, setTargetValueOperator] = useState<string>("")
@@ -16,14 +17,15 @@ export default function AddKpi() {
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        addNewKpi(name, {targetValueOperator, targetValue, targetValueUnit})
+        props.addNewKpi(name, {targetValueOperator, targetValue, targetValueUnit})
             .then(() => setName(""))
             .then(() => setTargetValueOperator(""))
             .then(() => setTargetValue(0))
             .then(() => setTargetValueUnit(""))
             .catch(() => {
-                notify("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
-            })
+                toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
+                }
+            )
     }
 
     const handleSelectTargetValueOperatorChange = (event: SelectChangeEvent<string>) => {
@@ -35,13 +37,14 @@ export default function AddKpi() {
     }
 
     return (
-        <>  <h2>Kennzahl hinzufügen</h2>
+        <div className={"add-kpi"}><h3>Kennzahl hinzufügen</h3>
             <form className="add-kpi-form" onSubmit={onKpiSubmit}>
-                <label htmlFor={"name-input"}>Name<input id={"name-input"} type={"text"} value={name}
-                                                         onChange={event => setName(event.target.value)}/></label>
+                <label htmlFor={"name-input"}>Name <input id={"name-input"} type={"text"} value={name}
+                                                          onChange={event => setName(event.target.value)}/></label>
                 <label htmlFor={"target-value-operator-input"}>Zielwert größer/kleiner/gleich
                     <Select
                         id={"target-value-operator-input"}
+                        className={"selector"}
                         value={targetValueOperator}
                         onChange={handleSelectTargetValueOperatorChange}>
                         <MenuItem value={"GREATER"}>größer</MenuItem>
@@ -49,9 +52,9 @@ export default function AddKpi() {
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
                     </Select>
                 </label>
-                <label htmlFor={"target-value-input"}>Zielwert<input id={"targetValue"} type={"number"}
-                                                                     value={targetValue}
-                                                                     onChange={event => setTargetValue(event.target.valueAsNumber)}/>
+                <label htmlFor={"target-value-input"}> Zielwert <input id={"targetValue"} type={"number"}
+                                                                       value={targetValue}
+                                                                       onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 </label>
                 <label htmlFor={"target-value-unit-input"}>Zielwert Einheit
                     <Select
@@ -64,6 +67,6 @@ export default function AddKpi() {
                 </label>
                 <button type={"submit"}>hinzufügen</button>
             </form>
-        </>
+        </div>
     )
 }
