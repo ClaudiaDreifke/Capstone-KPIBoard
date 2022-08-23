@@ -4,6 +4,7 @@ import '../styling/KpiGalleryAdmin.css'
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
+    deleteKpiById: (id: string) => void;
 }
 
 export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
@@ -12,7 +13,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
         <>
             <h3>Kennzahlen-Übersicht</h3>
             <ul className={"kpi-gallery-view"}>
-                {props.kpis.map(kpi => <SingleKpi key={kpi.id} kpi={kpi}/>)}
+                {props.kpis.map(kpi => <SingleKpi key={kpi.id} kpi={kpi} deleteKpiById={props.deleteKpiById}/>)}
             </ul>
         </>
     )

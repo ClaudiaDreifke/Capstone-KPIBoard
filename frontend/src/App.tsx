@@ -9,14 +9,14 @@ import './styling/App.css'
 
 export default function App() {
 
-    const {kpis, addNewKpi} = useKpi();
+    const {kpis, addNewKpi, deleteKpiById} = useKpi();
 
     return (
         <>
             <h1>KPI-Board</h1>
             <main>
                 <AddKpi addNewKpi={addNewKpi}/>
-                <KpiGalleryAdmin kpis={kpis}/>
+                <KpiGalleryAdmin kpis={kpis} deleteKpiById={deleteKpiById}/>
                 <ToastContainer position={toast.POSITION.TOP_RIGHT}/>
             </main>
         </>
