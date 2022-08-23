@@ -21,5 +21,6 @@ class GlobalExceptionHandlerTest {
         KpiNotDeletedException e = new KpiNotDeletedException("http://localhost:8080/api/kpis/no-existing-id");
         ResponseEntity<Map<String, Object>> result = handler.handleKpiNotDeletedException(e);
         Assertions.assertEquals(HttpStatus.NOT_FOUND, result.getStatusCode());
+        Assertions.assertTrue(result.toString().contains("Kpi with Id"));
     }
 }
