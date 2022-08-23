@@ -1,7 +1,8 @@
 import React from "react";
-
-import AddKpi from "./components/AddKpi";
 import {ToastContainer} from "react-toastify";
+import {HashRouter} from "react-router-dom";
+import AllRoutes from "./components/AllRoutes";
+import Header from "./components/Header";
 
 
 export default function App() {
@@ -9,8 +10,12 @@ export default function App() {
 
     return (
         <>
-            <h1>KPI-Board</h1>
-            <AddKpi/>
+            <HashRouter>
+                <Header/>
+                <main>
+                    <AllRoutes/>
+                </main>
+            </HashRouter>
             <ToastContainer/>
         </>
     );
