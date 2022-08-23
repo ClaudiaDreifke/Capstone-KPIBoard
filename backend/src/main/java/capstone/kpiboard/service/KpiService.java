@@ -2,6 +2,7 @@ package capstone.kpiboard.service;
 
 import capstone.kpiboard.model.Kpi;
 import capstone.kpiboard.model.NewKpi;
+import capstone.kpiboard.model.TargetForKpi;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,11 @@ public class KpiService {
 
     public List<Kpi> getAllKpis() {
         return kpiRepo.findAll();
+    }
+
+    public Kpi updateKpiById(Kpi updatedKpi) {
+        return kpiRepo.save(new Kpi(updatedKpi.id(), updatedKpi.name(), updatedKpi.values(), new TargetForKpi(
+                updatedKpi.targetForKpi().targetValueOperator(), updatedKpi.targetForKpi().targetValue(), updatedKpi.targetForKpi().targetValueUnit())));
     }
 
 }

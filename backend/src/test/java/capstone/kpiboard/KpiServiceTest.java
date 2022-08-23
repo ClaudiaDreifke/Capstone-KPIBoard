@@ -43,4 +43,13 @@ class KpiServiceTest {
         Assertions.assertEquals(testList, actual);
     }
 
+//    @Test
+//    void updateKpiById() {
+//        //given
+//        Kpi testKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 270.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+//        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+//        //when
+//        when(kpi)
+//        //then
+//    }
 }
