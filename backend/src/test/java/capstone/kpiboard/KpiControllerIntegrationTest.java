@@ -61,7 +61,8 @@ class KpiControllerIntegrationTest {
     }
 
     @Test
-    void deleteKpiById() throws Exception {
+    @DirtiesContext
+    void deleteKpiByIdTest() throws Exception {
 
         String result = mockMvc.perform(post("/api/kpis")
                         .contentType(APPLICATION_JSON)
