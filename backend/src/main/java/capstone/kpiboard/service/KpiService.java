@@ -1,10 +1,9 @@
 package capstone.kpiboard.service;
 
+import capstone.kpiboard.exceptions.KpiNotDeletedException;
 import capstone.kpiboard.model.Kpi;
 import capstone.kpiboard.model.NewKpi;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -25,10 +24,9 @@ public class KpiService {
         return kpiRepo.findAll();
     }
 
-    public void deleteKpi(String id) {
-        boolean doesKpiExist = kpiRepo.existsById(id);
-        if (doesKpiExist) {
+    public void deleteKpiById(String id) throws KpiNotDeletedException {
+        if (kpiRepo.existsById(id)) {
             kpiRepo.deleteById(id);
-        } else throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Keine Kennzahl mit id " + id + " gefunden");
+        } else throw new KpiNotDeletedException(id);
     }
 }

@@ -12,8 +12,8 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = KpiNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleKpiNotFoundException(KpiNotFoundException exception) {
+    @ExceptionHandler(value = KpiNotDeletedException.class)
+    public ResponseEntity<Map<String, Object>> handleKpiNotDeletedException(KpiNotDeletedException exception) {
         Map<String, Object> responseBody = new LinkedHashMap<>();
 
         responseBody.put("timestamp", LocalDateTime.now());
@@ -22,3 +22,4 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(responseBody, HttpStatus.NOT_FOUND);
     }
 }
+

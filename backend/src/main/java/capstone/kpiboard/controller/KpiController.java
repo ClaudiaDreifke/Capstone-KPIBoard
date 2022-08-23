@@ -1,5 +1,6 @@
 package capstone.kpiboard.controller;
 
+import capstone.kpiboard.exceptions.KpiNotDeletedException;
 import capstone.kpiboard.model.Kpi;
 import capstone.kpiboard.model.NewKpi;
 import capstone.kpiboard.service.KpiService;
@@ -29,9 +30,9 @@ public class KpiController {
     }
 
     @DeleteMapping("/kpis/{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void deleteKpi(@PathVariable String id) {
-        kpiService.deleteKpi(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteKpiById(@PathVariable String id) throws KpiNotDeletedException {
+        kpiService.deleteKpiById(id);
     }
 
 }
