@@ -87,4 +87,14 @@ class KpiServiceTest {
         //then
         Assertions.assertEquals(testUpdatedKpi, actual);
     }
+
+    @Test
+    void updateKpiByIdKpiDoesntExist() {
+        //given
+        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 270.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        when(testKpiRepo.existsById("1234")).thenReturn(false);
+        //then
+        Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.updateKpiById(testUpdatedKpi));
+    }
+
 }
