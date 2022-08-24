@@ -1,6 +1,7 @@
 import {Kpi, NewKpi} from "../model/Kpi";
 import axios from "axios";
 import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 
 
 export default function useKpi() {
@@ -27,6 +28,14 @@ export default function useKpi() {
             .then(getAllKpisAdmin);
     }
 
-    return {kpis, addNewKpi, getAllKpisAdmin}
+    const deleteKpiById = (id: string) => {
+        return axios.delete("api/kpis/" + id)
+            .then((response) => response.status)
+            .then(getAllKpisAdmin)
+            .catch(() => {
+                toast.error("Die Kennzahl konnte nicht gefunden werden.")
+            })
+    }
 
+    return {kpis, addNewKpi, getAllKpisAdmin, deleteKpiById}
 }

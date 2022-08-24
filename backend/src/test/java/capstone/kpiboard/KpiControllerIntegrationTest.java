@@ -62,6 +62,53 @@ class KpiControllerIntegrationTest {
 
     @Test
     @DirtiesContext
+    void deleteKpiByIdKpiExistsTest() throws Exception {
+
+        String result = mockMvc.perform(post("/api/kpis")
+                        .contentType(APPLICATION_JSON)
+                        .content("""
+                                {
+                                "name": "Anzahl Truckings",
+                                "targetForKpi":
+                                {
+                                "targetValueOperator": "GREATER",
+                                "targetValue": 250.0,
+                                "targetValueUnit": "ANZAHL"
+                                }
+                                }
+                                """))
+                .andExpect(status().is(201))
+                .andReturn().getResponse().getContentAsString();
+
+        Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
+        String id = resultKpi.id();
+
+        mockMvc.perform(delete("http://localhost:8080/api/kpis/" + id))
+                .andExpect(status().is(204));
+
+        mockMvc.perform(get
+                        ("/api/kpis")
+                )
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        []
+                        """));
+    }
+
+
+    @Test
+    @DirtiesContext
+    void deleteKpiByIdTestKpiDoesntExist() throws Exception {
+
+        String errorMessage = mockMvc.perform(delete("http://localhost:8080/api/kpis/no-existing-id"))
+                .andExpect(status().is(404))
+                .andReturn().getResponse().getContentAsString();
+
+        Assertions.assertTrue(errorMessage.contains("timestamp"));
+        Assertions.assertTrue(errorMessage.contains("message"));
+    }
+    @Test
+    @DirtiesContext
     void updateKpiById() throws Exception {
 
         String result = mockMvc.perform(post("/api/kpis")

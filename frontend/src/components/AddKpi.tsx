@@ -52,12 +52,13 @@ export default function AddKpi(props: AddKpiProps) {
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
                     </Select>
                 </label>
-                <label htmlFor={"target-value-input"}> Zielwert <input id={"targetValue"} type={"number"}
+                <label htmlFor={"target-value-input"}> Zielwert <input id={"target-value-input"} type={"number"}
                                                                        value={targetValue}
                                                                        onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 </label>
                 <label htmlFor={"target-value-unit-input"}>Zielwert Einheit
                     <Select
+                        id={"target-value-unit-input"}
                         className={"selector"}
                         value={targetValueUnit}
                         onChange={handleSelectTargetValueUnitChange}>

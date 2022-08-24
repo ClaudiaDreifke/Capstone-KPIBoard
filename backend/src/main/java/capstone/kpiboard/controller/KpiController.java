@@ -1,5 +1,6 @@
 package capstone.kpiboard.controller;
 
+import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.model.Kpi;
 import capstone.kpiboard.model.NewKpi;
 import capstone.kpiboard.service.KpiService;
@@ -26,6 +27,12 @@ public class KpiController {
     @GetMapping("/kpis")
     public List<Kpi> getAllKpis() {
         return kpiService.getAllKpis();
+    }
+
+    @DeleteMapping("/kpis/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteKpiById(@PathVariable String id) throws KpiNotFoundException {
+        kpiService.deleteKpiById(id);
     }
 
     @PutMapping("/kpis/{id}")

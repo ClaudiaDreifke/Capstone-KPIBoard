@@ -1,5 +1,6 @@
 package capstone.kpiboard;
 
+import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.model.*;
 import capstone.kpiboard.service.KpiRepo;
 import capstone.kpiboard.service.KpiService;
@@ -10,8 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @Service
 class KpiServiceTest {
@@ -41,6 +41,27 @@ class KpiServiceTest {
         List<Kpi> actual = testKpiService.getAllKpis();
         //then
         Assertions.assertEquals(testList, actual);
+    }
+
+    @Test
+    void deleteKpiTestKpiExists() {
+        //given
+        Kpi testKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        when(testKpiRepo.existsById("1234")).thenReturn(true);
+        doNothing().when(testKpiRepo).deleteById("1234");
+        //when
+        testKpiService.deleteKpiById("1234");
+        //then
+        verify(testKpiRepo).deleteById("1234");
+    }
+
+    @Test
+    void deleteKpiTestKpiDoesntExist() {
+        //given
+        when(testKpiRepo.existsById("123")).thenReturn(false);
+        doNothing().when(testKpiRepo).deleteById("123");
+        //then
+        Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.deleteKpiById("123"));
     }
 
     @Test
