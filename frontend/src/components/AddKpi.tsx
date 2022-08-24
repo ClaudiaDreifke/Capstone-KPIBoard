@@ -37,8 +37,9 @@ export default function AddKpi(props: AddKpiProps) {
     }
 
     return (
-        <div className={"add-kpi"}><h3>Kennzahl hinzufügen</h3>
-            <form className="add-kpi-form" onSubmit={onKpiSubmit}>
+        <div className={"add-kpi"}>
+            <form onSubmit={onKpiSubmit}>
+                <h3>Kennzahl hinzufügen</h3>
                 <label htmlFor={"name-input"}>Name <input id={"name-input"} type={"text"} value={name}
                                                           onChange={event => setName(event.target.value)}/></label>
                 <label htmlFor={"target-value-operator-input"}>Zielwert größer/kleiner/gleich

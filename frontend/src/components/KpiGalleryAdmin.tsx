@@ -14,7 +14,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
     return (
         <>
             <AddKpi addNewKpi={props.addNewKpi}/>
-            <h3> Kennzahlen-Übersicht</h3>
+            <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
             <ul className={"kpi-gallery-view"}>
                 {props.kpis.map(kpi => <SingleKpi key={kpi.id} kpi={kpi} deleteKpiById={props.deleteKpiById}/>)}
             </ul>
