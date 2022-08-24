@@ -1,5 +1,6 @@
 package capstone.kpiboard.service;
 
+import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.model.Kpi;
 import capstone.kpiboard.model.NewKpi;
 import org.springframework.stereotype.Service;
@@ -23,4 +24,9 @@ public class KpiService {
         return kpiRepo.findAll();
     }
 
+    public void deleteKpiById(String id) throws KpiNotFoundException {
+        if (kpiRepo.existsById(id)) {
+            kpiRepo.deleteById(id);
+        } else throw new KpiNotFoundException(id);
+    }
 }
