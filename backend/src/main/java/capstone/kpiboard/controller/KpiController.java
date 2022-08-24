@@ -1,6 +1,6 @@
 package capstone.kpiboard.controller;
 
-import capstone.kpiboard.exceptions.KpiNotDeletedException;
+import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.model.Kpi;
 import capstone.kpiboard.model.NewKpi;
 import capstone.kpiboard.service.KpiService;
@@ -31,7 +31,7 @@ public class KpiController {
 
     @DeleteMapping("/kpis/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteKpiById(@PathVariable String id) throws KpiNotDeletedException {
+    public void deleteKpiById(@PathVariable String id) throws KpiNotFoundException {
         kpiService.deleteKpiById(id);
     }
 

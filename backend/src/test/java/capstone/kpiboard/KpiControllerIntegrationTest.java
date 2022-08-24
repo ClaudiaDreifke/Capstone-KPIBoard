@@ -62,7 +62,7 @@ class KpiControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    void deleteKpiByIdTest() throws Exception {
+    void deleteKpiByIdKpiExistsTest() throws Exception {
 
         String result = mockMvc.perform(post("/api/kpis")
                         .contentType(APPLICATION_JSON)
@@ -95,4 +95,16 @@ class KpiControllerIntegrationTest {
                         """));
     }
 
+
+    @Test
+    @DirtiesContext
+    void deleteKpiByIdTestKpiDoesntExist() throws Exception {
+
+        String errorMessage = mockMvc.perform(delete("http://localhost:8080/api/kpis/no-existing-id"))
+                .andExpect(status().is(404))
+                .andReturn().getResponse().getContentAsString();
+
+        Assertions.assertTrue(errorMessage.contains("timestamp"));
+        Assertions.assertTrue(errorMessage.contains("message"));
+    }
 }

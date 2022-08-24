@@ -1,6 +1,6 @@
 package capstone.kpiboard;
 
-import capstone.kpiboard.exceptions.KpiNotDeletedException;
+import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.model.*;
 import capstone.kpiboard.service.KpiRepo;
 import capstone.kpiboard.service.KpiService;
@@ -46,9 +46,7 @@ class KpiServiceTest {
     @Test
     void deleteKpiTestKpiExists() {
         //given
-        List<Kpi> testList = List.of(
-                new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL)),
-                new Kpi("12345", "Verspätungsquote", List.of(260.0, 270.0), new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PROZENT)));
+        Kpi testKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
         when(testKpiRepo.existsById("1234")).thenReturn(true);
         doNothing().when(testKpiRepo).deleteById("1234");
         //when
@@ -60,13 +58,10 @@ class KpiServiceTest {
     @Test
     void deleteKpiTestKpiDoesntExist() {
         //given
-        List<Kpi> testList = List.of(
-                new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL)),
-                new Kpi("12345", "Verspätungsquote", List.of(260.0, 270.0), new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PROZENT)));
         when(testKpiRepo.existsById("123")).thenReturn(false);
-        doNothing().when(testKpiRepo).deleteById("1234");
+        doNothing().when(testKpiRepo).deleteById("123");
         //then
-        Assertions.assertThrows(KpiNotDeletedException.class, () -> testKpiService.deleteKpiById("123"));
+        Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.deleteKpiById("123"));
 
     }
 }

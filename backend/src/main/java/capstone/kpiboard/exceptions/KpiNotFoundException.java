@@ -4,9 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class KpiNotDeletedException extends IllegalArgumentException {
+public class KpiNotFoundException extends RuntimeException {
 
-    public KpiNotDeletedException(String id) {
-        super("Kpi with Id " + id + " not found", null);
+    public KpiNotFoundException(String id) {
+        super("Kpi with Id " + id + " not found", null, false, false);
     }
 }
+
