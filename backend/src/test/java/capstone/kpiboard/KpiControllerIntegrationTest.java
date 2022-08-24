@@ -68,6 +68,35 @@ class KpiControllerIntegrationTest {
 
     @Test
     @DirtiesContext
+    void getKpiByIdTest() throws Exception {
+        String result = mockMvc.perform(post("/api/kpis")
+                        .contentType(APPLICATION_JSON)
+                        .content("""
+                                {
+                                "name": "Anzahl Truckings",
+                                "targetForKpi":
+                                {
+                                "targetValueOperator": "GREATER",
+                                "targetValue": 250.0,
+                                "targetValueUnit": "ANZAHL"
+                                }
+                                }
+                                """))
+                .andExpect(status().is(201))
+                .andReturn().getResponse().getContentAsString();
+
+        Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
+        String id = resultKpi.id();
+
+        String testKpiString = objectMapper.writer().writeValueAsString(resultKpi);
+
+        mockMvc.perform(get("http://localhost:8080/api/kpis/" + id))
+                .andExpect(status().is(200))
+                .andExpect(content().json(testKpiString));
+    }
+
+    @Test
+    @DirtiesContext
     void deleteKpiByIdKpiExistsTest() throws Exception {
 
         String result = mockMvc.perform(post("/api/kpis")
@@ -137,7 +166,6 @@ class KpiControllerIntegrationTest {
         Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
         String id = resultKpi.id();
         List<Double> values = List.of(250.0, 260.0);
-
         Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
 
         String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)
