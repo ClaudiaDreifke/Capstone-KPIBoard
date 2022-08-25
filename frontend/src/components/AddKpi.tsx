@@ -48,13 +48,13 @@ export default function AddKpi(props: AddKpiProps) {
     return (
         <div className={"add-kpi"}>
             <form onSubmit={onKpiSubmit}>
-                <h3>Kennzahl ändern</h3>
+                <h3>Kennzahl hinzufügen</h3>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <TextField id="name-input" label="Name" variant="outlined" value={name}
                                onChange={event => setName(event.target.value)}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <InputLabel id="target-value-operator-input"></InputLabel>
+                    <InputLabel id="target-value-operator-input">Vorzeichen</InputLabel>
                     <Select
                         labelId="target-value-operator-input"
                         id="target-value-operator-input"
@@ -72,7 +72,7 @@ export default function AddKpi(props: AddKpiProps) {
                                onChange={event => setTargetValue(Number(event.target.value))}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <InputLabel id="target-value-unit-input"></InputLabel>
+                    <InputLabel id="target-value-unit-input">Einheit</InputLabel>
                     <Select
                         labelId="target-value-unit-input"
                         id="target-value-unit-input"
