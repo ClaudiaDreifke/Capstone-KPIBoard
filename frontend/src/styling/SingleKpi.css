@@ -1,15 +1,21 @@
 .show-single-kpi {
     border: black solid 1px;
     background-color: white;
-    text-align: start;
     margin: 5px;
-    width: 300px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+    justify-items: stretch;
 }
 
 .description-single-kpi {
-    margin: 20px
+    margin: 20px;
 }
 
-.delete-button {
-    margin: 20px
+button {
+    margin: 20px;
+    border: black 1px solid;
+    border-radius: 5%;
+    background-color: white;
+    font-family: "DM Sans", sans-serif;
 }

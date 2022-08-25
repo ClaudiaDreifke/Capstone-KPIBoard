@@ -1,7 +1,8 @@
 .kpi-gallery-view {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    margin-right: 5%;
 }
 
 .headline {

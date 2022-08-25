@@ -3,9 +3,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
 import '../styling/AddKpi.css'
 import {toast} from "react-toastify";
+import {NewKpi} from "../model/Kpi";
 
 type AddKpiProps = {
-    addNewKpi: (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => Promise<void>;
+    addNewKpi: (newKpi: NewKpi) => Promise<void>;
 }
 
 export default function AddKpi(props: AddKpiProps) {
@@ -17,13 +18,21 @@ export default function AddKpi(props: AddKpiProps) {
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        props.addNewKpi(name, {targetValueOperator, targetValue, targetValueUnit})
+        const newKpi: NewKpi = {
+            name: name,
+            targetForKpi: {
+                targetValueOperator: targetValueOperator,
+                targetValue: targetValue,
+                targetValueUnit: targetValueUnit
+            }
+        };
+        props.addNewKpi(newKpi)
             .then(() => setName(""))
             .then(() => setTargetValueOperator(""))
             .then(() => setTargetValue(0))
             .then(() => setTargetValueUnit(""))
             .catch(() => {
-                toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
+                    toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
                 }
             )
     }
