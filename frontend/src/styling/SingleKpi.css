@@ -14,8 +14,9 @@
 
 button {
     margin: 20px;
-    border: black 1px solid;
-    border-radius: 5%;
+    border: #868582 1px solid;
+    border-radius: 10%;
     background-color: white;
     font-family: "DM Sans", sans-serif;
+    width: 300px
 }

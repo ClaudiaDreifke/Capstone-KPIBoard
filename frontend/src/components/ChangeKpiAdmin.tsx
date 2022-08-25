@@ -1,4 +1,4 @@
-import {InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
 import {FormEvent, useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
@@ -60,34 +60,41 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         <>
             <form onSubmit={onKpiSubmit}>
                 <h3>Kennzahl ändern</h3>
-                <TextField id="name-input" label="Name" variant="outlined" value={name}
-                           onChange={event => setName(event.target.value)}/>
-                <InputLabel id="target-value-operator-input"></InputLabel>
-                <Select
-                    labelId="target-value-operator-input"
-                    id="target-value-operator-input"
-                    value={targetValueOperator}
-                    label="Vorzeichen"
-                    onChange={handleSelectTargetValueOperatorChange}>
-                    <MenuItem value={"GREATER"}>größer</MenuItem>
-                    <MenuItem value={"LESS"}>kleiner</MenuItem>
-                    <MenuItem value={"EQUALS"}>gleich</MenuItem>
-                </Select>
-                <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
-                           id="target-value-input" label="Zielwert" type="number" variant="outlined" value={targetValue}
-                           onChange={event => setTargetValue(Number(event.target.value))}/>
-                <InputLabel id="target-value-unit-input"></InputLabel>
-                <Select
-                    labelId="target-value-unit-input"
-                    id="target-value-unit-input"
-                    value={targetValueUnit}
-                    label="Einheit"
-                    onChange={handleSelectTargetValueUnitChange}>
-                    <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
-                    <MenuItem value={"PROZENT"}>%</MenuItem>
-                </Select>
-                <button id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück</button>
-                <button type={"submit"}>ändern</button>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <TextField id="name-input" label="Name" variant="outlined" value={name}
+                               onChange={event => setName(event.target.value)}/>
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <InputLabel id="target-value-operator-input"></InputLabel>
+                    <Select
+                        labelId="target-value-operator-input"
+                        id="target-value-operator-input"
+                        value={targetValueOperator}
+                        onChange={handleSelectTargetValueOperatorChange}>
+                        <MenuItem value={"GREATER"}>größer</MenuItem>
+                        <MenuItem value={"LESS"}>kleiner</MenuItem>
+                        <MenuItem value={"EQUALS"}>gleich</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
+                               id="target-value-input" label="Zielwert" type="number" variant="outlined"
+                               value={targetValue}
+                               onChange={event => setTargetValue(Number(event.target.value))}/>
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <InputLabel id="target-value-unit-input"></InputLabel>
+                    <Select
+                        labelId="target-value-unit-input"
+                        id="target-value-unit-input"
+                        value={targetValueUnit}
+                        onChange={handleSelectTargetValueUnitChange}>
+                        <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
+                        <MenuItem value={"PROZENT"}>%</MenuItem>
+                    </Select>
+                    <button id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück</button>
+                    <button type={"submit"}>ändern</button>
+                </FormControl>
             </form>
         </>
     )
