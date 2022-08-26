@@ -66,10 +66,10 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                                onChange={event => setName(event.target.value)}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <InputLabel id="target-value-operator-input"></InputLabel>
+                    <InputLabel id="target-value-operator"></InputLabel>
                     <Select
-                        labelId="target-value-operator-input"
-                        id="target-value-operator-input"
+                        labelId="target-value-operator"
+                        id="target-value-operator"
                         value={targetValueOperator}
                         onChange={handleSelectTargetValueOperatorChange}>
                         <MenuItem value={"GREATER"}>größer</MenuItem>
@@ -79,15 +79,15 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
-                               id="target-value-input" label="Zielwert" type="number" variant="outlined"
+                               id="target-value" label="Zielwert" type="number" variant="outlined"
                                value={targetValue}
                                onChange={event => setTargetValue(Number(event.target.value))}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <InputLabel id="target-value-unit-input"></InputLabel>
+                    <InputLabel id="target-value-unit"></InputLabel>
                     <Select
-                        labelId="target-value-unit-input"
-                        id="target-value-unit-input"
+                        labelId="target-value-unit"
+                        id="target-value-unit"
                         value={targetValueUnit}
                         onChange={handleSelectTargetValueUnitChange}>
                         <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
