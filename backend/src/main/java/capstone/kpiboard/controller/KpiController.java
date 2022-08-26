@@ -29,11 +29,6 @@ public class KpiController {
         return kpiService.getAllKpis();
     }
 
-    @GetMapping("/kpis/{id}")
-    public Kpi getKpiById(@PathVariable String id) {
-        return kpiService.getKpiById(id);
-    }
-
     @DeleteMapping("/kpis/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteKpiById(@PathVariable String id) throws KpiNotFoundException {

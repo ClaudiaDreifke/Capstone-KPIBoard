@@ -7,7 +7,6 @@ type KpiGalleryAdminProps = {
     kpis: Kpi[],
     deleteKpiById: (id: string) => void;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
-    updateKpiById: (updatedKpi: Kpi) => void;
 }
 
 export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
@@ -17,8 +16,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
             <AddKpi addNewKpi={props.addNewKpi}/>
             <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
             <ul className={"kpi-gallery-view"}>
-                {props.kpis.map(kpi => <SingleKpi key={kpi.id} kpi={kpi} deleteKpiById={props.deleteKpiById}
-                                                  updateKpiById={props.updateKpiById}/>)}
+                {props.kpis.map(kpi => <SingleKpi key={kpi.id} kpi={kpi} deleteKpiById={props.deleteKpiById}/>)}
             </ul>
         </>
     )

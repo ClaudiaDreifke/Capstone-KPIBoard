@@ -6,7 +6,6 @@ import {useNavigate} from "react-router-dom";
 type SingleKpiProps = {
     kpi: Kpi,
     deleteKpiById: (id: string) => void,
-    updateKpiById: (updatedKpi: Kpi) => void;
 }
 
 export default function SingleKpi(props: SingleKpiProps) {

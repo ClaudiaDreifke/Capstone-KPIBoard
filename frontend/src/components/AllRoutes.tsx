@@ -11,8 +11,7 @@ export default function AllRoutes() {
         <>
             <Routes>
                 <Route path={"/admin"}
-                       element={<KpiGalleryAdmin kpis={kpis} addNewKpi={addNewKpi} deleteKpiById={deleteKpiById}
-                                                 updateKpiById={updateKpiById}/>}/>
+                       element={<KpiGalleryAdmin kpis={kpis} addNewKpi={addNewKpi} deleteKpiById={deleteKpiById}/>}/>
                 <Route path={"/admin/change/:id"}
                        element={<ChangeKpiAdmin kpis={kpis} updateKpiById={updateKpiById}/>}/>
             </Routes>
