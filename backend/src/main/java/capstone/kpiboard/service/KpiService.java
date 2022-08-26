@@ -25,6 +25,10 @@ public class KpiService {
         return kpiRepo.findAll();
     }
 
+    public Kpi getKpiById(String id) throws KpiNotFoundException {
+        return kpiRepo.findById(id).orElseThrow(() -> new KpiNotFoundException(id));
+    }
+
     public void deleteKpiById(String id) throws KpiNotFoundException {
         if (kpiRepo.existsById(id)) {
             kpiRepo.deleteById(id);
@@ -38,6 +42,4 @@ public class KpiService {
                     updatedKpi.targetForKpi().targetValueOperator(), updatedKpi.targetForKpi().targetValue(), updatedKpi.targetForKpi().targetValueUnit())));
         } else throw new KpiNotFoundException(updatedKpi.id());
     }
-
-
 }
