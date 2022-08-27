@@ -62,6 +62,27 @@ class KpiServiceTest {
         doNothing().when(testKpiRepo).deleteById("123");
         //then
         Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.deleteKpiById("123"));
-
     }
+
+    @Test
+    void updateKpiById() {
+        //given
+        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 270.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        when(testKpiRepo.existsById("1234")).thenReturn(true);
+        when(testKpiRepo.save(testUpdatedKpi)).thenReturn(testUpdatedKpi);
+        //when
+        Kpi actual = testKpiService.updateKpiById(testUpdatedKpi);
+        //then
+        Assertions.assertEquals(testUpdatedKpi, actual);
+    }
+
+    @Test
+    void updateKpiByIdKpiDoesntExist() {
+        //given
+        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 270.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        when(testKpiRepo.existsById("1234")).thenReturn(false);
+        //then
+        Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.updateKpiById(testUpdatedKpi));
+    }
+
 }

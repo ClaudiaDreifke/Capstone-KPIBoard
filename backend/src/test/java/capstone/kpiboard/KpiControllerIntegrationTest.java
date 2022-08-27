@@ -1,15 +1,21 @@
 package capstone.kpiboard;
 
 import capstone.kpiboard.model.Kpi;
+import capstone.kpiboard.model.TargetForKpi;
+import capstone.kpiboard.model.TargetValueOperator;
+import capstone.kpiboard.model.TargetValueUnit;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -106,5 +112,39 @@ class KpiControllerIntegrationTest {
 
         Assertions.assertTrue(errorMessage.contains("timestamp"));
         Assertions.assertTrue(errorMessage.contains("message"));
+    }
+
+    @Test
+    @DirtiesContext
+    void updateKpiById() throws Exception {
+
+        String result = mockMvc.perform(post("/api/kpis")
+                        .contentType(APPLICATION_JSON)
+                        .content("""
+                                {
+                                "name": "Anzahl Truckings",
+                                "targetForKpi":
+                                {
+                                "targetValueOperator": "GREATER",
+                                "targetValue": 250.0,
+                                "targetValueUnit": "ANZAHL"
+                                }
+                                }
+                                """))
+                .andExpect(status().is(201))
+                .andReturn().getResponse().getContentAsString();
+
+        Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
+        String id = resultKpi.id();
+        List<Double> values = List.of(250.0, 260.0);
+        Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PROZENT));
+
+        String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(testUpdatedKpi)))
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        Kpi actualKpi = objectMapper.readValue(updatedResult, Kpi.class);
+        Assertions.assertEquals(testUpdatedKpi, actualKpi);
     }
 }

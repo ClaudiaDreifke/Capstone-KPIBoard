@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans');
 
 main {
+    border-top: solid 1px white;
     background-color: #f8f7f3;
     font-family: "DM Sans", sans-serif;
 }

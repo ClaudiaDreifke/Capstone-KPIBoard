@@ -9,33 +9,41 @@ export default function useKpi() {
     const [kpis, setKpis] = useState<Kpi[]>([]);
 
     useEffect(() => {
-        getAllKpisAdmin()
+        getAllKpis()
     }, [])
 
-    const getAllKpisAdmin = () => {
+    const getAllKpis = () => {
         axios.get("/api/kpis")
             .then((response) => response.data)
             .then(setKpis)
     }
 
-    const addNewKpi = (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => {
-        const newKpi: NewKpi = {name: name, targetForKpi: targetForKpi}
+    const addNewKpi = (newKpi: NewKpi) => {
         return axios.post("/api/kpis", newKpi)
             .then((response) => {
                     return response.data
                 }
             )
-            .then(getAllKpisAdmin);
+            .then(getAllKpis);
     }
 
     const deleteKpiById = (id: string) => {
-        return axios.delete("api/kpis/" + id)
+        return axios.delete(`/api/kpis/${id}`)
             .then((response) => response.status)
-            .then(getAllKpisAdmin)
+            .then(getAllKpis)
             .catch(() => {
                 toast.error("Die Kennzahl konnte nicht gefunden werden.")
             })
     }
 
-    return {kpis, addNewKpi, getAllKpisAdmin, deleteKpiById}
+    const updateKpiById = (updatedKpi: Kpi) => {
+        return axios.put("/api/kpis/" + updatedKpi.id, updatedKpi)
+            .then((response) => response.data)
+            .then(getAllKpis)
+            .catch(() => {
+                toast.error("Die Eingabe konnte nicht gespeichert werden")
+            })
+    }
+
+    return {kpis, addNewKpi, getAllKpis, deleteKpiById, updateKpiById}
 }

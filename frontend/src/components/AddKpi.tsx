@@ -1,11 +1,12 @@
 import {FormEvent, useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import {MenuItem, Select, SelectChangeEvent} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
 import '../styling/AddKpi.css'
 import {toast} from "react-toastify";
+import {NewKpi} from "../model/Kpi";
 
 type AddKpiProps = {
-    addNewKpi: (name: string, targetForKpi: { targetValueOperator: string, targetValue: number, targetValueUnit: string }) => Promise<void>;
+    addNewKpi: (newKpi: NewKpi) => Promise<void>;
 }
 
 export default function AddKpi(props: AddKpiProps) {
@@ -17,13 +18,21 @@ export default function AddKpi(props: AddKpiProps) {
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        props.addNewKpi(name, {targetValueOperator, targetValue, targetValueUnit})
+        const newKpi: NewKpi = {
+            name: name,
+            targetForKpi: {
+                targetValueOperator: targetValueOperator,
+                targetValue: targetValue,
+                targetValueUnit: targetValueUnit
+            }
+        };
+        props.addNewKpi(newKpi)
             .then(() => setName(""))
             .then(() => setTargetValueOperator(""))
             .then(() => setTargetValue(0))
             .then(() => setTargetValueUnit(""))
             .catch(() => {
-                toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
+                    toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
                 }
             )
     }
@@ -37,36 +46,43 @@ export default function AddKpi(props: AddKpiProps) {
     }
 
     return (
-        <div className={"add-kpi"}><h3>Kennzahl hinzufügen</h3>
-            <form className="add-kpi-form" onSubmit={onKpiSubmit}>
-                <label htmlFor={"name-input"}>Name <input id={"name-input"} type={"text"} value={name}
-                                                          onChange={event => setName(event.target.value)}/></label>
-                <label htmlFor={"target-value-operator-input"}>Zielwert größer/kleiner/gleich
+        <div className={"add-kpi"}>
+            <form onSubmit={onKpiSubmit}>
+                <h3>Kennzahl hinzufügen</h3>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <TextField id="name-input" label="Name" variant="outlined" value={name}
+                               onChange={event => setName(event.target.value)}/>
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <InputLabel id="target-value-operator-input">Vorzeichen</InputLabel>
                     <Select
-                        id={"target-value-operator-input"}
-                        className={"selector"}
+                        labelId="target-value-operator-input"
+                        id="target-value-operator-input"
                         value={targetValueOperator}
                         onChange={handleSelectTargetValueOperatorChange}>
                         <MenuItem value={"GREATER"}>größer</MenuItem>
                         <MenuItem value={"LESS"}>kleiner</MenuItem>
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
                     </Select>
-                </label>
-                <label htmlFor={"target-value-input"}> Zielwert <input id={"target-value-input"} type={"number"}
-                                                                       value={targetValue}
-                                                                       onChange={event => setTargetValue(event.target.valueAsNumber)}/>
-                </label>
-                <label htmlFor={"target-value-unit-input"}>Zielwert Einheit
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
+                               id="target-value-input" label="Zielwert" type="number" variant="outlined"
+                               value={targetValue}
+                               onChange={event => setTargetValue(Number(event.target.value))}/>
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <InputLabel id="target-value-unit-input">Einheit</InputLabel>
                     <Select
-                        id={"target-value-unit-input"}
-                        className={"selector"}
+                        labelId="target-value-unit-input"
+                        id="target-value-unit-input"
                         value={targetValueUnit}
                         onChange={handleSelectTargetValueUnitChange}>
                         <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
                         <MenuItem value={"PROZENT"}>%</MenuItem>
                     </Select>
-                </label>
-                <button type={"submit"}>hinzufügen</button>
+                    <button type={"submit"}>hinzufügen</button>
+                </FormControl>
             </form>
         </div>
     )

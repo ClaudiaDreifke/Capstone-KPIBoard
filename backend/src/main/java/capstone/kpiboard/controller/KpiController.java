@@ -35,4 +35,10 @@ public class KpiController {
         kpiService.deleteKpiById(id);
     }
 
+    @PutMapping("/kpis/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public Kpi updateKpiById(@PathVariable String id, @RequestBody Kpi updatedKpi) {
+        return kpiService.updateKpiById(updatedKpi);
+    }
+
 }
