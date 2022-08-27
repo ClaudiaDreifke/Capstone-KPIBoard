@@ -5,7 +5,7 @@ import AddKpi from "./AddKpi";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
-    deleteKpiById: (id: string) => void;
+    deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
 }
 

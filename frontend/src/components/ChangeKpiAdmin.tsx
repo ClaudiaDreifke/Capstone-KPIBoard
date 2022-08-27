@@ -1,4 +1,4 @@
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
+import {FormControl, FormGroup, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
 import {FormEvent, useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
@@ -16,14 +16,11 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
     const {id} = useParams();
     const kpi: Kpi | undefined = props.kpis.find((k: Kpi) => k.id === id);
 
-
-    const [name, setName] = useState<string>(kpi?.name || "")
     const [targetValueOperator, setTargetValueOperator] = useState<string>(kpi?.targetForKpi?.targetValueOperator || "")
     const [targetValue, setTargetValue] = useState<number>(kpi?.targetForKpi?.targetValue || 0)
     const [targetValueUnit, setTargetValueUnit] = useState<string>(kpi?.targetForKpi?.targetValueUnit || "")
 
     useEffect(() => {
-        setName(kpi?.name || "");
         setTargetValueOperator(kpi?.targetForKpi?.targetValueOperator || "")
         setTargetValue(kpi?.targetForKpi?.targetValue || 0)
         setTargetValueUnit(kpi?.targetForKpi?.targetValueUnit || "")
@@ -34,7 +31,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         if (kpi) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
-                name: name,
+                name: kpi.name,
                 values: kpi.values,
                 targetForKpi: {
                     targetValueOperator: targetValueOperator,
@@ -43,10 +40,10 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                 }
             }
             props.updateKpiById(updatedKpi)
-            navigate("/admin")
         } else {
             toast.error("Die Kennzahl konnte nicht geändert werden")
         }
+        navigate("/admin")
     }
 
     const handleSelectTargetValueOperatorChange = (event: SelectChangeEvent) => {
@@ -61,10 +58,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         <>
             <form onSubmit={onKpiSubmit}>
                 <h3>Kennzahl ändern</h3>
-                <FormControl sx={{m: 1, minWidth: 80}}>
-                    <TextField id="name-input" label="Name" variant="outlined" value={name}
-                               onChange={event => setName(event.target.value)}/>
-                </FormControl>
+                <p id="name">{kpi?.name}</p>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="target-value-operator"></InputLabel>
                     <Select
@@ -93,9 +87,11 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
                         <MenuItem value={"PROZENT"}>%</MenuItem>
                     </Select>
+                </FormControl>
+                <FormGroup style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "flex-start"}}>
                     <button id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück</button>
                     <button type={"submit"}>ändern</button>
-                </FormControl>
+                </FormGroup>
             </form>
         </>
     )
