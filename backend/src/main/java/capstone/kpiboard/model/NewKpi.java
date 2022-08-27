@@ -2,7 +2,7 @@ package capstone.kpiboard.model;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public record NewKpi(
@@ -11,6 +11,6 @@ public record NewKpi(
         @NotNull
         TargetForKpi targetForKpi) {
     public Kpi withValueListAndId() {
-        return new Kpi(UUID.randomUUID().toString(), name(), new ArrayList<>(), targetForKpi());
+        return new Kpi(UUID.randomUUID().toString(), name(), new HashMap<>(), targetForKpi());
     }
 }

@@ -1,9 +1,6 @@
 package capstone.kpiboard;
 
-import capstone.kpiboard.model.Kpi;
-import capstone.kpiboard.model.TargetForKpi;
-import capstone.kpiboard.model.TargetValueOperator;
-import capstone.kpiboard.model.TargetValueUnit;
+import capstone.kpiboard.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +12,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.List;
+import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -43,7 +40,7 @@ class KpiControllerIntegrationTest {
                                 {
                                 "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueUnit": "ANZAHL"
+                                "targetValueUnit": "AMOUNT"
                                 }
                                 }
                                 """))
@@ -78,7 +75,7 @@ class KpiControllerIntegrationTest {
                                 {
                                 "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueUnit": "ANZAHL"
+                                "targetValueUnit": "AMOUNT"
                                 }
                                 }
                                 """))
@@ -108,7 +105,7 @@ class KpiControllerIntegrationTest {
                                 {
                                 "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueUnit": "ANZAHL"
+                                "targetValueUnit": "AMOUNT"
                                 }
                                 }
                                 """))
@@ -156,7 +153,7 @@ class KpiControllerIntegrationTest {
                                 {
                                 "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueUnit": "ANZAHL"
+                                "targetValueUnit": "AMOUNT"
                                 }
                                 }
                                 """))
@@ -165,8 +162,8 @@ class KpiControllerIntegrationTest {
 
         Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
         String id = resultKpi.id();
-        List<Double> values = List.of(250.0, 260.0);
-        Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PROZENT));
+        Map<MonthAsValueKey, Double> values = Map.of(MonthAsValueKey.JANUARY, 260.0, MonthAsValueKey.FEBRUARY, 250.0);
+        Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE));
 
         String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)
                         .contentType(MediaType.APPLICATION_JSON)

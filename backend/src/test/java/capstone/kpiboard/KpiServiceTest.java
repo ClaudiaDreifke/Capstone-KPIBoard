@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -22,8 +23,8 @@ class KpiServiceTest {
     @Test
     void addNewKpiTest() {
         //given
-        NewKpi newTestKpi = new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
-        Kpi testKpi = new Kpi("122345", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        NewKpi newTestKpi = new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+        Kpi testKpi = new Kpi("122345", "Anzahl Truckings", Map.of(MonthAsValueKey.JANUARY, 260.0, MonthAsValueKey.FEBRUARY, 270.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.save(any(Kpi.class))).thenReturn(testKpi);
         //when
         Kpi actual = testKpiService.addNewKpi(newTestKpi);
@@ -35,8 +36,8 @@ class KpiServiceTest {
     void getAllKpisTest() {
         //given
         List<Kpi> testList = List.of(
-                new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL)),
-                new Kpi("12345", "Verspätungsquote", List.of(260.0, 270.0), new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PROZENT)));
+                new Kpi("1234", "Anzahl Truckings", Map.of(MonthAsValueKey.JANUARY, 260.0, MonthAsValueKey.FEBRUARY, 250.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT)),
+                new Kpi("12345", "Verspätungsquote", Map.of(MonthAsValueKey.JANUARY, 280.0, MonthAsValueKey.FEBRUARY, 290.0), new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PERCENTAGE)));
         when(testKpiRepo.findAll()).thenReturn(testList);
         //when
         List<Kpi> actual = testKpiService.getAllKpis();
@@ -47,7 +48,7 @@ class KpiServiceTest {
     @Test
     void getKpiByIdTestKpiExists() {
         //given
-        Kpi testKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        Kpi testKpi = new Kpi("1234", "Anzahl Truckings", Map.of(MonthAsValueKey.JANUARY, 260.0, MonthAsValueKey.FEBRUARY, 250.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.findById("1234")).thenReturn(Optional.of(testKpi));
         //when
         Kpi actual = testKpiService.getKpiById("1234");
@@ -58,7 +59,6 @@ class KpiServiceTest {
     @Test
     void deleteKpiTestKpiExists() {
         //given
-        Kpi testKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 260.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
         when(testKpiRepo.existsById("1234")).thenReturn(true);
         doNothing().when(testKpiRepo).deleteById("1234");
         //when
@@ -79,7 +79,7 @@ class KpiServiceTest {
     @Test
     void updateKpiById() {
         //given
-        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 270.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", Map.of(MonthAsValueKey.JANUARY, 260.0, MonthAsValueKey.FEBRUARY, 250.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.existsById("1234")).thenReturn(true);
         when(testKpiRepo.save(testUpdatedKpi)).thenReturn(testUpdatedKpi);
         //when
@@ -91,7 +91,7 @@ class KpiServiceTest {
     @Test
     void updateKpiByIdKpiDoesntExist() {
         //given
-        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", List.of(250.0, 270.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.ANZAHL));
+        Kpi testUpdatedKpi = new Kpi("122345", "Anzahl Truckings", Map.of(MonthAsValueKey.JANUARY, 260.0, MonthAsValueKey.FEBRUARY, 250.0), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.existsById("1234")).thenReturn(false);
         //then
         Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.updateKpiById(testUpdatedKpi));
