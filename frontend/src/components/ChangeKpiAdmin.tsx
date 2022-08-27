@@ -43,10 +43,10 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                 }
             }
             props.updateKpiById(updatedKpi)
-            navigate("/admin")
         } else {
             toast.error("Die Kennzahl konnte nicht geändert werden")
         }
+        navigate("/admin")
     }
 
     const handleSelectTargetValueOperatorChange = (event: SelectChangeEvent) => {
