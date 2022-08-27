@@ -16,14 +16,11 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
     const {id} = useParams();
     const kpi: Kpi | undefined = props.kpis.find((k: Kpi) => k.id === id);
 
-
-    const [name, setName] = useState<string>(kpi?.name || "")
     const [targetValueOperator, setTargetValueOperator] = useState<string>(kpi?.targetForKpi?.targetValueOperator || "")
     const [targetValue, setTargetValue] = useState<number>(kpi?.targetForKpi?.targetValue || 0)
     const [targetValueUnit, setTargetValueUnit] = useState<string>(kpi?.targetForKpi?.targetValueUnit || "")
 
     useEffect(() => {
-        setName(kpi?.name || "");
         setTargetValueOperator(kpi?.targetForKpi?.targetValueOperator || "")
         setTargetValue(kpi?.targetForKpi?.targetValue || 0)
         setTargetValueUnit(kpi?.targetForKpi?.targetValueUnit || "")
@@ -34,7 +31,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         if (kpi) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
-                name: name,
+                name: kpi.name,
                 values: kpi.values,
                 targetForKpi: {
                     targetValueOperator: targetValueOperator,
@@ -61,10 +58,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         <>
             <form onSubmit={onKpiSubmit}>
                 <h3>Kennzahl ändern</h3>
-                <FormControl sx={{m: 1, minWidth: 80}}>
-                    <TextField id="name-input" label="Name" variant="outlined" value={name}
-                               onChange={event => setName(event.target.value)}/>
-                </FormControl>
+                <p id="name">{kpi?.name}</p>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="target-value-operator"></InputLabel>
                     <Select
