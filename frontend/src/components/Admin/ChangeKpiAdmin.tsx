@@ -76,8 +76,8 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         id="target-value-unit"
                         value={targetValueUnit}
                         onChange={event => setTargetValueUnit(event.target.value)}>
-                        <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
-                        <MenuItem value={"PROZENT"}>%</MenuItem>
+                        <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
+                        <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                     </Select>
                 </FormControl>
                 <FormGroup style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "flex-start"}}>

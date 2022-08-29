@@ -1,5 +1,5 @@
-import {Kpi} from "../model/Kpi";
-import '../styling/SingleKpi.css'
+import {Kpi} from "../../model/Kpi";
+import '../../styling/SingleKpi.css'
 import {useNavigate} from "react-router-dom";
 
 
@@ -8,7 +8,7 @@ type SingleKpiProps = {
     deleteKpiById: (id: string) => Promise<void>,
 }
 
-export default function SingleKpi(props: SingleKpiProps) {
+export default function SingleKpiAdmin(props: SingleKpiProps) {
 
     const navigate = useNavigate();
 
