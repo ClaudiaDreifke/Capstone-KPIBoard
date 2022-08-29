@@ -18,7 +18,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
 
     const [valueFromForm, setValueFromForm] = useState<number>(0)
     const [monthFromForm, setMonthFromForm] = useState<number>(0)
-    const [valuesFromForm, setValuesFromForm] = useState<Value[]>([])
+    const [valuesFromForm, setValuesFromForm] = useState<Value[]>(kpi?.values || [])
 
 
     const targetValueOperatorToText = () => {
@@ -46,7 +46,6 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (kpi) {
-
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
