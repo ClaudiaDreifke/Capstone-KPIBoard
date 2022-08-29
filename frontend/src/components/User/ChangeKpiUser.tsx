@@ -112,7 +112,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <TextField inputProps={{inputMode: 'numeric'}}
-                               id="target-value" label="Wert" type="number" variant="outlined"
+                               id="target-value" label="Wert" variant="outlined"
                                value={valueFromForm}
                                onChange={event => setValueFromForm(Number(event.target.value))}/>
                 </FormControl>

@@ -67,7 +67,7 @@ export default function AddKpi(props: AddKpiProps) {
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
-                               id="target-value-input" label="Zielwert" type="number" variant="outlined"
+                               id="target-value-input" label="Zielwert" variant="outlined"
                                value={targetValue}
                                onChange={event => setTargetValue(Number(event.target.value))}/>
                 </FormControl>
