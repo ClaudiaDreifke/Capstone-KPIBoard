@@ -26,7 +26,7 @@ export default function SingleKpiUser(props: SingleKpiUserProps) {
             <p className={"description-single-kpi"}> Zielwert: {targetValueOperatorToText()} {props.kpi.targetForKpi.targetValue} {targetValueUnitToText()}</p>
             <button className={"navigate-to-update-button"} onClick={() => {
                 navigate(`/my-kpi/change/${props.kpi.id}`)
-            }}>ändern
+            }}>Werte hinzufügen
             </button>
         </section>
     )

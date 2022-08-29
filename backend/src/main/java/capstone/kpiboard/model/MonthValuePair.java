@@ -1,7 +1,10 @@
 package capstone.kpiboard.model;
 
+import org.jetbrains.annotations.NotNull;
+
 public record MonthValuePair(
-        int month,
+        @NotNull
+        Integer month,
         double value
 ) {
 }

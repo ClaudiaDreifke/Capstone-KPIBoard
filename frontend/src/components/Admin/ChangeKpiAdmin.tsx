@@ -82,7 +82,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                 </FormControl>
                 <FormGroup style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "flex-start"}}>
                     <button id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück</button>
-                    <button type={"submit"}>ändern</button>
+                    <button type={"submit"}>speichern</button>
                 </FormGroup>
             </form>
         </>

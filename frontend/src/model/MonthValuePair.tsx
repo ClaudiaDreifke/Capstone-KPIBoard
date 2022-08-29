@@ -1,4 +1,4 @@
-export type Value = {
+export type MonthValuePair = {
     month: number,
     value: number,
 }

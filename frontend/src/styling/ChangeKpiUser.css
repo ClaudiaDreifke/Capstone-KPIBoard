@@ -1,0 +1,22 @@
+.add-values {
+    border: black solid 1px;
+    background-color: white;
+    margin: 45px;
+    max-width: 500px;
+}
+
+.value-input-form {
+    border: white;
+    margin: 10px;
+    padding: 5px;
+}
+
+
+Select {
+    margin: 30px 0 10px 0
+}
+
+.change-kpi-form {
+    border: white;
+    margin: 0
+}
