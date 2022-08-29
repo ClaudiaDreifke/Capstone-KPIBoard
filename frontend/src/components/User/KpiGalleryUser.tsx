@@ -3,7 +3,6 @@ import SingleKpiUser from "./SingleKpiUser";
 
 export type KpiGalleryUserProps = {
     kpis: Kpi[],
-
 }
 
 export default function KpiGalleryUser(props: KpiGalleryUserProps) {

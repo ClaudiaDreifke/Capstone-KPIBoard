@@ -2,12 +2,12 @@ package capstone.kpiboard.model;
 
 import org.springframework.data.annotation.Id;
 
-import java.util.Map;
+import java.util.List;
 
 public record Kpi(
         @Id
         String id,
         String name,
-        Map<MonthAsValueKey, Double> values,
+        List<MonthValuePair> values,
         TargetForKpi targetForKpi) {
 }

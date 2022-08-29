@@ -12,7 +12,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.Map;
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -162,7 +162,7 @@ class KpiControllerIntegrationTest {
 
         Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
         String id = resultKpi.id();
-        Map<MonthAsValueKey, Double> values = Map.of(MonthAsValueKey.JANUARY, 260.0, MonthAsValueKey.FEBRUARY, 250.0);
+        List<MonthValuePair> values = List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0));
         Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE));
 
         String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)

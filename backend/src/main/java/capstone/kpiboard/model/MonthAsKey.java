@@ -1,6 +1,6 @@
 package capstone.kpiboard.model;
 
-public enum MonthAsValueKey {
+public enum MonthAsKey {
     JANUARY,
     FEBRUARY,
     MARCH,
