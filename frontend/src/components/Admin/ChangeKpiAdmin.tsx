@@ -1,4 +1,4 @@
-import {FormControl, FormGroup, InputLabel, MenuItem, Select, TextField} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {FormEvent, useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
@@ -80,10 +80,9 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                     </Select>
                 </FormControl>
-                <FormGroup style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "flex-start"}}>
-                    <button id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück</button>
-                    <button type={"submit"}>speichern</button>
-                </FormGroup>
+                <button style={{maxWidth: 150}} id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück
+                </button>
+                <button style={{maxWidth: 150}} type={"submit"}>speichern</button>
             </form>
         </>
     )
