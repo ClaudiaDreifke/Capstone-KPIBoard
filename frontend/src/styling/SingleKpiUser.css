@@ -21,5 +21,7 @@ button {
     width: 300px
 }
 
-
+.navigate-to-update-button {
+    width: auto;
+}
 

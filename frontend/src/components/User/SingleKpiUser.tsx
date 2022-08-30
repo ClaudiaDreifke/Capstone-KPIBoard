@@ -1,5 +1,7 @@
 import {Kpi} from "../../model/Kpi";
 import {useNavigate} from "react-router-dom";
+import '../../styling/SingleKpiUser.css'
+
 
 type SingleKpiUserProps = {
     kpi: Kpi,
@@ -26,7 +28,7 @@ export default function SingleKpiUser(props: SingleKpiUserProps) {
             <p className={"description-single-kpi"}> Zielwert: {targetValueOperatorToText()} {props.kpi.targetForKpi.targetValue} {targetValueUnitToText()}</p>
             <button className={"navigate-to-update-button"} onClick={() => {
                 navigate(`/my-kpi/change/${props.kpi.id}`)
-            }}>Werte hinzufügen
+            }}>Werte bearbeiten
             </button>
         </section>
     )

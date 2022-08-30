@@ -20,7 +20,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
 
     const [valueFromForm, setValueFromForm] = useState<number>(0)
     const [monthFromForm, setMonthFromForm] = useState<number>(0)
-    const [valuesFromForm, setValuesFromForm] = useState<MonthValuePair[]>(kpi?.values || [])
+    const [monthValuePairsFromForm, setMonthValuePairsFromForm] = useState<MonthValuePair[]>(kpi?.values || [])
 
 
     const targetValueOperatorToText = () => {
@@ -40,7 +40,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
         if (!monthFromForm) {
             toast.error("Bitte geben Sie den Monat ein")
         } else
-            setValuesFromForm((prevValuesForm) => [
+            setMonthValuePairsFromForm((prevValuesForm) => [
                 ...prevValuesForm,
                 {
                     month: monthFromForm,
@@ -55,7 +55,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
-                values: valuesFromForm,
+                values: monthValuePairsFromForm,
                 targetForKpi: {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,
@@ -69,6 +69,9 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
         navigate("/my-kpi")
     }
 
+    const deleteValueOnClick = (month: number) => {
+        return setMonthValuePairsFromForm(monthValuePairsFromForm.filter(monthValuePair => monthValuePair.month !== month))
+    }
 
     return (
         <FormGroup className={"add-values"}>
@@ -81,10 +84,11 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             <form className={"value-input-form"} id={"value-input-form"} onSubmit={onValueSubmit}>
                 <FormGroup>
                     <h4 style={{marginLeft: 10, marginTop: 0, marginBottom: 0}}> Werte:</h4>
-                    <ul>{valuesFromForm.map((monthValuePair, month) => (
-                        <li style={{listStyleType: "none", fontSize: "small"}} key={month}>
+                    <ul>{monthValuePairsFromForm.map((monthValuePair, month) => (
+                        <li style={{listStyleType: "none", fontSize: "medium"}} key={month}>
                             <span>Monat: {monthValuePair.month}</span>
                             <span> Wert: {monthValuePair.value}</span>
+                            <span onClick={_event => deleteValueOnClick(monthValuePair.month)}>   X </span>
                         </li>
                     ))}
                     </ul>
@@ -116,7 +120,10 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                                value={valueFromForm}
                                onChange={event => setValueFromForm(Number(event.target.value))}/>
                 </FormControl>
-                <button type={"submit"}>Wert hinzufügen</button>
+                <FormGroup style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "flex-end"}}>
+
+                    <button type={"submit"}>Wert hinzufügen</button>
+                </FormGroup>
             </form>
             <form className={"change-kpi-form"} id={"change-kpi-form"} onSubmit={onKpiSubmit}>
                 <FormGroup style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "flex-start"}}>
