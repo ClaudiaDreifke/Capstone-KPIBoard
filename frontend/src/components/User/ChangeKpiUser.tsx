@@ -21,8 +21,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
 
     const [valueFromForm, setValueFromForm] = useState<number>(0)
     const [monthFromForm, setMonthFromForm] = useState<number>(0)
-    const [monthValuePairsFromForm, setMonthValuePairsFromForm] = useState<MonthValuePair[]>(kpi?.values || [])
-
+    const [monthValuePairs, setMonthValuePairs] = useState<MonthValuePair[]>(kpi?.values || [])
 
     const targetValueOperatorToText = () => {
         if (kpi?.targetForKpi.targetValueOperator === "LESS") return <>kleiner</>;
@@ -35,22 +34,24 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
         else return <>%</>;
     }
 
-
     const onValueSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!monthFromForm) {
             toast.error("Bitte Monat eintragen")
-        } else if (monthValuePairsFromForm.some(element => element.month === monthFromForm)) {
+        } else if (monthValuePairs.some(element => element.month === monthFromForm)) {
             toast.error("Dieser Monat wurde bereits angelegt")
         } else {
-            setMonthValuePairsFromForm((prevValuesForm) => [
-                ...prevValuesForm,
-                {
-                    month: monthFromForm,
-                    value: valueFromForm,
-                },
-            ])
-
+            setMonthValuePairs((prevValuesForm) => {
+                const newArray = [
+                    ...prevValuesForm,
+                    {
+                        month: monthFromForm,
+                        value: valueFromForm,
+                    },
+                ]
+                newArray.sort((a, b) => (a.month - b.month));
+                return newArray;
+            })
         }
     }
 
@@ -60,7 +61,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
-                values: monthValuePairsFromForm,
+                values: monthValuePairs,
                 targetForKpi: {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,
@@ -75,7 +76,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     }
 
     const deleteValueOnClick = (month: number) => {
-        return setMonthValuePairsFromForm(monthValuePairsFromForm.filter(monthValuePair => monthValuePair.month !== month))
+        return setMonthValuePairs(monthValuePairs.filter(monthValuePair => monthValuePair.month !== month))
     }
 
     return (
@@ -89,15 +90,14 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             <form className={"value-input-form"} id={"value-input-form"} onSubmit={onValueSubmit}>
                 <FormGroup>
                     <h4 style={{marginLeft: 10, marginTop: 0, marginBottom: 5}}> Werte:</h4>
-                    <ul>{monthValuePairsFromForm.sort((a, b) => (a.month - b.month))
-                        .map((monthValuePair, month) => (
-                            <li style={{listStyleType: "none", fontSize: "medium", marginBottom: 10}} key={month}>
-                                <span>Monat: {monthValuePair.month} </span>
-                                <span> Wert: {monthValuePair.value} </span>
-                                <DeleteIcon sx={{fontSize: 17}}
-                                            onClick={_event => deleteValueOnClick(monthValuePair.month)}/>
-                            </li>
-                        ))}
+                    <ul>{monthValuePairs.map((monthValuePair, month) => (
+                        <li style={{listStyleType: "none", fontSize: "medium", marginBottom: 10}} key={month}>
+                            <span>Monat: {monthValuePair.month} </span>
+                            <span> Wert: {monthValuePair.value} </span>
+                            <DeleteIcon sx={{fontSize: 17}}
+                                        onClick={_event => deleteValueOnClick(monthValuePair.month)}/>
+                        </li>
+                    ))}
                     </ul>
                 </FormGroup>
                 <FormControl sx={{m: 1, minWidth: 200}}>
