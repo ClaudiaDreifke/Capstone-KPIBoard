@@ -11,13 +11,13 @@ export default function SingleKpiUser(props: SingleKpiUserProps) {
 
     const navigate = useNavigate();
 
-    const targetValueOperatorToText = () => {
+    const targetValueOperatorConvertToText = () => {
         if (props.kpi.targetForKpi.targetValueOperator === "LESS") return <>kleiner</>;
         if (props.kpi.targetForKpi.targetValueOperator === "GREATER") return <>größer</>;
         else return <>gleich</>;
     }
 
-    const targetValueUnitToText = () => {
+    const targetValueUnitConvertToText = () => {
         if (props.kpi.targetForKpi.targetValueUnit === "AMOUNT") return <> Stk.</>;
         else return <>%</>;
     }
@@ -25,7 +25,7 @@ export default function SingleKpiUser(props: SingleKpiUserProps) {
     return (
         <section className={"show-single-kpi"} key={props.kpi.id}>
             <p className={"description-single-kpi"}> {props.kpi.name}</p>
-            <p className={"description-single-kpi"}> Zielwert: {targetValueOperatorToText()} {props.kpi.targetForKpi.targetValue} {targetValueUnitToText()}</p>
+            <p className={"description-single-kpi"}> Zielwert: {targetValueOperatorConvertToText()} {props.kpi.targetForKpi.targetValue} {targetValueUnitConvertToText()}</p>
             <button className={"navigate-to-update-button"} onClick={() => {
                 navigate(`/my-kpi/change/${props.kpi.id}`)
             }}>Werte bearbeiten

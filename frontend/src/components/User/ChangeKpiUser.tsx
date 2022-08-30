@@ -4,7 +4,8 @@ import {FormControl, FormGroup, InputLabel, MenuItem, Select, TextField} from "@
 import {FormEvent, useState} from "react";
 import {MonthValuePair} from "../../model/MonthValuePair";
 import {toast} from "react-toastify";
-import '../../styling/ChangeKpiUser.css'
+import '../../styling/ChangeKpiUser.css';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export type ChangeKpiUserProps = {
@@ -38,15 +39,19 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     const onValueSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!monthFromForm) {
-            toast.error("Bitte geben Sie den Monat ein")
-        } else
+            toast.error("Bitte Monat eintragen")
+        } else if (monthValuePairsFromForm.some(element => element.month === monthFromForm)) {
+            toast.error("Dieser Monat wurde bereits angelegt")
+        } else {
             setMonthValuePairsFromForm((prevValuesForm) => [
                 ...prevValuesForm,
                 {
                     month: monthFromForm,
                     value: valueFromForm,
                 },
-            ]);
+            ])
+
+        }
     }
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -83,14 +88,16 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             </FormGroup>
             <form className={"value-input-form"} id={"value-input-form"} onSubmit={onValueSubmit}>
                 <FormGroup>
-                    <h4 style={{marginLeft: 10, marginTop: 0, marginBottom: 0}}> Werte:</h4>
-                    <ul>{monthValuePairsFromForm.map((monthValuePair, month) => (
-                        <li style={{listStyleType: "none", fontSize: "medium"}} key={month}>
-                            <span>Monat: {monthValuePair.month}</span>
-                            <span> Wert: {monthValuePair.value}</span>
-                            <span onClick={_event => deleteValueOnClick(monthValuePair.month)}>   X </span>
-                        </li>
-                    ))}
+                    <h4 style={{marginLeft: 10, marginTop: 0, marginBottom: 5}}> Werte:</h4>
+                    <ul>{monthValuePairsFromForm.sort((a, b) => (a.month - b.month))
+                        .map((monthValuePair, month) => (
+                            <li style={{listStyleType: "none", fontSize: "medium", marginBottom: 10}} key={month}>
+                                <span>Monat: {monthValuePair.month} </span>
+                                <span> Wert: {monthValuePair.value} </span>
+                                <DeleteIcon sx={{fontSize: 17}}
+                                            onClick={_event => deleteValueOnClick(monthValuePair.month)}/>
+                            </li>
+                        ))}
                     </ul>
                 </FormGroup>
                 <FormControl sx={{m: 1, minWidth: 200}}>
