@@ -25,10 +25,6 @@ public class KpiService {
         return kpiRepo.findAll();
     }
 
-    public Kpi getKpiById(String id) throws KpiNotFoundException {
-        return kpiRepo.findById(id).orElseThrow(() -> new KpiNotFoundException(id));
-    }
-
     public void deleteKpiById(String id) throws KpiNotFoundException {
         if (kpiRepo.existsById(id)) {
             kpiRepo.deleteById(id);

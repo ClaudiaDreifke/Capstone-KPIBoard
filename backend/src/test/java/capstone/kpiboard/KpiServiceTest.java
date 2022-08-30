@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -42,17 +41,6 @@ class KpiServiceTest {
         List<Kpi> actual = testKpiService.getAllKpis();
         //then
         Assertions.assertEquals(testList, actual);
-    }
-
-    @Test
-    void getKpiByIdTestKpiExists() {
-        //given
-        Kpi testKpi = new Kpi("1234", "Anzahl Truckings", List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
-        when(testKpiRepo.findById("1234")).thenReturn(Optional.of(testKpi));
-        //when
-        Kpi actual = testKpiService.getKpiById("1234");
-        //then
-        Assertions.assertEquals(testKpi, actual);
     }
 
     @Test
