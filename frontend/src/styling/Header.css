@@ -14,11 +14,14 @@ Header {
     color: black;
     font-size: medium;
     text-decoration: none;
+    margin-left: 20px;
 }
 
 .menu {
     align-self: end;
-    margin: 12px
+    margin: 12px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .coffee-lover {

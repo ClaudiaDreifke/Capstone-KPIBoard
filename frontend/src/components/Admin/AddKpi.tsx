@@ -81,7 +81,7 @@ export default function AddKpi(props: AddKpiProps) {
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                     </Select>
-                    <button type={"submit"}>hinzufügen</button>
+                    <button style={{maxWidth: 200, margin: 30}} type={"submit"}>hinzufügen</button>
                 </FormControl>
             </form>
         </div>

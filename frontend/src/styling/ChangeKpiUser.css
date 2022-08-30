@@ -18,5 +18,9 @@ Select {
 
 .change-kpi-form {
     border: white;
-    margin: 0
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
+

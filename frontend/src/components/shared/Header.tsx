@@ -20,8 +20,8 @@ export default function Header() {
                     <NavLink className={"nav"} onClick={() => setTab("My-Kpi")} to={"/my-kpi"}> Meine
                         Kennzahlen </NavLink>
                 </nav>
-                <img src={"pictures/coffee-lover-small.png"} className={"coffee-lover"} alt={""}/>
             </nav>
+            <img src={"pictures/coffee-lover-small.png"} className={"coffee-lover"} alt={""}/>
         </header>
     );
 }

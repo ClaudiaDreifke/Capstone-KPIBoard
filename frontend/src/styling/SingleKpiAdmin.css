@@ -4,7 +4,7 @@
     margin: 5px;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 2fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
     justify-items: stretch;
 }
 
@@ -12,14 +12,6 @@
     margin: 20px;
 }
 
-button {
-    margin: 20px;
-    border: #868582 1px solid;
-    border-radius: 10%;
-    background-color: white;
-    font-family: "DM Sans", sans-serif;
-    width: 300px
-}
 
 
 
