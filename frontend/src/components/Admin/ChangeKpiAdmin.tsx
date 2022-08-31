@@ -33,6 +33,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                 id: kpi.id,
                 name: kpi.name,
                 values: kpi.values,
+                comparedValues: kpi.comparedValues,
                 targetForKpi: {
                     targetValueOperator: targetValueOperator,
                     targetValue: targetValue,

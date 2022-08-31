@@ -32,7 +32,7 @@ export default function useKpi() {
             .then((response) => response.status)
             .then(getAllKpis)
             .catch(() => {
-                toast.error("Die Kennzahl konnte nicht gefunden werden.")
+                toast.error("Die Kennzahl konnte nicht gefunden werden!")
             })
     }
 
@@ -41,7 +41,7 @@ export default function useKpi() {
             .then((response) => response.data)
             .then(getAllKpis)
             .catch(() => {
-                toast.error("Die Eingabe konnte nicht gespeichert werden")
+                toast.error("Die Eingabe konnte nicht gespeichert werden!")
             })
     }
 
