@@ -19,7 +19,7 @@ export default function SingleKpiAdmin(props: SingleKpiProps) {
     }
 
     const targetValueUnitToText = () => {
-        if (props.kpi.targetForKpi.targetValueUnit === "ANZAHL") return <> Stk.</>;
+        if (props.kpi.targetForKpi.targetValueUnit === "AMOUNT") return <> Stk.</>;
         else return <>%</>;
     }
 
