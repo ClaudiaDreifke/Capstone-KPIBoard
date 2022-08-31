@@ -37,6 +37,4 @@ public class KpiService {
                     updatedKpi.targetForKpi().targetValueOperator(), updatedKpi.targetForKpi().targetValue(), updatedKpi.targetForKpi().targetValueUnit())));
         } else throw new KpiNotFoundException(updatedKpi.id());
     }
-
-
 }

@@ -12,9 +12,7 @@ form {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr;
-    justify-self: stretch;
     justify-items: stretch;
-    justify-content: stretch;
 }
 
 .selector {
@@ -26,12 +24,6 @@ form {
 input {
     width: 100px;
     margin: 10px;
-}
-
-button {
-    width: 100px;
-    margin: 20px 0 20px 20px;
-    align-content: center;
 }
 
 label {

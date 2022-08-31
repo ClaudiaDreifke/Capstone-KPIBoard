@@ -1,9 +1,10 @@
 import {TargetForKpi} from "./TargetForKpi";
+import {MonthValuePair} from "./MonthValuePair";
 
 export type Kpi = {
     id: string,
     name: string,
-    values: number[],
+    values: MonthValuePair[],
     targetForKpi: TargetForKpi,
 }
 

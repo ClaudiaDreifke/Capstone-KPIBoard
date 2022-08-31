@@ -8,6 +8,6 @@ public record Kpi(
         @Id
         String id,
         String name,
-        List<Double> values,
+        List<MonthValuePair> values,
         TargetForKpi targetForKpi) {
 }

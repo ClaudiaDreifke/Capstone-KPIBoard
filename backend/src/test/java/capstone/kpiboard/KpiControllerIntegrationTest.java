@@ -1,9 +1,6 @@
 package capstone.kpiboard;
 
-import capstone.kpiboard.model.Kpi;
-import capstone.kpiboard.model.TargetForKpi;
-import capstone.kpiboard.model.TargetValueOperator;
-import capstone.kpiboard.model.TargetValueUnit;
+import capstone.kpiboard.model.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -43,7 +40,7 @@ class KpiControllerIntegrationTest {
                                 {
                                 "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueUnit": "ANZAHL"
+                                "targetValueUnit": "AMOUNT"
                                 }
                                 }
                                 """))
@@ -79,7 +76,7 @@ class KpiControllerIntegrationTest {
                                 {
                                 "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueUnit": "ANZAHL"
+                                "targetValueUnit": "AMOUNT"
                                 }
                                 }
                                 """))
@@ -127,7 +124,7 @@ class KpiControllerIntegrationTest {
                                 {
                                 "targetValueOperator": "GREATER",
                                 "targetValue": 250.0,
-                                "targetValueUnit": "ANZAHL"
+                                "targetValueUnit": "AMOUNT"
                                 }
                                 }
                                 """))
@@ -136,8 +133,8 @@ class KpiControllerIntegrationTest {
 
         Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
         String id = resultKpi.id();
-        List<Double> values = List.of(250.0, 260.0);
-        Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PROZENT));
+        List<MonthValuePair> values = List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0));
+        Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE));
 
         String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)
                         .contentType(MediaType.APPLICATION_JSON)
