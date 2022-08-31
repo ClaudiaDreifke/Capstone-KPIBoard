@@ -23,3 +23,12 @@ Select {
     flex-direction: row;
 }
 
+.kpi-value-input {
+    height: 50px;
+    width: 97%;
+    margin: 1px 10px 1px 1px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: medium;
+}
