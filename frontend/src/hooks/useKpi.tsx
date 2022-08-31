@@ -45,6 +45,5 @@ export default function useKpi() {
             })
     }
 
-
     return {kpis, addNewKpi, getAllKpis, deleteKpiById, updateKpiById}
 }
