@@ -1,14 +1,14 @@
-import {Kpi} from "../../model/Kpi";
-import '../../styling/SingleKpiAdmin.css'
+import {Kpi} from "../model/Kpi";
+import '../styling/SingleKpi.css'
 import {useNavigate} from "react-router-dom";
-import {toast} from "react-toastify";
+
 
 type SingleKpiProps = {
     kpi: Kpi,
     deleteKpiById: (id: string) => Promise<void>,
 }
 
-export default function SingleKpiAdmin(props: SingleKpiProps) {
+export default function SingleKpi(props: SingleKpiProps) {
 
     const navigate = useNavigate();
 
@@ -24,20 +24,17 @@ export default function SingleKpiAdmin(props: SingleKpiProps) {
     }
 
     const handleClickDelete = () => {
-        props.deleteKpiById(props.kpi.id).catch(() => {
-            toast.error("Die Kennzahl konnte nicht gelöscht werden.")
-        })
-        ;
+        props.deleteKpiById(props.kpi.id);
     }
 
     return (
         <section className={"show-single-kpi"} key={props.kpi.id}>
             <p className={"description-single-kpi"}> {props.kpi.name}</p>
             <p className={"description-single-kpi"}> Zielwert: {targetValueOperatorToText()} {props.kpi.targetForKpi.targetValue} {targetValueUnitToText()}</p>
-            <button style={{maxWidth: 150}} onClick={handleClickDelete}>löschen</button>
-            <button style={{maxWidth: 150}} onClick={() => {
+            <button className={"delete-button"} onClick={handleClickDelete}>löschen</button>
+            <button className={"navigate-to-update-button"} onClick={() => {
                 navigate(`/admin/change/${props.kpi.id}`)
-            }}>Kennzahl ändern
+            }}>ändern
             </button>
         </section>
     )
