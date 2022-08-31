@@ -1,9 +1,9 @@
-import {FormControl, FormGroup, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {FormEvent, useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
-import {Kpi} from "../model/Kpi";
-import '../styling/ChangeKpiAdmin.css'
+import {Kpi} from "../../model/Kpi";
+import '../../styling/ChangeKpiAdmin.css'
 
 export type ChangeKpiAdminProps = {
     kpis: Kpi[],
@@ -46,26 +46,18 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         navigate("/admin")
     }
 
-    const handleSelectTargetValueOperatorChange = (event: SelectChangeEvent) => {
-        setTargetValueOperator(event.target.value)
-    }
-
-    const handleSelectTargetValueUnitChange = (event: SelectChangeEvent) => {
-        setTargetValueUnit(event.target.value)
-    }
-
     return (
         <>
             <form onSubmit={onKpiSubmit}>
                 <h3>Kennzahl ändern</h3>
-                <p id="name">{kpi?.name}</p>
+                <p className={"name"} id="name">{kpi?.name}</p>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="target-value-operator"></InputLabel>
                     <Select
                         labelId="target-value-operator"
                         id="target-value-operator"
                         value={targetValueOperator}
-                        onChange={handleSelectTargetValueOperatorChange}>
+                        onChange={event => setTargetValueOperator(event.target.value)}>
                         <MenuItem value={"GREATER"}>größer</MenuItem>
                         <MenuItem value={"LESS"}>kleiner</MenuItem>
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
@@ -73,7 +65,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
-                               id="target-value" label="Zielwert" type="number" variant="outlined"
+                               id="target-value" label="Zielwert" variant="outlined"
                                value={targetValue}
                                onChange={event => setTargetValue(Number(event.target.value))}/>
                 </FormControl>
@@ -83,15 +75,14 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         labelId="target-value-unit"
                         id="target-value-unit"
                         value={targetValueUnit}
-                        onChange={handleSelectTargetValueUnitChange}>
-                        <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
-                        <MenuItem value={"PROZENT"}>%</MenuItem>
+                        onChange={event => setTargetValueUnit(event.target.value)}>
+                        <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
+                        <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                     </Select>
                 </FormControl>
-                <FormGroup style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "flex-start"}}>
-                    <button id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück</button>
-                    <button type={"submit"}>ändern</button>
-                </FormGroup>
+                <button style={{maxWidth: 150}} id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück
+                </button>
+                <button style={{maxWidth: 150}} type={"submit"}>speichern</button>
             </form>
         </>
     )

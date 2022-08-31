@@ -1,9 +1,9 @@
 import {FormEvent, useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
 import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
-import '../styling/AddKpi.css'
+import '../../styling/AddKpi.css'
 import {toast} from "react-toastify";
-import {NewKpi} from "../model/Kpi";
+import {NewKpi} from "../../model/Kpi";
 
 type AddKpiProps = {
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
@@ -67,7 +67,7 @@ export default function AddKpi(props: AddKpiProps) {
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
-                               id="target-value-input" label="Zielwert" type="number" variant="outlined"
+                               id="target-value-input" label="Zielwert" variant="outlined"
                                value={targetValue}
                                onChange={event => setTargetValue(Number(event.target.value))}/>
                 </FormControl>
@@ -78,10 +78,10 @@ export default function AddKpi(props: AddKpiProps) {
                         id="target-value-unit-input"
                         value={targetValueUnit}
                         onChange={handleSelectTargetValueUnitChange}>
-                        <MenuItem value={"ANZAHL"}>Anzahl</MenuItem>
-                        <MenuItem value={"PROZENT"}>%</MenuItem>
+                        <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
+                        <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                     </Select>
-                    <button type={"submit"}>hinzufügen</button>
+                    <button style={{maxWidth: 200, margin: 30}} type={"submit"}>hinzufügen</button>
                 </FormControl>
             </form>
         </div>
