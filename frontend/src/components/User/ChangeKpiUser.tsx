@@ -70,7 +70,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             }
             props.updateKpiById(updatedKpi)
         } else {
-            toast.error("Die Kennzahl konnte nicht geändert werden")
+            toast.error("Die Kennzahl konnte nicht geändert werden!")
         }
         navigate("/my-kpi")
     }
