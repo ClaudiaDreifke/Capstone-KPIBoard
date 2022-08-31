@@ -33,7 +33,7 @@ public class KpiService {
 
     public Kpi updateKpiById(Kpi updatedKpi) {
         if (kpiRepo.existsById(updatedKpi.id())) {
-            return kpiRepo.save(new Kpi(updatedKpi.id(), updatedKpi.name(), updatedKpi.values(), new TargetForKpi(
+            return kpiRepo.save(new Kpi(updatedKpi.id(), updatedKpi.name(), updatedKpi.values(), updatedKpi.comparedValues(), new TargetForKpi(
                     updatedKpi.targetForKpi().targetValueOperator(), updatedKpi.targetForKpi().targetValue(), updatedKpi.targetForKpi().targetValueUnit())));
         } else throw new KpiNotFoundException(updatedKpi.id());
     }

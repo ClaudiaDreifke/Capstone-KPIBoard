@@ -11,6 +11,6 @@ public record NewKpi(
         @NotNull
         TargetForKpi targetForKpi) {
     public Kpi withValueListAndId() {
-        return new Kpi(UUID.randomUUID().toString(), name(), new ArrayList<>(), targetForKpi());
+        return new Kpi(UUID.randomUUID().toString(), name(), new ArrayList<>(), new ArrayList<>(), targetForKpi());
     }
 }
