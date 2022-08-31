@@ -1,7 +1,7 @@
 import React from "react";
 import {HashRouter} from "react-router-dom";
-import AllRoutes from "./components/shared/AllRoutes";
-import Header from "./components/shared/Header";
+import AllRoutes from "./components/AllRoutes";
+import Header from "./components/Header";
 import {toast, ToastContainer} from "react-toastify";
 import './styling/App.css'
 

@@ -1,10 +1,7 @@
 import {Route, Routes} from "react-router-dom";
-import KpiGalleryAdmin from "../Admin/KpiGalleryAdmin";
-import ChangeKpiAdmin from "../Admin/ChangeKpiAdmin";
-import useKpi from "../../hooks/useKpi";
-import KpiGalleryUser from "../User/KpiGalleryUser";
-import ChangeKpiUser from "../User/ChangeKpiUser";
-
+import KpiGalleryAdmin from "./KpiGalleryAdmin";
+import useKpi from "../hooks/useKpi";
+import ChangeKpiAdmin from "./ChangeKpiAdmin";
 
 export default function AllRoutes() {
 
@@ -17,10 +14,6 @@ export default function AllRoutes() {
                        element={<KpiGalleryAdmin kpis={kpis} addNewKpi={addNewKpi} deleteKpiById={deleteKpiById}/>}/>
                 <Route path={"/admin/change/:id"}
                        element={<ChangeKpiAdmin kpis={kpis} updateKpiById={updateKpiById}/>}/>
-                <Route path={"/my-kpi"}
-                       element={<KpiGalleryUser kpis={kpis}/>}/>
-                <Route path={"/my-kpi/change/:id"}
-                       element={<ChangeKpiUser kpis={kpis} updateKpiById={updateKpiById}/>}/>
             </Routes>
         </>
     )
