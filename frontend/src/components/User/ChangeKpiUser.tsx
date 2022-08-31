@@ -37,9 +37,9 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     const onValueSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!monthFromForm) {
-            toast.error("Bitte den Monat eintragen")
+            toast.error("Bitte den Monat eintragen!")
         } else if (monthValuePairs.some(element => element.month === monthFromForm)) {
-            toast.error("Dieser Monat wurde bereits angelegt")
+            toast.error("Dieser Monat wurde bereits angelegt!")
         } else {
             setMonthValuePairs((prevValuesForm) => {
                 const newArray = [
