@@ -13,7 +13,7 @@ export default function AddKpi(props: AddKpiProps) {
 
     const [name, setName] = useState<string>("")
     const [targetValueOperator, setTargetValueOperator] = useState<string>("")
-    const [targetValue, setTargetValue] = useState<string>("")
+    const [targetValue, setTargetValue] = useState<number>(0)
     const [targetValueUnit, setTargetValueUnit] = useState<string>("")
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -22,14 +22,14 @@ export default function AddKpi(props: AddKpiProps) {
             name: name,
             targetForKpi: {
                 targetValueOperator: targetValueOperator,
-                targetValue: Number(targetValue),
+                targetValue: targetValue,
                 targetValueUnit: targetValueUnit
             }
         };
         props.addNewKpi(newKpi)
             .then(() => setName(""))
             .then(() => setTargetValueOperator(""))
-            .then(() => setTargetValue(""))
+            .then(() => setTargetValue(0))
             .then(() => setTargetValueUnit(""))
             .catch(() => {
                     toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
@@ -66,10 +66,9 @@ export default function AddKpi(props: AddKpiProps) {
                     </Select>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <TextField inputProps={{inputMode: 'decimal', pattern: "^[1-9]\\d*(.\\d+)?$"}}
-                               id="target-value-input" label="Zielwert" variant="outlined"
-                               value={targetValue}
-                               onChange={event => setTargetValue(event.target.value)}/>
+                    <input className={"target-value-input"} type={"number"}
+                           value={targetValue}
+                           onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="target-value-unit-input">Einheit</InputLabel>
