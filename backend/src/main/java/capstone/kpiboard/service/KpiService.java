@@ -45,13 +45,13 @@ public class KpiService {
         List<ComparedMonthValuePair> comparedValues = new ArrayList<>();
 
         listToCompare.forEach(v -> {
-                    if (actualTargetValueOperator.equals("GREATER") && v.value() > actualTargetValue) {
+                    if (actualTargetValueOperator.equals("GREATER") && v.value() >= actualTargetValue) {
                         comparedValues.add(new ComparedMonthValuePair(v.month(), 1));
                     } else if (actualTargetValueOperator.equals("GREATER") && v.value() < actualTargetValue) {
                         comparedValues.add(new ComparedMonthValuePair(v.month(), 0));
                     } else if (actualTargetValueOperator.equals("LESS") && v.value() < actualTargetValue) {
                         comparedValues.add(new ComparedMonthValuePair(v.month(), 1));
-                    } else if (actualTargetValueOperator.equals("LESS") && v.value() > actualTargetValue) {
+                    } else if (actualTargetValueOperator.equals("LESS") && v.value() >= actualTargetValue) {
                         comparedValues.add(new ComparedMonthValuePair(v.month(), 0));
                     } else if (actualTargetValueOperator.equals("EQUALS") && v.value() == actualTargetValue) {
                         comparedValues.add(new ComparedMonthValuePair(v.month(), 1));

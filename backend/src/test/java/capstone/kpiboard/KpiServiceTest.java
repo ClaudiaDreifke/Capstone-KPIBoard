@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -107,11 +108,42 @@ class KpiServiceTest {
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
                 List.of(new ComparedMonthValuePair(1, 1),
-                        new ComparedMonthValuePair(2, 0)),
+                        new ComparedMonthValuePair(2, 1)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.existsById("1234")).thenReturn(false);
         //then
         Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.updateKpiById(testUpdatedKpi));
     }
 
+    @Test
+    void compareValuesWithTargetTestWithUpdatedKpi() {
+        //given
+        Kpi testUpdatedKpiWithoutComparedValues = new Kpi(
+                "1234",
+                "Anzahl Truckings",
+                List.of(new MonthValuePair(1, 260.0),
+                        new MonthValuePair(2, 250.0)),
+                new ArrayList<>(),
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+
+        Kpi testUpdatedKpiWithComparedValues = new Kpi(
+                "1234",
+                "Anzahl Truckings",
+                List.of(new MonthValuePair(1, 260.0),
+                        new MonthValuePair(2, 250.0)),
+                List.of(new ComparedMonthValuePair(1, 1),
+                        new ComparedMonthValuePair(2, 1)),
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+
+        List<ComparedMonthValuePair> expectedList = List.of(
+                new ComparedMonthValuePair(1, 1),
+                new ComparedMonthValuePair(2, 1));
+
+        when(testKpiRepo.existsById("1234")).thenReturn(true);
+        when(testKpiRepo.save(testUpdatedKpiWithComparedValues)).thenReturn(testUpdatedKpiWithComparedValues);
+        //when
+        List<ComparedMonthValuePair> actual = testKpiService.updateKpiById(testUpdatedKpiWithoutComparedValues).comparedValues();
+        //then
+        Assertions.assertEquals(expectedList, actual);
+    }
 }
