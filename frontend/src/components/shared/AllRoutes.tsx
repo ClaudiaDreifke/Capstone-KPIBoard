@@ -1,9 +1,9 @@
 import {Route, Routes} from "react-router-dom";
-import KpiGalleryAdmin from "../Admin/KpiGalleryAdmin";
-import ChangeKpiAdmin from "../Admin/ChangeKpiAdmin";
+import KpiGalleryAdmin from "../admin/KpiGalleryAdmin";
+import ChangeKpiAdmin from "../admin/ChangeKpiAdmin";
 import useKpi from "../../hooks/useKpi";
-import KpiGalleryUser from "../User/KpiGalleryUser";
-import ChangeKpiUser from "../User/ChangeKpiUser";
+import KpiGalleryUser from "../user/KpiGalleryUser";
+import ChangeKpiUser from "../user/ChangeKpiUser";
 import KpiBoard from "../board/KpiBoard";
 
 
