@@ -1,6 +1,6 @@
 import {Kpi} from "../../model/Kpi";
 import {useNavigate, useParams} from "react-router-dom";
-import {FormControl, FormGroup, InputLabel, MenuItem, Select, TextField} from "@mui/material";
+import {FormControl, FormGroup, InputLabel, MenuItem, Select} from "@mui/material";
 import {FormEvent, useState} from "react";
 import {MonthValuePair} from "../../model/MonthValuePair";
 import {toast} from "react-toastify";
@@ -125,10 +125,9 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                     </Select>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <TextField inputProps={{inputMode: 'numeric'}}
-                               id="target-value" label="Wert" variant="outlined"
-                               value={valueFromForm}
-                               onChange={event => setValueFromForm(Number(event.target.value))}/>
+                    <input className={"kpi-value-input"} type={"number"}
+                           value={valueFromForm}
+                           onChange={event => setValueFromForm(event.target.valueAsNumber)}/>
                 </FormControl>
                 <button style={{maxWidth: 200}} type={"submit"}>Wert hinzufügen</button>
             </form>

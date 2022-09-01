@@ -1,4 +1,4 @@
-import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {FormEvent, useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
@@ -65,10 +65,9 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                     </Select>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <TextField inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}}
-                               id="target-value" label="Zielwert" variant="outlined"
-                               value={targetValue}
-                               onChange={event => setTargetValue(Number(event.target.value))}/>
+                    <input className={"target-value-input"} type={"number"}
+                           value={targetValue}
+                           onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="target-value-unit"></InputLabel>
@@ -86,5 +85,5 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                 <button style={{maxWidth: 150}} type={"submit"}>speichern</button>
             </form>
         </>
-    )
+    );
 }
