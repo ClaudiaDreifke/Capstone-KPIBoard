@@ -89,7 +89,7 @@ class KpiServiceTest {
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
                 List.of(new ComparedMonthValuePair(1, 1),
-                        new ComparedMonthValuePair(2, 0)),
+                        new ComparedMonthValuePair(2, 1)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.existsById("1234")).thenReturn(true);
         when(testKpiRepo.save(testUpdatedKpi)).thenReturn(testUpdatedKpi);
