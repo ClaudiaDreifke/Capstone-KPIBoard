@@ -29,3 +29,14 @@ input {
 label {
     margin-left: 20px;
 }
+
+.target-value-input-add {
+    height: 50px;
+    width: 97%;
+    margin: 1px 10px 1px 1px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: medium;
+    color: #6c6b6b;
+}
