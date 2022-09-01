@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import '../../styling/Header.css';
 
 export default function Header() {
-    const [tab, setTab] = useState("Admin")
+    const [tab, setTab] = useState("KpiBoard")
 
     useEffect(() => {
         document.title = tab;
@@ -13,6 +13,9 @@ export default function Header() {
         <header>
             <h1>EASY KPI</h1>
             <nav className={"menu"}>
+                <nav className={"KpiBoard"}>
+                    <NavLink className={"nav"} onClick={() => setTab("KpiBoard")} to={"/"}> Kennzahlen-Board </NavLink>
+                </nav>
                 <nav className={"Admin"}>
                     <NavLink className={"nav"} onClick={() => setTab("Admin")} to={"/admin"}> Admin </NavLink>
                 </nav>

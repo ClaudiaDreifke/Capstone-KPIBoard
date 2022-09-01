@@ -4,6 +4,7 @@ import ChangeKpiAdmin from "../Admin/ChangeKpiAdmin";
 import useKpi from "../../hooks/useKpi";
 import KpiGalleryUser from "../User/KpiGalleryUser";
 import ChangeKpiUser from "../User/ChangeKpiUser";
+import KpiBoard from "../board/KpiBoard";
 
 
 export default function AllRoutes() {
@@ -13,6 +14,8 @@ export default function AllRoutes() {
     return (
         <>
             <Routes>
+                <Route path={"/"}
+                       element={<KpiBoard kpis={kpis}/>}/>
                 <Route path={"/admin"}
                        element={<KpiGalleryAdmin kpis={kpis} addNewKpi={addNewKpi} deleteKpiById={deleteKpiById}/>}/>
                 <Route path={"/admin/change/:id"}
