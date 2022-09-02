@@ -1,0 +1,6 @@
+.name-row {
+    margin: 5px;
+    font-size: large;
+    grid-column-start: 3;
+    grid-column-end: 3;
+}

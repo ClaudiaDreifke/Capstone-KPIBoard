@@ -3,6 +3,7 @@ import {HashRouter} from "react-router-dom";
 import AllRoutes from "./components/shared/AllRoutes";
 import Header from "./components/shared/Header";
 import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 import './styling/App.css'
 
 export default function App() {
@@ -15,7 +16,7 @@ export default function App() {
                     <AllRoutes/>
                 </main>
             </HashRouter>
-            <ToastContainer position={toast.POSITION.TOP_RIGHT}/>
+            <ToastContainer position={toast.POSITION.TOP_LEFT} toastClassName={"toast-message"}/>
         </>
     );
 }

@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans');
 
+.toast-message {
+    --toastify-color-error: #fe832d;
+    --toastify-icon-color-error: #fe832d;
+    --toastify-color-progress-error: #fe832d;
+    color: #868582;
+    font-size: 15px;
+    width: 34vw;
+    padding: 10px 10px;
+}
+
+
 main {
     border-top: solid 1px white;
     background-color: #f8f7f3;
@@ -9,4 +20,3 @@ main {
 h1 {
     font-family: "DM Sans", sans-serif;
 }
-
