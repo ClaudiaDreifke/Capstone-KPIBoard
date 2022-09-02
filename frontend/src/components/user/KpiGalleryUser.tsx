@@ -11,7 +11,7 @@ export default function KpiGalleryUser(props: KpiGalleryUserProps) {
         <>
             <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
             <ul className={"kpi-gallery-view"}>
-                {props.kpis.map(kpi => <li><SingleKpiUser key={kpi.id} kpi={kpi}/></li>)}
+                {props.kpis.map(kpi => <SingleKpiUser key={kpi.id} kpi={kpi}/>)}
             </ul>
         </>
     )

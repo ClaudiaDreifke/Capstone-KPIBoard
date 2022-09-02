@@ -19,6 +19,7 @@ export default function SingleKpiBoard(props: SingleKpiBoardProps) {
                     }
                     return (<RedCell kpi={props.kpi}/>)
                 })}
+
             </tr>
         </>
     )
