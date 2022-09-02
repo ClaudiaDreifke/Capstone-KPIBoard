@@ -8,7 +8,7 @@ export type GreenCellProps = {
 export default function GreenCell(props: GreenCellProps) {
     return (
         <>
-            <td className={"green"} key={props.kpi.id}/>
+            <div className={"green"} key={props.kpi.id}/>
         </>
     )
 }

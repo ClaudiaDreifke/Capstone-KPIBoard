@@ -8,7 +8,7 @@ export type RedCellProps = {
 export default function RedCell(props: RedCellProps) {
     return (
         <>
-            <td className={"red"} key={props.kpi.id}/>
+            <div className={"red"} key={props.kpi.id}/>
         </>
     )
 }

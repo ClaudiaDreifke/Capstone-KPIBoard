@@ -4,11 +4,14 @@
     margin-left: 45px;
     padding: 20px;
     width: 93%;
+    border-collapse: separate;
+    border-spacing: 8px;
+    display: grid;
+    grid-template-columns: 3fr 9fr 1fr 1fr;
 }
 
-td {
-    height: 35px;
-    margin: 15px;
+.red, .green {
+    height: 27px;
     border-radius: 10px;
     border: white 5px solid;
     box-shadow: 0 0 2px 0 #868582;
@@ -18,26 +21,31 @@ td {
     font-size: medium;
     font-weight: bold;
     font-style: italic;
-    margin: 10px;
     text-align: center;
     border: white 5px solid;
-    width: 35px;
+    width: 27px;
 }
 
-.target-value-column {
-    width: 200px;
+.target-value-column, .actual-target-value-column {
+    min-width: 100px;
     border-left: solid 1px #090521;
     font-size: large;
+    text-align: center;
 }
 
 .name-column {
     width: 200px;
-    font-size: large;
-    text-align: end;
+    grid-column-start: 1;
+    grid-column-end: 1;
 }
 
 h2 {
     text-align: left;
     font-size: x-large;
     margin: 50px;
+}
+
+.bla {
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
