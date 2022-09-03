@@ -134,8 +134,7 @@ class KpiServiceTest {
         //when
         double actual = testKpiService.calculateCurrentAverageValue(testUpdatedKpiBeforeAverageCalculation);
         //then
-        Assertions.assertEquals(testUpdatedKpiAfterAverageCalculation.currentTargetAchievment(), actual);
-
+        Assertions.assertEquals(testUpdatedKpiAfterAverageCalculation.currentAverageValue(), actual);
     }
 }
 

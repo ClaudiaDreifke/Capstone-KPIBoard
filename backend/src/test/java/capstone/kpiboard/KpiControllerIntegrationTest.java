@@ -134,7 +134,6 @@ class KpiControllerIntegrationTest {
         Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
         String id = resultKpi.id();
         List<MonthValuePair> values = List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0));
-
         Kpi testUpdatedKpi = new Kpi(
                 id,
                 "Anzahl Truckings",
