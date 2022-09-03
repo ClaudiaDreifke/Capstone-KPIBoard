@@ -1,8 +1,6 @@
 import {Kpi} from "../../model/Kpi";
 import GreenCell from "./GreenCell";
 import RedCell from "./RedCell";
-import '../../styling/SingleKpiBoard.css'
-
 
 export type SingleKpiBoardProps = {
     kpi: Kpi;
