@@ -8,7 +8,6 @@ export type SingleKpiBoardProps = {
     kpi: Kpi;
     targetValueUnitConvertToText: (stringToConvert: string) => string;
     targetValueOperatorConvertToText: (stringToConvert: string) => string;
-
 }
 
 export default function SingleKpiBoard(props: SingleKpiBoardProps) {
@@ -36,7 +35,6 @@ export default function SingleKpiBoard(props: SingleKpiBoardProps) {
                 }
             )
             }
-
             <div
                 className={"target-value"}>{props.targetValueOperatorConvertToText(props.kpi.targetForKpi.targetValueOperator)
                 + " " + props.kpi.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(props.kpi.targetForKpi.targetValueUnit)}</div>

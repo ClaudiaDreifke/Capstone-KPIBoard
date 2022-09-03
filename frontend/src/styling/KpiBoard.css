@@ -13,6 +13,8 @@ h2 {
     display: grid;
     grid-template-columns: 3fr repeat(12, 1fr) 3fr 3fr;
     grid-template-rows: auto;
+    column-gap: 10px;
+    row-gap: 10px;
 }
 
 .red, .green {
@@ -49,7 +51,9 @@ h2 {
     grid-column-end: 14;
     font-size: large;
     font-weight: bold;
-    text-align: center;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 10px;
 }
 
 .target-value {
@@ -57,7 +61,8 @@ h2 {
     grid-column-end: 14;
     font-size: medium;
     font-weight: bold;
-    text-align: center;
+    align-self: center;
+    justify-self: center;
 }
 
 .actual-target-value-headline {
@@ -65,7 +70,9 @@ h2 {
     grid-column-end: 15;
     font-size: large;
     font-weight: bold;
-    text-align: center;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 10px;
 }
 
 .actual-target-value {
@@ -73,5 +80,6 @@ h2 {
     grid-column-end: 15;
     font-size: medium;
     font-weight: bold;
-    text-align: center;
+    justify-self: center;
+    align-self: center;
 }

@@ -139,7 +139,8 @@ class KpiControllerIntegrationTest {
                 id,
                 "Anzahl Truckings",
                 values,
-                new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE));
+                new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE),
+                255);
 
         String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)
                         .contentType(MediaType.APPLICATION_JSON)
