@@ -1,13 +1,18 @@
+h2 {
+    text-align: left;
+    font-size: x-large;
+    margin: 50px;
+}
+
 .kpi-board {
     background-color: white;
     border: black solid 1px;
     margin-left: 45px;
     padding: 20px;
     width: 93%;
-    border-collapse: separate;
-    border-spacing: 8px;
     display: grid;
-    grid-template-columns: 3fr 9fr 1fr 1fr;
+    grid-template-columns: 3fr repeat(12, 1fr) 3fr 3fr;
+    grid-template-rows: auto;
 }
 
 .red, .green {
@@ -17,35 +22,56 @@
     box-shadow: 0 0 2px 0 #868582;
 }
 
-.month-column {
+.name {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    margin-right: 5px;
+    justify-self: end;
+    align-self: center;
+    font-size: large;
+}
+
+.month-headline1, .month-headline2, .month-headline3,
+.month-headline4, .month-headline5, .month-headline6,
+.month-headline7, .month-headline8, .month-headline9,
+.month-headline10, .month-headline11, .month-headline12 {
     font-size: medium;
     font-weight: bold;
     font-style: italic;
     text-align: center;
-    border: white 5px solid;
-    width: 27px;
+    justify-self: center;
+    align-self: center;
+    margin-bottom: 10px;
 }
 
-.target-value-column, .actual-target-value-column {
-    min-width: 100px;
-    border-left: solid 1px #090521;
+.target-value-headline {
+    grid-column-start: 14;
+    grid-column-end: 14;
     font-size: large;
+    font-weight: bold;
     text-align: center;
 }
 
-.name-column {
-    width: 200px;
-    grid-column-start: 1;
-    grid-column-end: 1;
+.target-value {
+    grid-column-start: 14;
+    grid-column-end: 14;
+    font-size: medium;
+    font-weight: bold;
+    text-align: center;
 }
 
-h2 {
-    text-align: left;
-    font-size: x-large;
-    margin: 50px;
+.actual-target-value-headline {
+    grid-column-start: 15;
+    grid-column-end: 15;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
 }
 
-.bla {
-    grid-column-start: 3;
-    grid-column-end: 4;
+.actual-target-value {
+    grid-column-start: 15;
+    grid-column-end: 15;
+    font-size: medium;
+    font-weight: bold;
+    text-align: center;
 }

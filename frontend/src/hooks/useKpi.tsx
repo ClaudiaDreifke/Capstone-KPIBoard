@@ -45,5 +45,24 @@ export default function useKpi() {
             })
     }
 
-    return {kpis, addNewKpi, getAllKpis, deleteKpiById, updateKpiById}
+    const targetValueOperatorConvertToText = (stringToConvert: string) => {
+        if (stringToConvert === "LESS") return "kleiner";
+        if (stringToConvert === "GREATER") return "größer";
+        else return "gleich";
+    }
+
+    const targetValueUnitConvertToText = (stringToConvert: string) => {
+        if (stringToConvert === "AMOUNT") return "Stk.";
+        else return "%";
+    }
+
+    return {
+        kpis,
+        addNewKpi,
+        getAllKpis,
+        deleteKpiById,
+        updateKpiById,
+        targetValueUnitConvertToText,
+        targetValueOperatorConvertToText
+    }
 }

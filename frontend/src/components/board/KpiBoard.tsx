@@ -4,34 +4,36 @@ import '../../styling/KpiBoard.css'
 
 export type KpiBoardProps = {
     kpis: Kpi[];
+    targetValueUnitConvertToText: (stringToConvert: string) => string;
+    targetValueOperatorConvertToText: (stringToConvert: string) => string;
+
 }
 
 export default function KpiBoard(props: KpiBoardProps) {
+
 
     return (
         <>
             <h2>Kennzahlen-Board</h2>
             <div className={"kpi-board"}>
-                <div>
-                    <div>
-                        <col className={"name-column"}></col>
-                        <div className={"month-column"}>Jan</div>
-                        <div className={"month-column"}>Feb</div>
-                        <div className={"month-column"}>Mär</div>
-                        <div className={"month-column"}>Apr</div>
-                        <div className={"month-column"}>Mai</div>
-                        <div className={"month-column"}>Jun</div>
-                        <div className={"month-column"}>Jul</div>
-                        <div className={"month-column"}>Aug</div>
-                        <div className={"month-column"}>Sep</div>
-                        <div className={"month-column"}>Okt</div>
-                        <div className={"month-column"}>Nov</div>
-                        <div className={"month-column"}>Dez</div>
-                        <div className={"target-value-column"}>Zielwert</div>
-                        <div className={"actual-target-value-column"}>aktuelle Zielerreichung</div>
-                    </div>
-                    {props.kpis.map(kpi => <SingleKpiBoard key={kpi.id} kpi={kpi}/>)}
-                </div>
+                <div className={"name"}/>
+                <div className={"month-headline1"}>Jan</div>
+                <div className={"month-headline2"}>Feb</div>
+                <div className={"month-headline3"}>Mär</div>
+                <div className={"month-headline4"}>Apr</div>
+                <div className={"month-headline5"}>Mai</div>
+                <div className={"month-headline6"}>Jun</div>
+                <div className={"month-headline7"}>Jul</div>
+                <div className={"month-headline8"}>Aug</div>
+                <div className={"month-headline9"}>Sep</div>
+                <div className={"month-headline10"}>Okt</div>
+                <div className={"month-headline11"}>Nov</div>
+                <div className={"month-headline12"}>Dez</div>
+                <div className={"target-value-headline"}>Zielwert</div>
+                <div className={"actual-target-value-headline"}>aktuelle Zielerreichung</div>
+                {props.kpis.map(kpi => <SingleKpiBoard key={kpi.id} kpi={kpi}
+                                                       targetValueUnitConvertToText={props.targetValueUnitConvertToText}
+                                                       targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>)}
             </div>
         </>
     )
