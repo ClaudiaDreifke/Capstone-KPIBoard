@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -27,9 +26,7 @@ class KpiServiceTest {
         Kpi testKpi = new Kpi(
                 "122345",
                 "Anzahl Truckings",
-                List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
-                List.of(new ComparedMonthValuePair(1, 1), new ComparedMonthValuePair(2, 0)),
-                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+                List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.save(any(Kpi.class))).thenReturn(testKpi);
         //when
         Kpi actual = testKpiService.addNewKpi(newTestKpi);
@@ -45,13 +42,11 @@ class KpiServiceTest {
                         "1234",
                         "Anzahl Truckings",
                         List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
-                        List.of(new ComparedMonthValuePair(1, 1), new ComparedMonthValuePair(2, 0)),
                         new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT)),
                 new Kpi(
                         "12345",
                         "Verspätungsquote",
                         List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
-                        List.of(new ComparedMonthValuePair(1, 1), new ComparedMonthValuePair(2, 0)),
                         new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PERCENTAGE)));
         when(testKpiRepo.findAll()).thenReturn(testList);
         //when
@@ -88,8 +83,6 @@ class KpiServiceTest {
                 "Anzahl Truckings",
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
-                List.of(new ComparedMonthValuePair(1, 1),
-                        new ComparedMonthValuePair(2, 1)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.existsById("1234")).thenReturn(true);
         when(testKpiRepo.save(testUpdatedKpi)).thenReturn(testUpdatedKpi);
@@ -107,111 +100,9 @@ class KpiServiceTest {
                 "Anzahl Truckings",
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
-                List.of(new ComparedMonthValuePair(1, 1),
-                        new ComparedMonthValuePair(2, 1)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         when(testKpiRepo.existsById("1234")).thenReturn(false);
         //then
         Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.updateKpiById(testUpdatedKpi));
-    }
-
-    @Test
-    void compareValuesWithTargetTestWithUpdatedKpiGreater() {
-        //given
-        Kpi testUpdatedKpiWithoutComparedValues = new Kpi(
-                "1234",
-                "Anzahl Truckings",
-                List.of(new MonthValuePair(1, 260.0),
-                        new MonthValuePair(2, 240.0)),
-                new ArrayList<>(),
-                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
-
-        Kpi testUpdatedKpiWithComparedValues = new Kpi(
-                "1234",
-                "Anzahl Truckings",
-                List.of(new MonthValuePair(1, 260.0),
-                        new MonthValuePair(2, 240.0)),
-                List.of(new ComparedMonthValuePair(1, 1),
-                        new ComparedMonthValuePair(2, 0)),
-                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
-
-        List<ComparedMonthValuePair> expectedList = List.of(
-                new ComparedMonthValuePair(1, 1),
-                new ComparedMonthValuePair(2, 0));
-
-        when(testKpiRepo.existsById("1234")).thenReturn(true);
-        when(testKpiRepo.save(testUpdatedKpiWithComparedValues)).thenReturn(testUpdatedKpiWithComparedValues);
-        //when
-        List<ComparedMonthValuePair> actual = testKpiService.updateKpiById(testUpdatedKpiWithoutComparedValues).comparedValues();
-        //then
-        Assertions.assertEquals(expectedList, actual);
-    }
-
-    @Test
-    void compareValuesWithTargetTestWithUpdatedKpiLess() {
-        //given
-        Kpi testUpdatedKpiWithoutComparedValues = new Kpi(
-                "1234",
-                "Anzahl Truckings",
-                List.of(new MonthValuePair(1, 260.0),
-                        new MonthValuePair(2, 240.0)),
-                new ArrayList<>(),
-                new TargetForKpi(TargetValueOperator.LESS, 250.0, TargetValueUnit.AMOUNT));
-
-        Kpi testUpdatedKpiWithComparedValues = new Kpi(
-                "1234",
-                "Anzahl Truckings",
-                List.of(new MonthValuePair(1, 260.0),
-                        new MonthValuePair(2, 240.0)),
-                List.of(new ComparedMonthValuePair(1, 0),
-                        new ComparedMonthValuePair(2, 1)),
-                new TargetForKpi(TargetValueOperator.LESS, 250.0, TargetValueUnit.AMOUNT));
-
-        List<ComparedMonthValuePair> expectedList = List.of(
-                new ComparedMonthValuePair(1, 0),
-                new ComparedMonthValuePair(2, 1));
-
-        when(testKpiRepo.existsById("1234")).thenReturn(true);
-        when(testKpiRepo.save(testUpdatedKpiWithComparedValues)).thenReturn(testUpdatedKpiWithComparedValues);
-        //when
-        List<ComparedMonthValuePair> actual = testKpiService.updateKpiById(testUpdatedKpiWithoutComparedValues).comparedValues();
-        //then
-        Assertions.assertEquals(expectedList, actual);
-    }
-
-    @Test
-    void compareValuesWithTargetTestWithUpdatedKpiEquals() {
-        //given
-        Kpi testUpdatedKpiWithoutComparedValues = new Kpi(
-                "1234",
-                "Anzahl Truckings",
-                List.of(new MonthValuePair(1, 250.0),
-                        new MonthValuePair(2, 240.0),
-                        new MonthValuePair(3, 260.0)),
-                new ArrayList<>(),
-                new TargetForKpi(TargetValueOperator.EQUALS, 250.0, TargetValueUnit.AMOUNT));
-
-        Kpi testUpdatedKpiWithComparedValues = new Kpi(
-                "1234",
-                "Anzahl Truckings",
-                List.of(new MonthValuePair(1, 250.0),
-                        new MonthValuePair(2, 240.0),
-                        new MonthValuePair(3, 260.0)),
-                List.of(new ComparedMonthValuePair(1, 1),
-                        new ComparedMonthValuePair(2, 0),
-                        new ComparedMonthValuePair(3, 0)),
-                new TargetForKpi(TargetValueOperator.EQUALS, 250.0, TargetValueUnit.AMOUNT));
-
-        List<ComparedMonthValuePair> expectedList = List.of(
-                new ComparedMonthValuePair(1, 1),
-                new ComparedMonthValuePair(2, 0),
-                new ComparedMonthValuePair(3, 0));
-
-        when(testKpiRepo.existsById("1234")).thenReturn(true);
-        when(testKpiRepo.save(testUpdatedKpiWithComparedValues)).thenReturn(testUpdatedKpiWithComparedValues);
-        //when
-        List<ComparedMonthValuePair> actual = testKpiService.updateKpiById(testUpdatedKpiWithoutComparedValues).comparedValues();
-        //then
-        Assertions.assertEquals(expectedList, actual);
     }
 }

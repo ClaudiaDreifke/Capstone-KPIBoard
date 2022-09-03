@@ -12,7 +12,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -139,13 +138,7 @@ class KpiControllerIntegrationTest {
         Kpi testUpdatedKpi = new Kpi(
                 id,
                 "Anzahl Truckings",
-                values, new ArrayList<>(),
-                new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE));
-
-        Kpi testUpdatedKpiWithComparedList = new Kpi(
-                id, "Anzahl Truckings",
                 values,
-                List.of(new ComparedMonthValuePair(1, 1), new ComparedMonthValuePair(2, 1)),
                 new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE));
 
         String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)
@@ -155,6 +148,6 @@ class KpiControllerIntegrationTest {
                 .andReturn().getResponse().getContentAsString();
         Kpi actualKpi = objectMapper.readValue(updatedResult, Kpi.class);
 
-        Assertions.assertEquals(testUpdatedKpiWithComparedList, actualKpi);
+        Assertions.assertEquals(testUpdatedKpi, actualKpi);
     }
 }

@@ -62,7 +62,6 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                 id: kpi.id,
                 name: kpi.name,
                 values: monthValuePairs,
-                comparedValues: kpi.comparedValues,
                 targetForKpi: {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,

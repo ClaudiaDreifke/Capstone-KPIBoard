@@ -9,6 +9,5 @@ public record Kpi(
         String id,
         String name,
         List<MonthValuePair> values,
-        List<ComparedMonthValuePair> comparedValues,
         TargetForKpi targetForKpi) {
 }
