@@ -10,33 +10,33 @@ export type SingleKpiBoardProps = {
 
 export default function SingleKpiBoard(props: SingleKpiBoardProps) {
 
-    const actualTargetValue = props.kpi.targetForKpi.targetValue;
-    const actualTargetValueOperator = props.kpi.targetForKpi.targetValueOperator;
+
+    const currentTargetValue = props.kpi.targetForKpi.targetValue;
+    const currentTargetValueOperator = props.kpi.targetForKpi.targetValueOperator;
 
     return (
         <>
             <div className={"name"}>{props.kpi.name}</div>
-
             {props.kpi.values.map(v => {
-                    if (actualTargetValueOperator === "GREATER" && v.value > actualTargetValue)
-                        return <GreenCell kpi={props.kpi}/>
-                    else if (actualTargetValueOperator === "GREATER" && v.value <= actualTargetValue)
-                        return <RedCell kpi={props.kpi}/>
-                    else if (actualTargetValueOperator === "LESS" && v.value < actualTargetValue)
-                        return <GreenCell kpi={props.kpi}/>
-                    else if (actualTargetValueOperator === "LESS" && v.value >= actualTargetValue)
-                        return <RedCell kpi={props.kpi}/>
-                    else if (actualTargetValueOperator === "EQUALS" && v.value === actualTargetValue)
-                        return <GreenCell kpi={props.kpi}/>
-                    else
-                        return <RedCell kpi={props.kpi}/>
+                if (currentTargetValueOperator === "GREATER" && v.value > currentTargetValue)
+                    return <GreenCell kpi={props.kpi}/>
+                else if (currentTargetValueOperator === "GREATER" && v.value <= currentTargetValue)
+                    return <RedCell kpi={props.kpi}/>
+                else if (currentTargetValueOperator === "LESS" && v.value < currentTargetValue)
+                    return <GreenCell kpi={props.kpi}/>
+                else if (currentTargetValueOperator === "LESS" && v.value >= currentTargetValue)
+                    return <RedCell kpi={props.kpi}/>
+                else if (currentTargetValueOperator === "EQUALS" && v.value === currentTargetValue)
+                    return <GreenCell kpi={props.kpi}/>
+                else
+                    return <RedCell kpi={props.kpi}/>
                 }
             )
             }
             <div
                 className={"target-value"}>{props.targetValueOperatorConvertToText(props.kpi.targetForKpi.targetValueOperator)
                 + " " + props.kpi.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(props.kpi.targetForKpi.targetValueUnit)}</div>
-            <div className={"actual-target-value"}>n.a.</div>
+            <div className={"actual-target-value"}>{(props.kpi.currentAverageValue).toFixed(2)}</div>
         </>
     )
 }

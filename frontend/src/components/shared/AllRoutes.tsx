@@ -6,7 +6,6 @@ import KpiGalleryUser from "../user/KpiGalleryUser";
 import ChangeKpiUser from "../user/ChangeKpiUser";
 import KpiBoard from "../board/KpiBoard";
 
-
 export default function AllRoutes() {
 
     const {

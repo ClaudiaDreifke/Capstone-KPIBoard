@@ -66,7 +66,8 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,
                     targetValueUnit: kpi.targetForKpi.targetValueUnit,
-                }
+                },
+                currentAverageValue: kpi.currentAverageValue,
             }
             props.updateKpiById(updatedKpi)
         } else {

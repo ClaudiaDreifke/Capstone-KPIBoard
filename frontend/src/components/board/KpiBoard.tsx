@@ -6,11 +6,9 @@ export type KpiBoardProps = {
     kpis: Kpi[];
     targetValueUnitConvertToText: (stringToConvert: string) => string;
     targetValueOperatorConvertToText: (stringToConvert: string) => string;
-
 }
 
 export default function KpiBoard(props: KpiBoardProps) {
-
 
     return (
         <>
@@ -30,7 +28,7 @@ export default function KpiBoard(props: KpiBoardProps) {
                 <div className={"month-headline11"}>Nov</div>
                 <div className={"month-headline12"}>Dez</div>
                 <div className={"target-value-headline"}>Zielwert</div>
-                <div className={"actual-target-value-headline"}>aktuelle Zielerreichung</div>
+                <div className={"actual-target-value-headline"}>aktueller Durchschnittswert</div>
                 {props.kpis.map(kpi => <SingleKpiBoard key={kpi.id} kpi={kpi}
                                                        targetValueUnitConvertToText={props.targetValueUnitConvertToText}
                                                        targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>)}

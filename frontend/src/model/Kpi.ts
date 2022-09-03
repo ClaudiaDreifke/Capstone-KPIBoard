@@ -6,6 +6,7 @@ export type Kpi = {
     name: string,
     values: MonthValuePair[],
     targetForKpi: TargetForKpi,
+    currentAverageValue: number,
 }
 
 
