@@ -19,17 +19,17 @@ export default function SingleKpiBoard(props: SingleKpiBoardProps) {
             <div className={"name"}>{props.kpi.name}</div>
             {props.kpi.values.map(v => {
                 if (currentTargetValueOperator === "GREATER" && v.value > currentTargetValue)
-                    return <GreenCell kpi={props.kpi}/>
+                    return <GreenCell key={v.month}/>
                 else if (currentTargetValueOperator === "GREATER" && v.value <= currentTargetValue)
-                    return <RedCell kpi={props.kpi}/>
+                    return <RedCell key={v.month}/>
                 else if (currentTargetValueOperator === "LESS" && v.value < currentTargetValue)
-                    return <GreenCell kpi={props.kpi}/>
+                    return <GreenCell key={v.month}/>
                 else if (currentTargetValueOperator === "LESS" && v.value >= currentTargetValue)
-                    return <RedCell kpi={props.kpi}/>
+                    return <RedCell key={v.month}/>
                 else if (currentTargetValueOperator === "EQUALS" && v.value === currentTargetValue)
-                    return <GreenCell kpi={props.kpi}/>
+                    return <GreenCell key={v.month}/>
                 else
-                    return <RedCell kpi={props.kpi}/>
+                    return <RedCell key={v.month}/>
                 }
             )
             }

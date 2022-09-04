@@ -1,14 +1,9 @@
-import {Kpi} from "../../model/Kpi";
 import '../../styling/RedCell.css'
 
-export type RedCellProps = {
-    kpi: Kpi,
-}
-
-export default function RedCell(props: RedCellProps) {
+export default function RedCell() {
     return (
         <>
-            <div className={"red"} key={props.kpi.id}/>
+            <div className={"red"}/>
         </>
     )
 }
