@@ -11,8 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @Service
 class RoleServiceTest {
@@ -44,4 +43,16 @@ class RoleServiceTest {
         //then
         Assertions.assertEquals(testList, actual);
     }
+
+    @Test
+    void deleteRoleByIdTest() {
+        //given
+        when(testRoleRepo.existsById("12345")).thenReturn(true);
+        doNothing().when(testRoleRepo).deleteById("12345");
+        //when
+        testRoleService.deleteRoleById("12345");
+        //then
+        verify(testRoleRepo).deleteById("12345");
+    }
 }
+

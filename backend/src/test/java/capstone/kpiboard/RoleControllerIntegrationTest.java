@@ -1,5 +1,6 @@
 package capstone.kpiboard;
 
+import capstone.kpiboard.model.role.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,8 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,6 +44,35 @@ class RoleControllerIntegrationTest {
 
     @Test
     void getAllKpisTest() throws Exception {
+
+        mockMvc.perform(get
+                        ("/api/roles")
+                )
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        []
+                        """));
+    }
+
+    @Test
+    @DirtiesContext
+    void deleteRoleByIdRoleExistsTest() throws Exception {
+
+        String result = mockMvc.perform(post("/api/roles")
+                        .contentType(APPLICATION_JSON)
+                        .content("""
+                                {
+                                "roleName": "Leiter Truckings"
+                                }
+                                """))
+                .andExpect(status().is(201))
+                .andReturn().getResponse().getContentAsString();
+
+        Role resultRole = objectMapper.readValue(result, Role.class);
+        String id = resultRole.id();
+
+        mockMvc.perform(delete("http://localhost:8080/api/roles/" + id))
+                .andExpect(status().is(204));
 
         mockMvc.perform(get
                         ("/api/roles")

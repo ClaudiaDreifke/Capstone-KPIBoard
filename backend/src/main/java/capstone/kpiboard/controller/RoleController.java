@@ -1,5 +1,6 @@
 package capstone.kpiboard.controller;
 
+import capstone.kpiboard.exceptions.RoleNotFoundException;
 import capstone.kpiboard.model.role.NewRole;
 import capstone.kpiboard.model.role.Role;
 import capstone.kpiboard.service.role.RoleService;
@@ -27,5 +28,11 @@ public class RoleController {
     @GetMapping("/roles")
     public List<Role> getAllRoles() {
         return roleService.getAllRoles();
+    }
+
+    @DeleteMapping("/roles/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRoleById(@PathVariable String id) throws RoleNotFoundException {
+        roleService.deleteRoleById(id);
     }
 }
