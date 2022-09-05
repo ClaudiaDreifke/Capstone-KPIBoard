@@ -56,9 +56,9 @@ export default function AddKpi(props: AddKpiProps) {
                         id="responsible-role-input"
                         value={targetValueOperator}
                         onChange={event => setResponsibleRole(event.target.value)}>
-                        <MenuItem value={"xyz"}>xyx</MenuItem>
-                        <MenuItem value={"yz"}>yz</MenuItem>
-                        <MenuItem value={"z"}>z</MenuItem>
+                        <MenuItem value={"xyz"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
+                        <MenuItem value={"yz"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
+                        <MenuItem value={"z"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>

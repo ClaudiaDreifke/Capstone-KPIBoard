@@ -1,10 +1,20 @@
 .kpi-gallery-view {
-    display: flex;
+    display: grid;
     flex-direction: column;
     flex-wrap: wrap;
     margin-right: 5%;
+    background-color: white;
+    border: black solid 1px;
+    padding: 20px;
+    margin-left: 45px;
 }
 
 .headline {
-    margin-left: 45px;
+    margin-left: 10px;
+}
+
+.kpi-gallery-admin {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

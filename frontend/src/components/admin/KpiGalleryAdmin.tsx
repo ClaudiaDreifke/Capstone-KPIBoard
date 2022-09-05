@@ -17,16 +17,16 @@ type KpiGalleryAdminProps = {
 export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
 
     return (
-        <>
+        <div className={"kpi-gallery-admin"}>
             <AddKpi addNewKpi={props.addNewKpi}/>
             <AddRole addNewRole={props.addNewRole}/>
-            <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
             <ul className={"kpi-gallery-view"}>
+                <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
                 {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id} kpi={kpi} deleteKpiById={props.deleteKpiById}
                                                        targetValueUnitConvertToText={props.targetValueUnitConvertToText}
                                                        targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
                 )}
             </ul>
-        </>
+        </div>
     )
 }
