@@ -1,6 +1,7 @@
 import {NewRole, Role} from "../model/Role";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 export default function useRole() {
 
@@ -25,9 +26,19 @@ export default function useRole() {
             .then(getAllRoles);
     }
 
+    const deleteRoleById = (id: string) => {
+        return axios.delete(`/api/roles/${id}`)
+            .then((response) => response.status)
+            .then(getAllRoles)
+            .catch(() => {
+                toast.error("Die Rolle konnte nicht gefunden werden!")
+            })
+    }
+
     return {
         roles,
         addNewRole,
-        getAllRoles
+        getAllRoles,
+        deleteRoleById,
     }
 }

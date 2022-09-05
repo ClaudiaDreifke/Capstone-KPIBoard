@@ -22,6 +22,7 @@ export default function AllRoutes() {
     const {
         roles,
         addNewRole,
+        deleteRoleById,
     } = useRole();
 
     return (
@@ -36,7 +37,7 @@ export default function AllRoutes() {
                                                  targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                  targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/admin/roles"}
-                       element={<RoleGalleryAdmin roles={roles}/>}/>
+                       element={<RoleGalleryAdmin roles={roles} deleteRoleById={deleteRoleById}/>}/>
                 <Route path={"/admin/change/:id"}
                        element={<ChangeKpiAdmin kpis={kpis} updateKpiById={updateKpiById}/>}/>
                 <Route path={"/my-kpi"}
