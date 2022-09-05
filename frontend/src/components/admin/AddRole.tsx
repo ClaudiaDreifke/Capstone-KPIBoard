@@ -2,6 +2,7 @@ import {FormControl, TextField} from "@mui/material";
 import {FormEvent, useState} from "react";
 import {NewRole} from "../../model/Role";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 type AddRoleProps = {
     addNewRole: (newRole: NewRole) => Promise<void>;
@@ -9,6 +10,7 @@ type AddRoleProps = {
 
 export default function AddRole(props: AddRoleProps) {
 
+    const navigate = useNavigate()
     const [roleName, setRoleName] = useState("");
 
     const onRoleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -32,6 +34,8 @@ export default function AddRole(props: AddRoleProps) {
                                onChange={event => setRoleName(event.target.value)}/>
                 </FormControl>
                 <button style={{maxWidth: 200, margin: 30}} type={"submit"}>hinzufügen</button>
+                <button style={{maxWidth: 200, margin: 30}} onClick={() => navigate("/admin/roles")}> Alle Rollen
+                </button>
             </form>
         </div>
     )

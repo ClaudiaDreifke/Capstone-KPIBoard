@@ -74,7 +74,7 @@ export default function AddKpi(props: AddKpiProps) {
                     </Select>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <input className={"target-value-input"} type={"number"} placeholder={"     Zielwert"}
+                    <input className={"target-value-input-add"} type={"number"} placeholder={"     Zielwert"}
                            value={targetValue}
                            onChange={event => setTargetValue(event.target.value)}/>
                 </FormControl>
