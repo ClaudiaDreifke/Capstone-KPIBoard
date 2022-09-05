@@ -18,21 +18,14 @@ export default function SingleKpiBoard(props: SingleKpiBoardProps) {
         <>
             <div className={"name"}>{props.kpi.name}</div>
             {props.kpi.values.map(v => {
-                if (currentTargetValueOperator === "GREATER" && v.value > currentTargetValue)
-                    return <GreenCell key={v.month}/>
-                else if (currentTargetValueOperator === "GREATER" && v.value <= currentTargetValue)
-                    return <RedCell key={v.month}/>
-                else if (currentTargetValueOperator === "LESS" && v.value < currentTargetValue)
-                    return <GreenCell key={v.month}/>
-                else if (currentTargetValueOperator === "LESS" && v.value >= currentTargetValue)
-                    return <RedCell key={v.month}/>
-                else if (currentTargetValueOperator === "EQUALS" && v.value === currentTargetValue)
-                    return <GreenCell key={v.month}/>
-                else
-                    return <RedCell key={v.month}/>
+                    if ((currentTargetValueOperator === "GREATER" && v.value > currentTargetValue) ||
+                        (currentTargetValueOperator === "LESS" && v.value < currentTargetValue) ||
+                        (currentTargetValueOperator === "EQUALS" && v.value === currentTargetValue))
+                        return <GreenCell key={v.month}/>
+                    else
+                        return <RedCell key={v.month}/>
                 }
-            )
-            }
+            )}
             <div
                 className={"target-value"}>{props.targetValueOperatorConvertToText(props.kpi.targetForKpi.targetValueOperator)
                 + " " + props.kpi.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(props.kpi.targetForKpi.targetValueUnit)}</div>
