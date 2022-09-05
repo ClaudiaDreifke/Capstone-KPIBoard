@@ -6,6 +6,8 @@ import capstone.kpiboard.service.role.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/roles")
 public class RoleController {
@@ -20,5 +22,10 @@ public class RoleController {
     @ResponseStatus(code = HttpStatus.CREATED)
     public Role addNewRole(@RequestBody NewRole newRole) {
         return roleService.addNewRole(newRole);
+    }
+
+    @GetMapping
+    public List<Role> getAllRoles() {
+        return roleService.getAllRoles();
     }
 }

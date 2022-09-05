@@ -1,4 +1,4 @@
-package capstone.kpiboard.service;
+package capstone.kpiboard.service.kpi;
 
 
 import capstone.kpiboard.model.kpi.Kpi;

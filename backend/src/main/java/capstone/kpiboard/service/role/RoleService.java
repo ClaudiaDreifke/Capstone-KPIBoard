@@ -4,6 +4,8 @@ import capstone.kpiboard.model.role.NewRole;
 import capstone.kpiboard.model.role.Role;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleService {
 
@@ -15,6 +17,10 @@ public class RoleService {
 
     public Role addNewRole(NewRole newRole) {
         return roleRepo.save(newRole.withRandomId());
+    }
+
+    public List<Role> getAllRoles() {
+        return roleRepo.findAll();
     }
 }
 

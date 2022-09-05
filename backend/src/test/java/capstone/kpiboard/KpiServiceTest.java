@@ -2,8 +2,8 @@ package capstone.kpiboard;
 
 import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.model.kpi.*;
-import capstone.kpiboard.service.KpiRepo;
-import capstone.kpiboard.service.KpiService;
+import capstone.kpiboard.service.kpi.KpiRepo;
+import capstone.kpiboard.service.kpi.KpiService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
