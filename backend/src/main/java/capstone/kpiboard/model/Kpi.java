@@ -9,5 +9,7 @@ public record Kpi(
         String id,
         String name,
         List<MonthValuePair> values,
-        TargetForKpi targetForKpi) {
+        TargetForKpi targetForKpi,
+        double currentAverageValue
+) {
 }

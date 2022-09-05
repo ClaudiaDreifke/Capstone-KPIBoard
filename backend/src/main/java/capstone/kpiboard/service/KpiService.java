@@ -2,6 +2,7 @@ package capstone.kpiboard.service;
 
 import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.model.Kpi;
+import capstone.kpiboard.model.MonthValuePair;
 import capstone.kpiboard.model.NewKpi;
 import capstone.kpiboard.model.TargetForKpi;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,23 @@ public class KpiService {
 
     public Kpi updateKpiById(Kpi updatedKpi) {
         if (kpiRepo.existsById(updatedKpi.id())) {
-            return kpiRepo.save(new Kpi(updatedKpi.id(), updatedKpi.name(), updatedKpi.values(), new TargetForKpi(
-                    updatedKpi.targetForKpi().targetValueOperator(), updatedKpi.targetForKpi().targetValue(), updatedKpi.targetForKpi().targetValueUnit())));
+            return kpiRepo.save(new Kpi(
+                    updatedKpi.id(),
+                    updatedKpi.name(),
+                    updatedKpi.values(),
+                    new TargetForKpi(
+                            updatedKpi.targetForKpi().targetValueOperator(),
+                            updatedKpi.targetForKpi().targetValue(),
+                            updatedKpi.targetForKpi().targetValueUnit()),
+                    calculateCurrentAverageValue(updatedKpi)));
         } else throw new KpiNotFoundException(updatedKpi.id());
     }
+
+    public double calculateCurrentAverageValue(Kpi updatedKpi) {
+        return updatedKpi.values().stream()
+                .mapToDouble(MonthValuePair::value)
+                .average().orElse(0);
+    }
 }
+
+

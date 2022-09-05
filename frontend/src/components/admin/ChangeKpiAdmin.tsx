@@ -37,7 +37,8 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                     targetValueOperator: targetValueOperator,
                     targetValue: targetValue,
                     targetValueUnit: targetValueUnit
-                }
+                },
+                currentAverageValue: kpi.currentAverageValue
             }
             props.updateKpiById(updatedKpi)
         } else {

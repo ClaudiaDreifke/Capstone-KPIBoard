@@ -134,7 +134,12 @@ class KpiControllerIntegrationTest {
         Kpi resultKpi = objectMapper.readValue(result, Kpi.class);
         String id = resultKpi.id();
         List<MonthValuePair> values = List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0));
-        Kpi testUpdatedKpi = new Kpi(id, "Anzahl Truckings", values, new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE));
+        Kpi testUpdatedKpi = new Kpi(
+                id,
+                "Anzahl Truckings",
+                values,
+                new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE),
+                255);
 
         String updatedResult = mockMvc.perform(put("http://localhost:8080/api/kpis/" + id)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -142,6 +147,7 @@ class KpiControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
         Kpi actualKpi = objectMapper.readValue(updatedResult, Kpi.class);
+
         Assertions.assertEquals(testUpdatedKpi, actualKpi);
     }
 }

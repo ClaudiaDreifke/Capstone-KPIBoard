@@ -18,11 +18,19 @@ class KpiServiceTest {
     private final KpiRepo testKpiRepo = mock(KpiRepo.class);
     private final KpiService testKpiService = new KpiService(testKpiRepo);
 
+
     @Test
     void addNewKpiTest() {
         //given
-        NewKpi newTestKpi = new NewKpi("Anzahl Truckings", new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
-        Kpi testKpi = new Kpi("122345", "Anzahl Truckings", List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+        NewKpi newTestKpi = new NewKpi(
+                "Anzahl Truckings",
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+        Kpi testKpi = new Kpi(
+                "122345",
+                "Anzahl Truckings",
+                List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
+                255);
         when(testKpiRepo.save(any(Kpi.class))).thenReturn(testKpi);
         //when
         Kpi actual = testKpiService.addNewKpi(newTestKpi);
@@ -34,8 +42,18 @@ class KpiServiceTest {
     void getAllKpisTest() {
         //given
         List<Kpi> testList = List.of(
-                new Kpi("1234", "Anzahl Truckings", List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT)),
-                new Kpi("12345", "Verspätungsquote", List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)), new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PERCENTAGE)));
+                new Kpi(
+                        "1234",
+                        "Anzahl Truckings",
+                        List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
+                        new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
+                        255),
+                new Kpi(
+                        "12345",
+                        "Verspätungsquote",
+                        List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
+                        new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PERCENTAGE),
+                        255));
         when(testKpiRepo.findAll()).thenReturn(testList);
         //when
         List<Kpi> actual = testKpiService.getAllKpis();
@@ -66,7 +84,13 @@ class KpiServiceTest {
     @Test
     void updateKpiById() {
         //given
-        Kpi testUpdatedKpi = new Kpi("1234", "Anzahl Truckings", List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+        Kpi testUpdatedKpi = new Kpi(
+                "1234",
+                "Anzahl Truckings",
+                List.of(new MonthValuePair(1, 260.0),
+                        new MonthValuePair(2, 250.0)),
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
+                255);
         when(testKpiRepo.existsById("1234")).thenReturn(true);
         when(testKpiRepo.save(testUpdatedKpi)).thenReturn(testUpdatedKpi);
         //when
@@ -78,10 +102,39 @@ class KpiServiceTest {
     @Test
     void updateKpiByIdKpiDoesntExist() {
         //given
-        Kpi testUpdatedKpi = new Kpi("122345", "Anzahl Truckings", List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)), new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
+        Kpi testUpdatedKpi = new Kpi(
+                "122345",
+                "Anzahl Truckings",
+                List.of(new MonthValuePair(1, 260.0),
+                        new MonthValuePair(2, 250.0)),
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
+                255);
         when(testKpiRepo.existsById("1234")).thenReturn(false);
         //then
         Assertions.assertThrows(KpiNotFoundException.class, () -> testKpiService.updateKpiById(testUpdatedKpi));
     }
 
+    @Test
+    void calculateCurrentAverageValueTest() {
+        //given
+        Kpi testUpdatedKpiBeforeAverageCalculation = new Kpi(
+                "122345",
+                "Anzahl Truckings",
+                List.of(new MonthValuePair(1, 260.0),
+                        new MonthValuePair(2, 250.0)),
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
+                0);
+        Kpi testUpdatedKpiAfterAverageCalculation = new Kpi(
+                "122345",
+                "Anzahl Truckings",
+                List.of(new MonthValuePair(1, 260.0),
+                        new MonthValuePair(2, 250.0)),
+                new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
+                255);
+        //when
+        double actual = testKpiService.calculateCurrentAverageValue(testUpdatedKpiBeforeAverageCalculation);
+        //then
+        Assertions.assertEquals(testUpdatedKpiAfterAverageCalculation.currentAverageValue(), actual);
+    }
 }
+

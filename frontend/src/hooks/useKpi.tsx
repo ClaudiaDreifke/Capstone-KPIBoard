@@ -32,7 +32,7 @@ export default function useKpi() {
             .then((response) => response.status)
             .then(getAllKpis)
             .catch(() => {
-                toast.error("Die Kennzahl konnte nicht gefunden werden.")
+                toast.error("Die Kennzahl konnte nicht gefunden werden!")
             })
     }
 
@@ -41,9 +41,28 @@ export default function useKpi() {
             .then((response) => response.data)
             .then(getAllKpis)
             .catch(() => {
-                toast.error("Die Eingabe konnte nicht gespeichert werden")
+                toast.error("Die Eingabe konnte nicht gespeichert werden!")
             })
     }
 
-    return {kpis, addNewKpi, getAllKpis, deleteKpiById, updateKpiById}
+    const targetValueOperatorConvertToText = (stringToConvert: string) => {
+        if (stringToConvert === "LESS") return "kleiner";
+        if (stringToConvert === "GREATER") return "größer";
+        else return "gleich";
+    }
+
+    const targetValueUnitConvertToText = (stringToConvert: string) => {
+        if (stringToConvert === "AMOUNT") return "Stk.";
+        else return "%";
+    }
+
+    return {
+        kpis,
+        addNewKpi,
+        getAllKpis,
+        deleteKpiById,
+        updateKpiById,
+        targetValueUnitConvertToText,
+        targetValueOperatorConvertToText
+    }
 }

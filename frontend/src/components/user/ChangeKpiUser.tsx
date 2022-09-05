@@ -30,7 +30,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     }
 
     const targetValueUnitToText = () => {
-        if (kpi?.targetForKpi.targetValueUnit === "ANZAHL") return <> Stk.</>;
+        if (kpi?.targetForKpi.targetValueUnit === "AMOUNT") return <> Stk.</>;
         else return <>%</>;
     }
 
@@ -66,7 +66,8 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,
                     targetValueUnit: kpi.targetForKpi.targetValueUnit,
-                }
+                },
+                currentAverageValue: kpi.currentAverageValue,
             }
             props.updateKpiById(updatedKpi)
         } else {
