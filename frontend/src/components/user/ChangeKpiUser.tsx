@@ -61,6 +61,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
+                responsibleRole: kpi.responsibleRole,
                 values: monthValuePairs,
                 targetForKpi: {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,

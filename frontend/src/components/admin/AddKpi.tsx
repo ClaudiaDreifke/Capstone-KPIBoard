@@ -1,6 +1,6 @@
 import {FormEvent, useState} from "react";
 import 'react-toastify/dist/ReactToastify.css';
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import '../../styling/AddKpi.css'
 import {toast} from "react-toastify";
 import {NewKpi} from "../../model/Kpi";
@@ -12,14 +12,17 @@ type AddKpiProps = {
 export default function AddKpi(props: AddKpiProps) {
 
     const [name, setName] = useState<string>("")
+    const [responsibleRole, setResponsibleRole] = useState("")
     const [targetValueOperator, setTargetValueOperator] = useState<string>("")
     const [targetValue, setTargetValue] = useState<string>("")
     const [targetValueUnit, setTargetValueUnit] = useState<string>("")
+
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newKpi: NewKpi = {
             name: name,
+            responsibleRole: responsibleRole,
             targetForKpi: {
                 targetValueOperator: targetValueOperator,
                 targetValue: Number(targetValue),
@@ -28,6 +31,7 @@ export default function AddKpi(props: AddKpiProps) {
         };
         props.addNewKpi(newKpi)
             .then(() => setName(""))
+            .then(() => setResponsibleRole(""))
             .then(() => setTargetValueOperator(""))
             .then(() => setTargetValue(""))
             .then(() => setTargetValueUnit(""))
@@ -35,14 +39,6 @@ export default function AddKpi(props: AddKpiProps) {
                     toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
                 }
             )
-    }
-
-    const handleSelectTargetValueOperatorChange = (event: SelectChangeEvent) => {
-        setTargetValueOperator(event.target.value)
-    }
-
-    const handleSelectTargetValueUnitChange = (event: SelectChangeEvent) => {
-        setTargetValueUnit(event.target.value)
     }
 
     return (
@@ -54,12 +50,24 @@ export default function AddKpi(props: AddKpiProps) {
                                onChange={event => setName(event.target.value)}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
+                    <InputLabel id="responsible-role-input">Verantwortlicher</InputLabel>
+                    <Select
+                        labelId="responsible-role-input"
+                        id="responsible-role-input"
+                        value={targetValueOperator}
+                        onChange={event => setResponsibleRole(event.target.value)}>
+                        <MenuItem value={"xyz"}>xyx</MenuItem>
+                        <MenuItem value={"yz"}>yz</MenuItem>
+                        <MenuItem value={"z"}>z</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
                     <InputLabel id="target-value-operator-input">Vorzeichen</InputLabel>
                     <Select
                         labelId="target-value-operator-input"
                         id="target-value-operator-input"
                         value={targetValueOperator}
-                        onChange={handleSelectTargetValueOperatorChange}>
+                        onChange={(event => setTargetValueOperator(event.target.value))}>
                         <MenuItem value={"GREATER"}>größer</MenuItem>
                         <MenuItem value={"LESS"}>kleiner</MenuItem>
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
@@ -76,7 +84,7 @@ export default function AddKpi(props: AddKpiProps) {
                         labelId="target-value-unit-input"
                         id="target-value-unit-input"
                         value={targetValueUnit}
-                        onChange={handleSelectTargetValueUnitChange}>
+                        onChange={(event => setTargetValueUnit(event.target.value))}>
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                     </Select>

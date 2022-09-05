@@ -1,4 +1,4 @@
-package capstone.kpiboard.model;
+package capstone.kpiboard.model.kpi;
 
 import org.jetbrains.annotations.NotNull;
 

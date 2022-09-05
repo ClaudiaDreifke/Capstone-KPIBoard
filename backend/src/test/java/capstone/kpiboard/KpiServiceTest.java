@@ -1,7 +1,7 @@
 package capstone.kpiboard;
 
 import capstone.kpiboard.exceptions.KpiNotFoundException;
-import capstone.kpiboard.model.*;
+import capstone.kpiboard.model.kpi.*;
 import capstone.kpiboard.service.KpiRepo;
 import capstone.kpiboard.service.KpiService;
 import org.junit.jupiter.api.Assertions;
@@ -24,10 +24,12 @@ class KpiServiceTest {
         //given
         NewKpi newTestKpi = new NewKpi(
                 "Anzahl Truckings",
+                "Leiter Truckings",
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT));
         Kpi testKpi = new Kpi(
                 "122345",
                 "Anzahl Truckings",
+                "Leiter Truckings",
                 List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
                 255);
@@ -45,12 +47,14 @@ class KpiServiceTest {
                 new Kpi(
                         "1234",
                         "Anzahl Truckings",
+                        "Leiter Truckings",
                         List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
                         new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
                         255),
                 new Kpi(
                         "12345",
                         "Verspätungsquote",
+                        "Leiter Truckings",
                         List.of(new MonthValuePair(1, 260.0), new MonthValuePair(2, 250.0)),
                         new TargetForKpi(TargetValueOperator.LESS, 10.0, TargetValueUnit.PERCENTAGE),
                         255));
@@ -87,6 +91,7 @@ class KpiServiceTest {
         Kpi testUpdatedKpi = new Kpi(
                 "1234",
                 "Anzahl Truckings",
+                "Leiter Truckings",
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
@@ -105,6 +110,7 @@ class KpiServiceTest {
         Kpi testUpdatedKpi = new Kpi(
                 "122345",
                 "Anzahl Truckings",
+                "Leiter Truckings",
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
@@ -120,6 +126,7 @@ class KpiServiceTest {
         Kpi testUpdatedKpiBeforeAverageCalculation = new Kpi(
                 "122345",
                 "Anzahl Truckings",
+                "Leiter Truckings",
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),
@@ -127,6 +134,7 @@ class KpiServiceTest {
         Kpi testUpdatedKpiAfterAverageCalculation = new Kpi(
                 "122345",
                 "Anzahl Truckings",
+                "Leiter Truckings",
                 List.of(new MonthValuePair(1, 260.0),
                         new MonthValuePair(2, 250.0)),
                 new TargetForKpi(TargetValueOperator.GREATER, 250.0, TargetValueUnit.AMOUNT),

@@ -1,4 +1,4 @@
-package capstone.kpiboard.model;
+package capstone.kpiboard.model.kpi;
 
 import org.springframework.data.annotation.Id;
 
@@ -8,6 +8,7 @@ public record Kpi(
         @Id
         String id,
         String name,
+        String responsibleRole,
         List<MonthValuePair> values,
         TargetForKpi targetForKpi,
         double currentAverageValue

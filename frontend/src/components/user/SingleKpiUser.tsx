@@ -13,7 +13,7 @@ export default function SingleKpiUser(props: SingleKpiUserProps) {
     const navigate = useNavigate();
 
     return (
-        <section className={"show-single-kpi"} key={props.kpi.id}>
+        <section className={"show-single-kpi-user"} key={props.kpi.id}>
             <p className={"description-single-kpi"}> {props.kpi.name}</p>
             <p className={"description-single-kpi"}> Zielwert: {props.targetValueOperatorConvertToText(props.kpi.targetForKpi.targetValueOperator)
                 + " " + props.kpi.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(props.kpi.targetForKpi.targetValueUnit)}</p>
