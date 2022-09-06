@@ -2,13 +2,9 @@ h3 {
     margin: 20px 20px 20px 20px;
 }
 
-form {
+.add-kpi-form {
     align-content: center;
-    border: black solid 1px;
-    background-color: white;
     text-align: start;
-    margin: 40px 40px 40px 45px;
-    max-width: 500px;
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr;
@@ -32,7 +28,7 @@ label {
 
 .target-value-input-add {
     height: 50px;
-    width: 97%;
+    width: 95%;
     margin: 1px 10px 1px 1px;
     border: 1px solid lightgray;
     border-radius: 5px;

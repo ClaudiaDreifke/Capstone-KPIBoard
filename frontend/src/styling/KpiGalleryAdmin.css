@@ -18,3 +18,10 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+.button-admin-view {
+    background-color: #fe832d;
+    color: white;
+    border: #fe832d 1px solid;
+    width: 150px;
+}
