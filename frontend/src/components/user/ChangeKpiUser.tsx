@@ -84,18 +84,18 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     return (
         <FormGroup className={"add-values"}>
             <button style={{
-                justifyContent: "end",
                 width: 20,
                 backgroundColor: "white",
                 borderColor: "white",
                 color: "black",
                 fontWeight: "bold",
-                fontSize: "large"
+                fontSize: "large",
+                marginLeft: 460,
             }} onClick={() => navigate("/my-kpi")}>X
             </button>
             <h3 style={{marginTop: 30, marginBottom: 10, marginLeft: 20}}>Kennzahlenwerte bearbeiten</h3>
             <FormGroup
-                style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "start", marginBottom: 10}}>
+                style={{marginLeft: 20, justifyContent: "start", marginBottom: 10}}>
                 <h4>Kennzahl: {kpi?.name}<br/>Zielwert: {targetValueOperatorToText()} {kpi?.targetForKpi.targetValue} {targetValueUnitToText()}
                 </h4>
             </FormGroup>
@@ -140,10 +140,11 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                            value={valueFromForm}
                            onChange={event => setValueFromForm(event.target.valueAsNumber)}/>
                 </FormControl>
-                <button style={{marginTop: 20, marginLeft: 300}} type={"submit"}>Wert hinzufügen</button>
+                <button style={{marginTop: 20, marginLeft: 310,}} type={"submit"}>Wert hinzufügen</button>
             </form>
             <form className={"change-kpi-form"} id={"change-kpi-form"} onSubmit={onKpiSubmit}>
-                <button style={{justifyContent: "end"}} type={"submit"}>speichern</button>
+                <button style={{marginTop: 20, marginLeft: 300, marginBottom: 20}} type={"submit"}>Kennzahl speichern
+                </button>
             </form>
         </FormGroup>
     )

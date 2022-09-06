@@ -11,7 +11,7 @@ export type KpiBoardProps = {
 export default function KpiBoard(props: KpiBoardProps) {
 
     return (
-        <>
+        <section className={"kpi-board-with-headline"}>
             <h2>Kennzahlen-Board</h2>
             <div className={"kpi-board"}>
                 <div className={"name"}/>
@@ -33,6 +33,6 @@ export default function KpiBoard(props: KpiBoardProps) {
                                                        targetValueUnitConvertToText={props.targetValueUnitConvertToText}
                                                        targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>)}
             </div>
-        </>
+        </section>
     )
 }

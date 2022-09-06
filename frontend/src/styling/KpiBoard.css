@@ -1,15 +1,10 @@
 h2 {
-    text-align: left;
+    text-align: center;
     font-size: x-large;
-    margin: 50px;
+    margin: 30px;
 }
 
 .kpi-board {
-    background-color: white;
-    border: black solid 1px;
-    margin-left: 45px;
-    padding: 20px;
-    width: 93%;
     display: grid;
     grid-template-columns: 3fr repeat(12, 40px) 3fr 3fr;
     grid-template-rows: auto;
@@ -82,4 +77,12 @@ h2 {
     font-weight: bold;
     justify-self: center;
     align-self: center;
+}
+
+.kpi-board-with-headline {
+    background-color: white;
+    border: black solid 1px;
+    padding: 20px;
+    width: 93%;
+    margin: 60px 45px 60px 45px;
 }

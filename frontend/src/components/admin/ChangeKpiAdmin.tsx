@@ -52,22 +52,32 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
 
     return (
         <>
-            <form onSubmit={onKpiSubmit}>
+            <form className={"form-change-kpi-admin"} onSubmit={onKpiSubmit}>
+                <button style={{
+                    width: 20,
+                    backgroundColor: "white",
+                    borderColor: "white",
+                    color: "black",
+                    fontWeight: "bold",
+                    fontSize: "large",
+                    marginLeft: 460,
+                }} onClick={() => navigate("/admin")}>X
+                </button>
                 <h3>Kennzahl ändern</h3>
                 <p className={"name-change"} id="name">{kpi?.name}</p>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+                <FormControl sx={{m: 1, minWidth: 300}}>
                     <InputLabel id="responsible-role-change">Verantwortlicher</InputLabel>
                     <Select
-                        labelId="target-value-operator-change"
-                        id="target-value-operator-change"
-                        value={targetValueOperator}
+                        labelId="responsible-role-change"
+                        id="responsible-role-change"
+                        value={responsibleRole}
                         onChange={event => setResponsibleRole(event.target.value)}>
                         <MenuItem value={"x"}>x</MenuItem>
                         <MenuItem value={"y"}>y</MenuItem>
                         <MenuItem value={"z"}>z</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+                <FormControl sx={{m: 1, minWidth: 300}}>
                     <InputLabel id="target-value-operator-change"></InputLabel>
                     <Select
                         labelId="target-value-operator-change"
@@ -79,12 +89,12 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+                <FormControl sx={{m: 1, minWidth: 300}}>
                     <input className={"target-value-input-change"} type={"number"}
                            value={targetValue}
                            onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+                <FormControl sx={{m: 1, minWidth: 300}}>
                     <InputLabel id="target-value-unit-change"></InputLabel>
                     <Select
                         labelId="target-value-unit-change"
@@ -95,9 +105,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                     </Select>
                 </FormControl>
-                <button style={{maxWidth: 150}} id={"back-to-admin-view"} onClick={() => navigate("/admin")}>zurück
-                </button>
-                <button style={{maxWidth: 150}} type={"submit"}>speichern</button>
+                <button style={{marginTop: 20, marginLeft: 300, marginBottom: 20}} type={"submit"}>speichern</button>
             </form>
         </>
     );

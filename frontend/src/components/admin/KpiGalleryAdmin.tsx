@@ -47,26 +47,43 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                 <img src={"pictures/User-Face.png"} className={"user-logo"} alt={""} height={90}/>
                 <button className={"button-admin-add-user-1"}> + User hinzufügen</button>
                 <Dialog open={addKpiIsOpen} onClose={handleAddKpiClose}>
+                    <button style={{
+                        width: 20,
+                        backgroundColor: "white",
+                        borderColor: "white",
+                        color: "black",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        marginLeft: 350,
+                    }} onClick={handleAddKpiClose}>X
+                    </button>
                     <DialogTitle>Kennzahl hinzufügen</DialogTitle>
                     <DialogContent>
                         <AddKpi addNewKpi={props.addNewKpi}/>
-                        <button style={{maxWidth: 100, marginBottom: 20}} onClick={handleAddKpiClose}>zurück</button>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-user-2"}> User bearbeiten</button>
                 <button className={"button-admin-add-role-1"} onClick={toggleAddRole}> + Rolle hinzufügen</button>
                 <Dialog open={addRoleIsOpen} onClose={handleAddRoleClose}>
+                    <button style={{
+                        width: 20,
+                        backgroundColor: "white",
+                        borderColor: "white",
+                        color: "black",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        marginLeft: 450,
+                    }} onClick={handleAddRoleClose}>X
+                    </button>
                     <DialogTitle>Rolle hinzufügen</DialogTitle>
                     <DialogContent>
                         <AddRole addNewRole={props.addNewRole}/>
-                        <button style={{maxWidth: 100, margin: 30}} onClick={handleAddRoleClose}>zurück</button>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-role-2"} onClick={() => navigate("/admin/roles")}> Rollen
                     bearbeiten
                 </button>
                 <img src={"pictures/Role-Face.png"} className={"role-logo"} alt={""} height={90}/>
-
             </div>
             <ul className={"kpi-gallery-view"}>
                 <h3 className={"headline"}> Kennzahlen-Übersicht</h3>

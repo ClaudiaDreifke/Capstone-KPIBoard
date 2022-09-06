@@ -4,6 +4,7 @@ import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/materia
 import '../../styling/AddKpi.css'
 import {toast} from "react-toastify";
 import {NewKpi} from "../../model/Kpi";
+import {useNavigate} from "react-router-dom";
 
 type AddKpiProps = {
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
@@ -11,6 +12,7 @@ type AddKpiProps = {
 
 export default function AddKpi(props: AddKpiProps) {
 
+    const navigate = useNavigate()
     const [name, setName] = useState<string>("")
     const [responsibleRole, setResponsibleRole] = useState("")
     const [targetValueOperator, setTargetValueOperator] = useState<string>("")
@@ -38,6 +40,7 @@ export default function AddKpi(props: AddKpiProps) {
                     toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
                 }
             )
+        navigate("/admin")
     }
 
     return (
@@ -52,11 +55,11 @@ export default function AddKpi(props: AddKpiProps) {
                     <Select
                         labelId="responsible-role-input"
                         id="responsible-role-input"
-                        value={targetValueOperator}
+                        value={responsibleRole}
                         onChange={event => setResponsibleRole(event.target.value)}>
-                        <MenuItem value={"xyz"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
-                        <MenuItem value={"yz"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
-                        <MenuItem value={"z"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
+                        <MenuItem value={"xyz"}>x</MenuItem>
+                        <MenuItem value={"yz"}>y</MenuItem>
+                        <MenuItem value={"z"}>z</MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 300}}>
