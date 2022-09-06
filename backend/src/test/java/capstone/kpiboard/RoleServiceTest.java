@@ -1,6 +1,6 @@
 package capstone.kpiboard;
 
-import capstone.kpiboard.exceptions.KpiNotFoundException;
+import capstone.kpiboard.exceptions.RoleNotFoundException;
 import capstone.kpiboard.model.role.NewRole;
 import capstone.kpiboard.model.role.Role;
 import capstone.kpiboard.service.role.RoleRepo;
@@ -62,6 +62,6 @@ class RoleServiceTest {
         when(testRoleRepo.existsById("123")).thenReturn(false);
         doNothing().when(testRoleRepo).deleteById("123");
         //then
-        Assertions.assertThrows(KpiNotFoundException.class, () -> testRoleService.deleteRoleById("123"));
+        Assertions.assertThrows(RoleNotFoundException.class, () -> testRoleService.deleteRoleById("123"));
     }
 }
