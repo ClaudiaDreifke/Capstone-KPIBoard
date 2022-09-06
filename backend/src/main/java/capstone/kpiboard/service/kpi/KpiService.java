@@ -52,7 +52,4 @@ public class KpiService {
                 .mapToDouble(MonthValuePair::value)
                 .average().orElse(0);
     }
-
 }
-
-

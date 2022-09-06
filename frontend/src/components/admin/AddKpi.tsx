@@ -17,7 +17,6 @@ export default function AddKpi(props: AddKpiProps) {
     const [targetValue, setTargetValue] = useState<string>("")
     const [targetValueUnit, setTargetValueUnit] = useState<string>("")
 
-
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newKpi: NewKpi = {

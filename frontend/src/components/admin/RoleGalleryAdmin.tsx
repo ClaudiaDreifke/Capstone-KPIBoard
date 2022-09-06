@@ -4,7 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 
-
 type RoleGalleryAdminProps = {
     roles: Role[],
     deleteRoleById: (id: string) => Promise<void>;

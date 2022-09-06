@@ -1,6 +1,5 @@
 package capstone.kpiboard.service.role;
 
-import capstone.kpiboard.exceptions.KpiNotFoundException;
 import capstone.kpiboard.exceptions.RoleNotFoundException;
 import capstone.kpiboard.model.role.NewRole;
 import capstone.kpiboard.model.role.Role;
@@ -25,12 +24,9 @@ public class RoleService {
         return roleRepo.findAll();
     }
 
-
     public void deleteRoleById(String id) throws RoleNotFoundException {
         if (roleRepo.existsById(id)) {
             roleRepo.deleteById(id);
-        } else throw new KpiNotFoundException(id);
+        } else throw new RoleNotFoundException(id);
     }
 }
-
-

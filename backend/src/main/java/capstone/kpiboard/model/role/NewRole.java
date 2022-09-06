@@ -1,6 +1,7 @@
 package capstone.kpiboard.model.role;
 
-import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.UUID;
 
 public record NewRole(

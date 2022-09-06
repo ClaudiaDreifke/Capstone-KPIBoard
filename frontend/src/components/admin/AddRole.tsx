@@ -13,15 +13,21 @@ export default function AddRole(props: AddRoleProps) {
 
     const onRoleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const newRole: NewRole = {
-            roleName: roleName
+        if (!roleName) {
+            toast.error("Bitte die Rolle eintragen!")
+        } else {
+            const newRole: NewRole = {
+                roleName: roleName
+            }
+            props.addNewRole(newRole)
+                .then(() => setRoleName(""))
+                .catch(() => {
+                        toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
+                    }
+                )
         }
-        props.addNewRole(newRole)
-            .then(() => setRoleName(""))
-            .catch(() => {
-                toast.error("Ihre Eingabe konnte nicht gespeichert werden!")
-            })
     }
+
 
     return (
         <div className={"add-role"}>

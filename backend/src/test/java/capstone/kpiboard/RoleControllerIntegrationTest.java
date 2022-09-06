@@ -82,4 +82,16 @@ class RoleControllerIntegrationTest {
                         []
                         """));
     }
+
+    @Test
+    @DirtiesContext
+    void deleteRoleByIdTestIfRoleDoesntExist() throws Exception {
+
+        String errorMessage = mockMvc.perform(delete("http://localhost:8080/api/roles/no-existing-id"))
+                .andExpect(status().is(404))
+                .andReturn().getResponse().getContentAsString();
+
+        Assertions.assertTrue(errorMessage.contains("timestamp"));
+        Assertions.assertTrue(errorMessage.contains("message"));
+    }
 }
