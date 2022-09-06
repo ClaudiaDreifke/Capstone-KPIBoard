@@ -25,12 +25,9 @@ public class RoleService {
         return roleRepo.findAll();
     }
 
-
     public void deleteRoleById(String id) throws RoleNotFoundException {
         if (roleRepo.existsById(id)) {
             roleRepo.deleteById(id);
         } else throw new KpiNotFoundException(id);
     }
 }
-
-

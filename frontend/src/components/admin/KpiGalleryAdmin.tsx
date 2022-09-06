@@ -22,7 +22,9 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
             <AddRole addNewRole={props.addNewRole}/>
             <ul className={"kpi-gallery-view"}>
                 <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
-                {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id} kpi={kpi} deleteKpiById={props.deleteKpiById}
+                {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id}
+                                                       kpi={kpi}
+                                                       deleteKpiById={props.deleteKpiById}
                                                        targetValueUnitConvertToText={props.targetValueUnitConvertToText}
                                                        targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
                 )}

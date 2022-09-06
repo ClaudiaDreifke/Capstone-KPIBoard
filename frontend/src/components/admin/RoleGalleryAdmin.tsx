@@ -3,7 +3,6 @@ import '../../styling/RoleGalleryAdmin.css'
 import DeleteIcon from "@mui/icons-material/Delete";
 import {toast} from "react-toastify";
 
-
 type RoleGalleryAdminProps = {
     roles: Role[],
     deleteRoleById: (id: string) => Promise<void>;
