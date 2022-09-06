@@ -21,5 +21,15 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(responseBody, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(value = RoleNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleRoleNotFoundException(RoleNotFoundException exception) {
+        Map<String, Object> responseBody = new LinkedHashMap<>();
+
+        responseBody.put("timestamp", LocalDateTime.now());
+        responseBody.put("message:", exception.getMessage());
+
+        return new ResponseEntity<>(responseBody, HttpStatus.NOT_FOUND);
+    }
 }
 

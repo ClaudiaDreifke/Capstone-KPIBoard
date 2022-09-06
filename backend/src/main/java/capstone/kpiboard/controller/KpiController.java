@@ -1,9 +1,9 @@
 package capstone.kpiboard.controller;
 
 import capstone.kpiboard.exceptions.KpiNotFoundException;
-import capstone.kpiboard.model.Kpi;
-import capstone.kpiboard.model.NewKpi;
-import capstone.kpiboard.service.KpiService;
+import capstone.kpiboard.model.kpi.Kpi;
+import capstone.kpiboard.model.kpi.NewKpi;
+import capstone.kpiboard.service.kpi.KpiService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

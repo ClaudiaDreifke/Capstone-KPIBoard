@@ -1,10 +1,10 @@
-package capstone.kpiboard.service;
+package capstone.kpiboard.service.kpi;
 
 import capstone.kpiboard.exceptions.KpiNotFoundException;
-import capstone.kpiboard.model.Kpi;
-import capstone.kpiboard.model.MonthValuePair;
-import capstone.kpiboard.model.NewKpi;
-import capstone.kpiboard.model.TargetForKpi;
+import capstone.kpiboard.model.kpi.Kpi;
+import capstone.kpiboard.model.kpi.MonthValuePair;
+import capstone.kpiboard.model.kpi.NewKpi;
+import capstone.kpiboard.model.kpi.TargetForKpi;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,6 +37,7 @@ public class KpiService {
             return kpiRepo.save(new Kpi(
                     updatedKpi.id(),
                     updatedKpi.name(),
+                    updatedKpi.responsibleRole(),
                     updatedKpi.values(),
                     new TargetForKpi(
                             updatedKpi.targetForKpi().targetValueOperator(),
@@ -52,5 +53,3 @@ public class KpiService {
                 .average().orElse(0);
     }
 }
-
-

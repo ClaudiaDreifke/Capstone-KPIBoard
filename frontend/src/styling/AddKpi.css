@@ -15,15 +15,10 @@ form {
     justify-items: stretch;
 }
 
-.selector {
-    width: 100px;
-    height: 20px;
-    margin: 20px;
-}
 
 input {
     width: 100px;
-    margin: 10px;
+    margin: 30px;
 }
 
 label {

@@ -16,13 +16,14 @@ export default function SingleKpiAdmin(props: SingleKpiProps) {
 
     const handleClickDelete = () => {
         props.deleteKpiById(props.kpi.id).catch(() => {
-            toast.error("Die Kennzahl konnte nicht gelöscht werden.")
+            toast.error("Die Kennzahl konnte nicht gelöscht werden!")
         });
     }
 
     return (
-        <section className={"show-single-kpi"} key={props.kpi.id}>
+        <section className={"show-single-kpi-admin"} key={props.kpi.id}>
             <p className={"description-single-kpi"}> {props.kpi.name}</p>
+            <p className={"responsible-role-kpi"}>Verantwortung: {props.kpi.responsibleRole}</p>
             <p className={"description-single-kpi"}> Zielwert: {props.targetValueOperatorConvertToText(props.kpi.targetForKpi.targetValueOperator)
                 + " " + props.kpi.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(props.kpi.targetForKpi.targetValueUnit)}</p>
             <button style={{maxWidth: 150}} onClick={handleClickDelete}>löschen</button>

@@ -16,11 +16,13 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
     const {id} = useParams();
     const kpi: Kpi | undefined = props.kpis.find((k: Kpi) => k.id === id);
 
+    const [responsibleRole, setResponsibleRole] = useState<string>(kpi?.responsibleRole || "")
     const [targetValueOperator, setTargetValueOperator] = useState<string>(kpi?.targetForKpi?.targetValueOperator || "")
     const [targetValue, setTargetValue] = useState<number>(kpi?.targetForKpi?.targetValue || 0)
     const [targetValueUnit, setTargetValueUnit] = useState<string>(kpi?.targetForKpi?.targetValueUnit || "")
 
     useEffect(() => {
+        setTargetValueOperator(kpi?.responsibleRole || "")
         setTargetValueOperator(kpi?.targetForKpi?.targetValueOperator || "")
         setTargetValue(kpi?.targetForKpi?.targetValue || 0)
         setTargetValueUnit(kpi?.targetForKpi?.targetValueUnit || "")
@@ -32,6 +34,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
+                responsibleRole: responsibleRole,
                 values: kpi.values,
                 targetForKpi: {
                     targetValueOperator: targetValueOperator,
@@ -51,12 +54,24 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         <>
             <form onSubmit={onKpiSubmit}>
                 <h3>Kennzahl ändern</h3>
-                <p className={"name"} id="name">{kpi?.name}</p>
+                <p className={"name-change"} id="name">{kpi?.name}</p>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <InputLabel id="target-value-operator"></InputLabel>
+                    <InputLabel id="responsible-role-change">Verantwortlicher</InputLabel>
                     <Select
-                        labelId="target-value-operator"
-                        id="target-value-operator"
+                        labelId="target-value-operator-change"
+                        id="target-value-operator-change"
+                        value={targetValueOperator}
+                        onChange={event => setResponsibleRole(event.target.value)}>
+                        <MenuItem value={"x"}>x</MenuItem>
+                        <MenuItem value={"y"}>y</MenuItem>
+                        <MenuItem value={"z"}>z</MenuItem>
+                    </Select>
+                </FormControl>
+                <FormControl sx={{m: 1, minWidth: 80}}>
+                    <InputLabel id="target-value-operator-change"></InputLabel>
+                    <Select
+                        labelId="target-value-operator-change"
+                        id="target-value-operator-change"
                         value={targetValueOperator}
                         onChange={event => setTargetValueOperator(event.target.value)}>
                         <MenuItem value={"GREATER"}>größer</MenuItem>
@@ -65,15 +80,15 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                     </Select>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <input className={"target-value-input"} type={"number"}
+                    <input className={"target-value-input-change"} type={"number"}
                            value={targetValue}
                            onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 </FormControl>
                 <FormControl sx={{m: 1, minWidth: 80}}>
-                    <InputLabel id="target-value-unit"></InputLabel>
+                    <InputLabel id="target-value-unit-change"></InputLabel>
                     <Select
-                        labelId="target-value-unit"
-                        id="target-value-unit"
+                        labelId="target-value-unit-change"
+                        id="target-value-unit-change"
                         value={targetValueUnit}
                         onChange={event => setTargetValueUnit(event.target.value)}>
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>

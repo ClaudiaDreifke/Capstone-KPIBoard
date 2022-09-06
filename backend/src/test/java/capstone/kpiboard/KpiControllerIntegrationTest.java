@@ -1,6 +1,6 @@
 package capstone.kpiboard;
 
-import capstone.kpiboard.model.*;
+import capstone.kpiboard.model.kpi.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,6 +36,7 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
+                                "responsibleRole":"Leiter Truckings",
                                 "targetForKpi":
                                 {
                                 "targetValueOperator": "GREATER",
@@ -72,6 +73,7 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
+                                "responsibleRole":"Leiter Truckings",
                                 "targetForKpi":
                                 {
                                 "targetValueOperator": "GREATER",
@@ -120,6 +122,7 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
+                                "responsibleRole":"Leiter Truckings",
                                 "targetForKpi":
                                 {
                                 "targetValueOperator": "GREATER",
@@ -137,6 +140,7 @@ class KpiControllerIntegrationTest {
         Kpi testUpdatedKpi = new Kpi(
                 id,
                 "Anzahl Truckings",
+                "Leiter Truckings",
                 values,
                 new TargetForKpi(TargetValueOperator.LESS, 280.0, TargetValueUnit.PERCENTAGE),
                 255);
