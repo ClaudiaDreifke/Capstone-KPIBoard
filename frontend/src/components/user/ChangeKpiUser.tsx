@@ -61,8 +61,8 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
-                responsibleRole: kpi.responsibleRole,
                 values: monthValuePairs,
+                responsibleRole: kpi.responsibleRole,
                 targetForKpi: {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,
@@ -83,6 +83,16 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
 
     return (
         <FormGroup className={"add-values"}>
+            <button style={{
+                justifyContent: "end",
+                width: 20,
+                backgroundColor: "white",
+                borderColor: "white",
+                color: "black",
+                fontWeight: "bold",
+                fontSize: "large"
+            }} onClick={() => navigate("/my-kpi")}>X
+            </button>
             <h3 style={{marginTop: 30, marginBottom: 10, marginLeft: 20}}>Kennzahlenwerte bearbeiten</h3>
             <FormGroup
                 style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "start", marginBottom: 10}}>
@@ -130,13 +140,11 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                            value={valueFromForm}
                            onChange={event => setValueFromForm(event.target.valueAsNumber)}/>
                 </FormControl>
-                <button style={{maxWidth: 200}} type={"submit"}>Wert hinzufügen</button>
+                <button style={{marginTop: 20, marginLeft: 300}} type={"submit"}>Wert hinzufügen</button>
             </form>
             <form className={"change-kpi-form"} id={"change-kpi-form"} onSubmit={onKpiSubmit}>
-                <button style={{maxWidth: 150}} onClick={() => navigate("/my-kpi")}>zurück</button>
-                <button style={{maxWidth: 150}} type={"submit"}>speichern</button>
+                <button style={{justifyContent: "end"}} type={"submit"}>speichern</button>
             </form>
         </FormGroup>
-
     )
 }

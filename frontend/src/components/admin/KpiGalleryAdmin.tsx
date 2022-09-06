@@ -42,30 +42,35 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
     };
 
     return (
-        <div className={"kpi-gallery-admin"}>
-            <button className={"button-admin-view"} onClick={toggleAddRole}> + Rolle hinzufügen</button>
-            <Dialog open={addRoleIsOpen} onClose={handleAddRoleClose}>
-                <DialogTitle>Rolle hinzufügen</DialogTitle>
-                <DialogContent>
-                    <AddRole addNewRole={props.addNewRole}/>
-                    <button style={{maxWidth: 100, margin: 30}} onClick={handleAddRoleClose}>zurück</button>
-                </DialogContent>
-            </Dialog>
-            <button className={"button-admin-view"} onClick={() => navigate("/admin/roles")}> Rollen bearbeiten</button>
-            <img src={"pictures/User.png"} className={"Role-Logo"} alt={""}/>
-            <button className={"button-admin-view"}> + User hinzufügen</button>
-            <button className={"button-admin-view"}> User bearbeiten</button>
+        <>
+            <div className={"kpi-gallery-add-section"}>
+                <img src={"pictures/User-Face.png"} className={"user-logo"} alt={""} height={90}/>
+                <button className={"button-admin-add-user-1"}> + User hinzufügen</button>
+                <Dialog open={addKpiIsOpen} onClose={handleAddKpiClose}>
+                    <DialogTitle>Kennzahl hinzufügen</DialogTitle>
+                    <DialogContent>
+                        <AddKpi addNewKpi={props.addNewKpi}/>
+                        <button style={{maxWidth: 100, marginBottom: 20}} onClick={handleAddKpiClose}>zurück</button>
+                    </DialogContent>
+                </Dialog>
+                <button className={"button-admin-add-user-2"}> User bearbeiten</button>
+                <button className={"button-admin-add-role-1"} onClick={toggleAddRole}> + Rolle hinzufügen</button>
+                <Dialog open={addRoleIsOpen} onClose={handleAddRoleClose}>
+                    <DialogTitle>Rolle hinzufügen</DialogTitle>
+                    <DialogContent>
+                        <AddRole addNewRole={props.addNewRole}/>
+                        <button style={{maxWidth: 100, margin: 30}} onClick={handleAddRoleClose}>zurück</button>
+                    </DialogContent>
+                </Dialog>
+                <button className={"button-admin-add-role-2"} onClick={() => navigate("/admin/roles")}> Rollen
+                    bearbeiten
+                </button>
+                <img src={"pictures/Role-Face.png"} className={"role-logo"} alt={""} height={90}/>
 
-            <button className={"button-admin-view"} onClick={toggleAddKpi}> + Kennzahl hinzufügen</button>
-            <Dialog open={addKpiIsOpen} onClose={handleAddKpiClose}>
-                <DialogTitle>Kennzahl hinzufügen</DialogTitle>
-                <DialogContent>
-                    <AddKpi addNewKpi={props.addNewKpi}/>
-                    <button style={{maxWidth: 100, marginBottom: 20}} onClick={handleAddKpiClose}>zurück</button>
-                </DialogContent>
-            </Dialog>
+            </div>
             <ul className={"kpi-gallery-view"}>
                 <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
+                <button className={"button-add-kpi"} onClick={toggleAddKpi}> + Kennzahl hinzufügen</button>
                 {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id}
                                                        kpi={kpi}
                                                        deleteKpiById={props.deleteKpiById}
@@ -73,6 +78,6 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                                                        targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
                 )}
             </ul>
-        </div>
+        </>
     )
 }
