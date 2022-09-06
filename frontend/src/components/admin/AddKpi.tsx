@@ -4,7 +4,6 @@ import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/materia
 import '../../styling/AddKpi.css'
 import {toast} from "react-toastify";
 import {NewKpi} from "../../model/Kpi";
-import {useNavigate} from "react-router-dom";
 
 type AddKpiProps = {
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
@@ -12,7 +11,6 @@ type AddKpiProps = {
 
 export default function AddKpi(props: AddKpiProps) {
 
-    const navigate = useNavigate()
     const [name, setName] = useState<string>("")
     const [responsibleRole, setResponsibleRole] = useState("")
     const [targetValueOperator, setTargetValueOperator] = useState<string>("")
@@ -40,7 +38,6 @@ export default function AddKpi(props: AddKpiProps) {
                     toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
                 }
             )
-        navigate("/admin")
     }
 
     return (
@@ -88,6 +85,7 @@ export default function AddKpi(props: AddKpiProps) {
                         onChange={(event => setTargetValueUnit(event.target.value))}>
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
+                        <MenuItem value={"MINUTES"}>Minuten</MenuItem>
                     </Select>
                     <button style={{maxWidth: 100, marginTop: 30, marginLeft: 180}} type={"submit"}>hinzufügen</button>
                 </FormControl>

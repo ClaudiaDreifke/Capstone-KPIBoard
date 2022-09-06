@@ -103,6 +103,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         onChange={event => setTargetValueUnit(event.target.value)}>
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
+                        <MenuItem value={"MINUTES"}>Minuten</MenuItem>
                     </Select>
                 </FormControl>
                 <button style={{marginTop: 20, marginLeft: 300, marginBottom: 20}} type={"submit"}>speichern</button>
