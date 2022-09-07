@@ -86,7 +86,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                 <img src={"pictures/Role-Face.png"} className={"role-logo"} alt={""} height={90}/>
             </div>
             <ul className={"kpi-gallery-view"}>
-                <h3 className={"headline"}> Kennzahlen-Übersicht</h3>
+                <h2 className={"headline"}> Kennzahlen-Übersicht</h2>
                 <button className={"button-add-kpi"} onClick={toggleAddKpi}> + Kennzahl hinzufügen</button>
                 {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id}
                                                        kpi={kpi}

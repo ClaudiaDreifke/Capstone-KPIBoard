@@ -32,7 +32,7 @@ export default function AddRole(props: AddRoleProps) {
     return (
         <div className={"add-role"}>
             <form onSubmit={onRoleSubmit}>
-                <FormControl sx={{m: 1, minWidth: 200}}>
+                <FormControl sx={{m: 1, minWidth: 300}}>
                     <TextField id="role-input" label="Rolle" variant="outlined" value={roleName}
                                onChange={event => setRoleName(event.target.value)}/>
                 </FormControl>

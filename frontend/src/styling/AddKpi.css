@@ -1,5 +1,10 @@
 h3 {
-    margin: 20px 20px 20px 20px;
+    margin: 20px;
+}
+
+#form-control-add-kpi {
+    min-width: 300px;
+    margin: 5px;
 }
 
 .add-kpi-form {
@@ -11,20 +16,15 @@ h3 {
     justify-items: stretch;
 }
 
-input {
-    width: 100px;
-    margin: 30px;
-}
-
 label {
     margin-left: 20px;
 }
 
-.target-value-input-add {
+.target-value-input-add-kpi {
     height: 50px;
     width: 95%;
     margin: 1px 10px 1px 1px;
-    border: 1px solid lightgray;
+    border: 1px solid #bebdbd;
     border-radius: 5px;
     padding-left: 10px;
     font-size: medium;

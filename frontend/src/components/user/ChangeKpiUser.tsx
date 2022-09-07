@@ -82,7 +82,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     }
 
     return (
-        <FormGroup className={"add-values"}>
+        <FormGroup id="add-values">
             <button style={{
                 width: 20,
                 backgroundColor: "white",
@@ -90,14 +90,14 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                 color: "black",
                 fontWeight: "bold",
                 fontSize: "large",
-                marginLeft: 460,
+                marginLeft: 470,
             }} onClick={() => navigate("/my-kpi")}>X
             </button>
-            <h3 style={{marginTop: 30, marginBottom: 10, marginLeft: 20}}>Kennzahlenwerte bearbeiten</h3>
+            <h2>Kennzahlenwerte bearbeiten</h2>
             <FormGroup
-                style={{marginLeft: 20, justifyContent: "start", marginBottom: 10}}>
-                <h4>Kennzahl: {kpi?.name}<br/>Zielwert: {targetValueOperatorToText()} {kpi?.targetForKpi.targetValue} {targetValueUnitToText()}
-                </h4>
+                style={{marginLeft: 10, justifyContent: "start"}}>
+                <h3>Kennzahl: {kpi?.name}<br/>Zielwert: {targetValueOperatorToText()} {kpi?.targetForKpi.targetValue} {targetValueUnitToText()}
+                </h3>
             </FormGroup>
             <form className={"value-input-form"} id={"value-input-form"} onSubmit={onValueSubmit}>
                 <FormGroup>
@@ -143,7 +143,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                 <button style={{marginTop: 20, marginLeft: 310,}} type={"submit"}>Wert hinzufügen</button>
             </form>
             <form className={"change-kpi-form"} id={"change-kpi-form"} onSubmit={onKpiSubmit}>
-                <button style={{marginTop: 20, marginLeft: 300, marginBottom: 20}} type={"submit"}>Kennzahl speichern
+                <button style={{marginTop: 20, marginLeft: 310, marginBottom: 20}} type={"submit"}>Kennzahl speichern
                 </button>
             </form>
         </FormGroup>

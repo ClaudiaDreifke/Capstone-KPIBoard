@@ -63,9 +63,9 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                     marginLeft: 460,
                 }} onClick={() => navigate("/admin")}>X
                 </button>
-                <h3>Kennzahl ändern</h3>
+                <h2>Kennzahl ändern</h2>
                 <p className={"name-change"} id="name">{kpi?.name}</p>
-                <FormControl sx={{m: 1, minWidth: 300}}>
+                <FormControl id="form-control-change-kpi-admin">
                     <InputLabel id="responsible-role-change">Verantwortlicher</InputLabel>
                     <Select
                         labelId="responsible-role-change"
@@ -77,7 +77,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         <MenuItem value={"z"}>z</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 300}}>
+                <FormControl id="form-control-change-kpi-admin">
                     <InputLabel id="target-value-operator-change"></InputLabel>
                     <Select
                         labelId="target-value-operator-change"
@@ -89,12 +89,12 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 300}}>
+                <FormControl id="form-control-change-kpi-admin">
                     <input className={"target-value-input-change"} type={"number"}
                            value={targetValue}
                            onChange={event => setTargetValue(event.target.valueAsNumber)}/>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 300}}>
+                <FormControl id="form-control-change-kpi-admin">
                     <InputLabel id="target-value-unit-change"></InputLabel>
                     <Select
                         labelId="target-value-unit-change"
