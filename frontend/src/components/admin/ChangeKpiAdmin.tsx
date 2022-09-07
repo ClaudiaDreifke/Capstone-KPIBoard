@@ -4,9 +4,11 @@ import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
 import {Kpi} from "../../model/Kpi";
 import '../../styling/ChangeKpiAdmin.css'
+import {Role} from "../../model/Role";
 
 export type ChangeKpiAdminProps = {
     kpis: Kpi[],
+    roles: Role[],
     updateKpiById: (updatedKpi: Kpi) => void;
 }
 
@@ -72,9 +74,8 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         id="responsible-role-change"
                         value={responsibleRole}
                         onChange={event => setResponsibleRole(event.target.value)}>
-                        <MenuItem value={"x"}>x</MenuItem>
-                        <MenuItem value={"y"}>y</MenuItem>
-                        <MenuItem value={"z"}>z</MenuItem>
+                        {props.roles.map((role) => (
+                            <MenuItem key={role.id} value={role.roleName}>{role.roleName}</MenuItem>))}
                     </Select>
                 </FormControl>
                 <FormControl id="form-control-change-kpi-admin">
