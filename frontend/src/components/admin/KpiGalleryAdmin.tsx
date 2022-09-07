@@ -3,7 +3,7 @@ import SingleKpiAdmin from "./SingleKpiAdmin";
 import '../../styling/KpiGalleryAdmin.css'
 import AddKpi from "./AddKpi";
 import AddRole from "./AddRole";
-import {NewRole} from "../../model/Role";
+import {NewRole, Role} from "../../model/Role";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle} from "@mui/material";
@@ -11,6 +11,7 @@ import {Dialog, DialogContent, DialogTitle} from "@mui/material";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
+    roles: Role[],
     deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
     addNewRole: (newRole: NewRole) => Promise<void>;
@@ -59,7 +60,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>Kennzahl hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddKpi addNewKpi={props.addNewKpi}/>
+                        <AddKpi addNewKpi={props.addNewKpi} roles={props.roles}/>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-user-2"}> User bearbeiten</button>

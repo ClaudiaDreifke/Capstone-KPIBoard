@@ -32,14 +32,15 @@ export default function AllRoutes() {
                        element={<KpiBoard kpis={kpis} targetValueUnitConvertToText={targetValueUnitConvertToText}
                                           targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/admin"}
-                       element={<KpiGalleryAdmin kpis={kpis} addNewKpi={addNewKpi} deleteKpiById={deleteKpiById}
+                       element={<KpiGalleryAdmin kpis={kpis} roles={roles} addNewKpi={addNewKpi}
+                                                 deleteKpiById={deleteKpiById}
                                                  addNewRole={addNewRole}
                                                  targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                  targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/admin/roles"}
                        element={<RoleGalleryAdmin roles={roles} deleteRoleById={deleteRoleById}/>}/>
                 <Route path={"/admin/change/:id"}
-                       element={<ChangeKpiAdmin kpis={kpis} updateKpiById={updateKpiById}/>}/>
+                       element={<ChangeKpiAdmin kpis={kpis} roles={roles} updateKpiById={updateKpiById}/>}/>
                 <Route path={"/my-kpi"}
                        element={<KpiGalleryUser kpis={kpis} targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                 targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
