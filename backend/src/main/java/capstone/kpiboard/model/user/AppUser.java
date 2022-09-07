@@ -7,11 +7,10 @@ import javax.validation.constraints.NotNull;
 
 public record AppUser(
         @Id
-        String id,
         @NotNull
         String username,
         @NotNull
-        String passwordHash,
+        String password,
         @Email
         String emailAddress,
         @NotNull
