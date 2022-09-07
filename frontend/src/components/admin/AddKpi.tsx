@@ -57,7 +57,7 @@ export default function AddKpi(props: AddKpiProps) {
                         value={responsibleRole}
                         onChange={event => setResponsibleRole(event.target.value)}>
                         {props.roles.map((role) => (
-                            <MenuItem value={role.roleName}>{role.roleName}</MenuItem>))}
+                            <MenuItem key={role.id} value={role.roleName}>{role.roleName}</MenuItem>))}
                     </Select>
                 </FormControl>
                 <FormControl id="form-control-add-kpi">
