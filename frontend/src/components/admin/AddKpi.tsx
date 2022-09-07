@@ -42,25 +42,24 @@ export default function AddKpi(props: AddKpiProps) {
 
     return (
         <div className={"add-kpi"}>
-            <form onSubmit={onKpiSubmit}>
-                <h3>Kennzahl hinzufügen</h3>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+            <form className={"add-kpi-form"} onSubmit={onKpiSubmit}>
+                <FormControl id="form-control-add-kpi">
                     <TextField id="name-input" label="Name" variant="outlined" value={name}
                                onChange={event => setName(event.target.value)}/>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+                <FormControl id="form-control-add-kpi">
                     <InputLabel id="responsible-role-input">Verantwortlicher</InputLabel>
                     <Select
                         labelId="responsible-role-input"
                         id="responsible-role-input"
-                        value={targetValueOperator}
+                        value={responsibleRole}
                         onChange={event => setResponsibleRole(event.target.value)}>
-                        <MenuItem value={"xyz"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
-                        <MenuItem value={"yz"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
-                        <MenuItem value={"z"}>Hier wird mal eine Rolle aus der Liste stehen</MenuItem>
+                        <MenuItem value={"xyz"}>x</MenuItem>
+                        <MenuItem value={"yz"}>y</MenuItem>
+                        <MenuItem value={"z"}>z</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+                <FormControl id="form-control-add-kpi">
                     <InputLabel id="target-value-operator-input">Vorzeichen</InputLabel>
                     <Select
                         labelId="target-value-operator-input"
@@ -72,12 +71,12 @@ export default function AddKpi(props: AddKpiProps) {
                         <MenuItem value={"EQUALS"}>gleich</MenuItem>
                     </Select>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 80}}>
-                    <input className={"target-value-input-add"} type={"number"} placeholder={"     Zielwert"}
+                <FormControl id="form-control-add-kpi">
+                    <input className={"target-value-input-add-kpi"} type={"number"} placeholder={"     Zielwert"}
                            value={targetValue}
                            onChange={event => setTargetValue(event.target.value)}/>
                 </FormControl>
-                <FormControl sx={{m: 1, minWidth: 80}}>
+                <FormControl id="form-control-add-kpi">
                     <InputLabel id="target-value-unit-input">Einheit</InputLabel>
                     <Select
                         labelId="target-value-unit-input"
@@ -86,8 +85,9 @@ export default function AddKpi(props: AddKpiProps) {
                         onChange={(event => setTargetValueUnit(event.target.value))}>
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
+                        <MenuItem value={"MINUTES"}>Minuten</MenuItem>
                     </Select>
-                    <button style={{maxWidth: 200, margin: 30}} type={"submit"}>hinzufügen</button>
+                    <button style={{maxWidth: 100, marginTop: 30, marginLeft: 180}} type={"submit"}>hinzufügen</button>
                 </FormControl>
             </form>
         </div>

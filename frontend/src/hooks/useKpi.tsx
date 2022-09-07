@@ -53,6 +53,7 @@ export default function useKpi() {
 
     const targetValueUnitConvertToText = (stringToConvert: string) => {
         if (stringToConvert === "AMOUNT") return "Stk.";
+        if (stringToConvert === "MINUTES") return "Minuten";
         else return "%";
     }
 

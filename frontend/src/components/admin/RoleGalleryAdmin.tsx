@@ -2,6 +2,7 @@ import {Role} from "../../model/Role";
 import '../../styling/RoleGalleryAdmin.css'
 import DeleteIcon from "@mui/icons-material/Delete";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 type RoleGalleryAdminProps = {
     roles: Role[],
@@ -9,6 +10,8 @@ type RoleGalleryAdminProps = {
 }
 
 export default function RoleGalleryAdmin(props: RoleGalleryAdminProps) {
+
+    const navigate = useNavigate();
 
     const handleRoleDeleteOnClick = (id: string) => {
         props.deleteRoleById(id).catch(() => {
@@ -27,6 +30,7 @@ export default function RoleGalleryAdmin(props: RoleGalleryAdminProps) {
                     </li>
             ))}
             </ul>
+            <button style={{maxWidth: 150}} onClick={() => navigate("/admin/")}>zurück</button>
         </div>
     )
 }

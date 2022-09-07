@@ -19,3 +19,14 @@ main {
 h1 {
     font-family: "DM Sans", sans-serif;
 }
+
+button {
+    margin: 5px;
+    border-radius: 5px;
+    max-height: 20px;
+    background-color: #fe832d;
+    font-family: "DM Sans", sans-serif;
+    max-width: 150px;
+    color: white;
+    border: #fe832d 1px solid;
+}

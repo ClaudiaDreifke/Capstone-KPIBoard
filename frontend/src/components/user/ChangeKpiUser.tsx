@@ -61,8 +61,8 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
-                responsibleRole: kpi.responsibleRole,
                 values: monthValuePairs,
+                responsibleRole: kpi.responsibleRole,
                 targetForKpi: {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,
@@ -82,12 +82,22 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     }
 
     return (
-        <FormGroup className={"add-values"}>
-            <h3 style={{marginTop: 30, marginBottom: 10, marginLeft: 20}}>Kennzahlenwerte bearbeiten</h3>
+        <FormGroup id="add-values">
+            <button style={{
+                width: 20,
+                backgroundColor: "white",
+                borderColor: "white",
+                color: "black",
+                fontWeight: "bold",
+                fontSize: "large",
+                marginLeft: 470,
+            }} onClick={() => navigate("/my-kpi")}>X
+            </button>
+            <h2>Kennzahlenwerte bearbeiten</h2>
             <FormGroup
-                style={{flex: 2, flexDirection: "row", marginLeft: 20, justifyContent: "start", marginBottom: 10}}>
-                <h4>Kennzahl: {kpi?.name}<br/>Zielwert: {targetValueOperatorToText()} {kpi?.targetForKpi.targetValue} {targetValueUnitToText()}
-                </h4>
+                style={{marginLeft: 10, justifyContent: "start"}}>
+                <h3>Kennzahl: {kpi?.name}<br/>Zielwert: {targetValueOperatorToText()} {kpi?.targetForKpi.targetValue} {targetValueUnitToText()}
+                </h3>
             </FormGroup>
             <form className={"value-input-form"} id={"value-input-form"} onSubmit={onValueSubmit}>
                 <FormGroup>
@@ -130,13 +140,12 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                            value={valueFromForm}
                            onChange={event => setValueFromForm(event.target.valueAsNumber)}/>
                 </FormControl>
-                <button style={{maxWidth: 200}} type={"submit"}>Wert hinzufügen</button>
+                <button style={{marginTop: 20, marginLeft: 310,}} type={"submit"}>Wert hinzufügen</button>
             </form>
             <form className={"change-kpi-form"} id={"change-kpi-form"} onSubmit={onKpiSubmit}>
-                <button style={{maxWidth: 150}} onClick={() => navigate("/my-kpi")}>zurück</button>
-                <button style={{maxWidth: 150}} type={"submit"}>speichern</button>
+                <button style={{marginTop: 20, marginLeft: 310, marginBottom: 20}} type={"submit"}>Kennzahl speichern
+                </button>
             </form>
         </FormGroup>
-
     )
 }

@@ -1,10 +1,11 @@
 .show-single-kpi-admin {
-    border-top: 1px #fe832d solid;
+    border-top: 1px black solid;
     margin: 1px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
     justify-items: stretch;
+    align-items: center;
 }
 
 .description-single-kpi {

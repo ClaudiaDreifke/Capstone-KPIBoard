@@ -1,37 +1,32 @@
 h3 {
-    margin: 20px 20px 20px 20px;
+    margin: 20px;
 }
 
-form {
+#form-control-add-kpi {
+    min-width: 300px;
+    margin: 5px;
+}
+
+.add-kpi-form {
     align-content: center;
-    border: black solid 1px;
-    background-color: white;
     text-align: start;
-    margin: 40px 40px 40px 45px;
-    max-width: 500px;
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr;
     justify-items: stretch;
 }
 
-
-input {
-    width: 100px;
-    margin: 30px;
-}
-
 label {
     margin-left: 20px;
 }
 
-.target-value-input-add {
+.target-value-input-add-kpi {
     height: 50px;
-    width: 97%;
+    width: 95%;
     margin: 1px 10px 1px 1px;
-    border: 1px solid lightgray;
+    border: 1px solid #bebdbd;
     border-radius: 5px;
     padding-left: 10px;
     font-size: medium;
-    color: #6c6b6b;
+    color: black;
 }
