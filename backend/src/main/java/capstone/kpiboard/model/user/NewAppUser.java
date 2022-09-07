@@ -9,14 +9,15 @@ public record NewAppUser(
         @NotNull
         String username,
         @NotNull
-        String password,
+        String passwordHash,
         @NotNull
         @Email
         String emailAddress,
+        @NotNull
         String role
 ) {
     public AppUser withRandomId() {
-        return new AppUser(UUID.randomUUID().toString(), username(), password(), emailAddress(), role());
+        return new AppUser(UUID.randomUUID().toString(), username(), passwordHash(), emailAddress(), role());
     }
 
 }
