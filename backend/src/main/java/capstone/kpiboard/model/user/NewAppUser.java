@@ -14,10 +14,10 @@ public record NewAppUser(
         @Email
         String emailAddress,
         @NotNull
-        String role
+        String userRole
 ) {
     public AppUser withRandomId() {
-        return new AppUser(UUID.randomUUID().toString(), username(), passwordHash(), emailAddress(), role());
+        return new AppUser(UUID.randomUUID().toString(), username(), passwordHash(), emailAddress(), userRole());
     }
 
 }
