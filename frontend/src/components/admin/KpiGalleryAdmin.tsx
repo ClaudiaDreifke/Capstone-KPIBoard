@@ -7,7 +7,8 @@ import {NewRole, Role} from "../../model/Role";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle} from "@mui/material";
-
+import AddUser from "./AddUser";
+import {NewUser} from "../../model/AppUser";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
@@ -15,6 +16,7 @@ type KpiGalleryAdminProps = {
     deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
     addNewRole: (newRole: NewRole) => Promise<void>;
+    addNewUser: (newUser: NewUser) => Promise<void>;
     targetValueUnitConvertToText: (stringToConvert: string) => string;
     targetValueOperatorConvertToText: (stringToConvert: string) => string;
 }
@@ -25,6 +27,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
 
     const [addRoleIsOpen, setAddRoleIsOpen] = useState(false);
     const [addKpiIsOpen, setAddKpiIsOpen] = useState(false);
+    const [addUserIsOpen, setAddUserIsOpen] = useState(false);
 
     const toggleAddRole = () => {
         setAddRoleIsOpen(!addRoleIsOpen);
@@ -42,12 +45,20 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
         setAddKpiIsOpen(false);
     };
 
+    const toggleAddUser = () => {
+        setAddUserIsOpen(!addUserIsOpen);
+    }
+
+    const handleAddUserClose = () => {
+        setAddUserIsOpen(false);
+    };
+
     return (
         <>
             <div className={"kpi-gallery-add-section"}>
                 <img src={"pictures/User-Face.png"} className={"user-logo"} alt={""} height={90}/>
-                <button className={"button-admin-add-user-1"}> + User hinzufügen</button>
-                <Dialog open={addKpiIsOpen} onClose={handleAddKpiClose}>
+                <button className={"button-admin-add-user-1"} onClick={toggleAddUser}> + User hinzufügen</button>
+                <Dialog open={addUserIsOpen} onClose={handleAddUserClose}>
                     <button style={{
                         width: 20,
                         backgroundColor: "white",
@@ -55,12 +66,12 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                         color: "black",
                         fontWeight: "bold",
                         fontSize: "large",
-                        marginLeft: 350,
-                    }} onClick={handleAddKpiClose}>X
+                        marginLeft: 450,
+                    }} onClick={handleAddUserClose}>X
                     </button>
-                    <DialogTitle>Kennzahl hinzufügen</DialogTitle>
+                    <DialogTitle>User hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddKpi addNewKpi={props.addNewKpi} roles={props.roles}/>
+                        <AddUser roles={props.roles} addNewUser={props.addNewUser}/>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-user-2"}> User bearbeiten</button>
@@ -89,6 +100,22 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
             <ul className={"kpi-gallery-view"}>
                 <h2 className={"headline"}> Kennzahlen-Übersicht</h2>
                 <button className={"button-add-kpi"} onClick={toggleAddKpi}> + Kennzahl hinzufügen</button>
+                <Dialog open={addKpiIsOpen} onClose={handleAddKpiClose}>
+                    <button style={{
+                        width: 20,
+                        backgroundColor: "white",
+                        borderColor: "white",
+                        color: "black",
+                        fontWeight: "bold",
+                        fontSize: "large",
+                        marginLeft: 350,
+                    }} onClick={handleAddKpiClose}>X
+                    </button>
+                    <DialogTitle>Kennzahl hinzufügen</DialogTitle>
+                    <DialogContent>
+                        <AddKpi addNewKpi={props.addNewKpi} roles={props.roles}/>
+                    </DialogContent>
+                </Dialog>
                 {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id}
                                                        kpi={kpi}
                                                        deleteKpiById={props.deleteKpiById}

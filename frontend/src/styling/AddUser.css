@@ -1,0 +1,13 @@
+.add-user-form {
+    align-content: center;
+    text-align: start;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+}
+
+#add-user-input, #add-user-select {
+    min-width: 300px;
+    margin: 5px;
+}

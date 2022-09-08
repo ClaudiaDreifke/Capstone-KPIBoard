@@ -7,6 +7,7 @@ import ChangeKpiUser from "../user/ChangeKpiUser";
 import KpiBoard from "../board/KpiBoard";
 import useRole from "../../hooks/useRole";
 import RoleGalleryAdmin from "../admin/RoleGalleryAdmin";
+import useUser from "../../hooks/useUser";
 
 export default function AllRoutes() {
 
@@ -25,6 +26,10 @@ export default function AllRoutes() {
         deleteRoleById,
     } = useRole();
 
+    const {
+        addNewUser
+    } = useUser();
+
     return (
         <>
             <Routes>
@@ -34,7 +39,7 @@ export default function AllRoutes() {
                 <Route path={"/admin"}
                        element={<KpiGalleryAdmin kpis={kpis} roles={roles} addNewKpi={addNewKpi}
                                                  deleteKpiById={deleteKpiById}
-                                                 addNewRole={addNewRole}
+                                                 addNewRole={addNewRole} addNewUser={addNewUser}
                                                  targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                  targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/admin/roles"}
