@@ -24,6 +24,7 @@ public class SecurityConfig {
 
                 .authorizeRequests()
                 .antMatchers("/api/").permitAll()
+                .antMatchers("/api/roles/*").hasRole("Admin")
                 .and().httpBasic()
                 .and().build();
     }

@@ -3,12 +3,13 @@ export type AppUser = {
     username: string,
     password: string,
     emailAddress: string,
-    userRole: string,
+    role: string,
 }
 
 export type NewUser = {
     username: string,
     password: string,
     emailAddress: string,
-    userRole: string,
+    role: string,
 }
+

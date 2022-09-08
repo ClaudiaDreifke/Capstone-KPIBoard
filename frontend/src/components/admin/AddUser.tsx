@@ -24,7 +24,7 @@ export default function AddUser(props: AddUserProps) {
             username: username,
             password: initialPassword,
             emailAddress: emailAddress,
-            userRole: userRole
+            role: userRole
         };
         props.addNewUser(newUser)
             .then(() => setUsername(""))
