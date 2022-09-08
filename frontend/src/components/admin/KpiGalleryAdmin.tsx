@@ -10,7 +10,6 @@ import {Dialog, DialogContent, DialogTitle} from "@mui/material";
 import AddUser from "./AddUser";
 import {NewUser} from "../../model/AppUser";
 
-
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
     roles: Role[],
@@ -45,7 +44,6 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
     const handleAddKpiClose = () => {
         setAddKpiIsOpen(false);
     };
-
 
     const toggleAddUser = () => {
         setAddUserIsOpen(!addUserIsOpen);
