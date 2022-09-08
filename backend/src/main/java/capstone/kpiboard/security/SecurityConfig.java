@@ -2,7 +2,6 @@ package capstone.kpiboard.security;
 
 import capstone.kpiboard.service.user.AppUserService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -24,11 +23,7 @@ public class SecurityConfig {
                 .csrf().disable()
 
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/kpis").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/roles").permitAll()
-                .antMatchers("/api/kpis").authenticated()
-                .antMatchers("/api/roles").authenticated()
-                .antMatchers("/api/user").authenticated()
+                .antMatchers("/api/").permitAll()
                 .and().httpBasic()
                 .and().build();
     }
