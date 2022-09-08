@@ -27,11 +27,9 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/api/user/logout").permitAll()
-                .antMatchers("/api/user/me").permitAll()
-                .antMatchers("/api/user").authenticated()
-                .antMatchers(HttpMethod.PUT, "api/kpis/*").authenticated() //nicht gesperrt!!
-                .antMatchers(HttpMethod.GET, "api/roles").authenticated() //funktioniert
-                .antMatchers("/api/roles").hasRole("ADMIN") //gesperrt ja, aber Admin nein
+                .antMatchers("/api/user/me").authenticated()
+                .antMatchers("/api/roles/*").hasRole("ADMIN") //gesperrt ja, aber Admin nein
+                .antMatchers("/api/**").authenticated()
                 .antMatchers(HttpMethod.POST, "/api/user").hasRole("ADMIN") //gesperrt ja, aber Admin nein
                 .antMatchers(HttpMethod.DELETE, "/api/kpis/*").hasRole("ADMIN") //gesperrt ja, aber Admin nein
                 .antMatchers(HttpMethod.POST, "/api/kpis").hasRole("ADMIN") //gesperrt ja, aber Admin nein
