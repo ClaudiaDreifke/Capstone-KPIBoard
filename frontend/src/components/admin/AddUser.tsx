@@ -22,7 +22,7 @@ export default function AddUser(props: AddUserProps) {
         event.preventDefault();
         const newUser: NewUser = {
             username: username,
-            passwordHash: initialPassword,
+            password: initialPassword,
             emailAddress: emailAddress,
             userRole: userRole
         };

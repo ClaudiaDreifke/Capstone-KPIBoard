@@ -10,7 +10,7 @@ public record AppUser(
         @NotNull
         String username,
         @NotNull
-        String password,
+        String passwordHash,
         @Email
         String emailAddress,
         @NotNull

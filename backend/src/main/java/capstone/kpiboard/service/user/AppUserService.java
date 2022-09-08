@@ -21,7 +21,7 @@ public class AppUserService {
 
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = appUserRepo.findById(username).orElseThrow(() -> new UsernameNotFoundException(username));
-        return new User(appUser.username(), appUser.password(), Collections.emptyList());
+        return new User(appUser.username(), appUser.passwordHash(), Collections.emptyList());
     }
 }
 
