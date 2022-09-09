@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,10 +33,10 @@ public class UserController {
 
     @GetMapping("/me")
     String getUsername() {
-        return SecurityContextHolder
+        return new ArrayList<>((SecurityContextHolder
                 .getContext()
                 .getAuthentication()
-                .getName();
+                .getAuthorities())).get(0).toString();
     }
 
     @GetMapping("/logout")

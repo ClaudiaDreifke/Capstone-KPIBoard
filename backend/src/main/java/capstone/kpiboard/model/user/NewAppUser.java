@@ -9,15 +9,16 @@ import javax.validation.constraints.NotNull;
 
 public record NewAppUser(
         @Id
-        @NotNull
+        @NotNull(message = "Username ist ein Pflichtfeld")
         String username,
-        @NotNull
+        @NotNull(message = "Passwort ist ein Pflichtfeld")
         String password,
-        @Email
+        @Email(message = "Bitte eine gültige Emailadresse angeben")
+        @NotNull(message = "Emailadresse ist ein Pflichtfeld")
         String emailAddress,
-        @NotNull
+        @NotNull(message = "Verantwortlicher ist ein Pflichtfeld")
         String kpiOwner,
-        @NotNull
+        @NotNull(message = "Technische Rolle ist ein Pflichtfeld")
         TechnicalRole technicalRole
 ) {
 }

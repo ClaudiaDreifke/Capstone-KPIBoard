@@ -28,14 +28,14 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/api/user/logout").permitAll()
-                .antMatchers("/api/user/me").authenticated()
-                .antMatchers("/api/***").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/roles").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USer
-                .antMatchers(HttpMethod.DELETE, "/api/roles/*").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USER
-                .antMatchers(HttpMethod.POST, "/api/user").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USER
-                .antMatchers(HttpMethod.DELETE, "/api/kpis/*").hasRole(TechnicalRole.ADMIN.toString()) // gesperrt für alle
-                .antMatchers(HttpMethod.POST, "/api/kpis").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USER
-                .antMatchers(HttpMethod.PUT, "/api/kpis/*").hasRole(TechnicalRole.ADMIN.toString()) // gesperrt für alle
+                .antMatchers("/api/user/me").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/roles").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/roles").hasAuthority(TechnicalRole.ADMIN.toString())
+                .antMatchers(HttpMethod.DELETE, "/api/roles/*").hasAuthority(TechnicalRole.ADMIN.toString())
+                .antMatchers(HttpMethod.POST, "/api/user").hasAuthority(TechnicalRole.ADMIN.toString())
+                .antMatchers(HttpMethod.DELETE, "/api/kpis/*").hasAuthority(TechnicalRole.ADMIN.toString())
+                .antMatchers(HttpMethod.POST, "/api/kpis").hasAuthority(TechnicalRole.ADMIN.toString())
+                .antMatchers("/api/**").authenticated()
                 .anyRequest().denyAll()
                 .and().httpBasic()
                 .and().build();
