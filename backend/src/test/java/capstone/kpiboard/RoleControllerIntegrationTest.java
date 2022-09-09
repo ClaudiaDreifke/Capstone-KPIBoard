@@ -1,6 +1,6 @@
 package capstone.kpiboard;
 
-import capstone.kpiboard.model.role.Role;
+import capstone.kpiboard.model.role.UserRole;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -74,7 +74,7 @@ class RoleControllerIntegrationTest {
                 .andExpect(status().is(201))
                 .andReturn().getResponse().getContentAsString();
 
-        Role resultRole = objectMapper.readValue(result, Role.class);
+        UserRole resultRole = objectMapper.readValue(result, UserRole.class);
         String id = resultRole.id();
 
         mockMvc.perform(delete("http://localhost:8080/api/roles/" + id).with(csrf()))

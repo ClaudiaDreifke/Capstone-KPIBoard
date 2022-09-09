@@ -3,7 +3,7 @@ import SingleKpiAdmin from "./SingleKpiAdmin";
 import '../../styling/KpiGalleryAdmin.css'
 import AddKpi from "./AddKpi";
 import AddRole from "./AddRole";
-import {NewRole, Role} from "../../model/Role";
+import {NewUserRole, UserRole} from "../../model/Role";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle} from "@mui/material";
@@ -12,10 +12,10 @@ import {NewUser} from "../../model/AppUser";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
-    roles: Role[],
+    userRoles: UserRole[],
     deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
-    addNewRole: (newRole: NewRole) => Promise<void>;
+    addNewUserRole: (newUserRole: NewUserRole) => Promise<void>;
     addNewUser: (newUser: NewUser) => Promise<void>;
     targetValueUnitConvertToText: (stringToConvert: string) => string;
     targetValueOperatorConvertToText: (stringToConvert: string) => string;
@@ -71,7 +71,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>User hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddUser roles={props.roles} addNewUser={props.addNewUser}/>
+                        <AddUser userRoles={props.userRoles} addNewUser={props.addNewUser}/>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-user-2"}> User bearbeiten</button>
@@ -89,7 +89,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>Rolle hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddRole addNewRole={props.addNewRole}/>
+                        <AddRole addNewUserRole={props.addNewUserRole}/>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-role-2"} onClick={() => navigate("/admin/roles")}> Rollen
@@ -113,7 +113,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>Kennzahl hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddKpi addNewKpi={props.addNewKpi} roles={props.roles}/>
+                        <AddKpi addNewKpi={props.addNewKpi} userRoles={props.userRoles}/>
                     </DialogContent>
                 </Dialog>
                 {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id}

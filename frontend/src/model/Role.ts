@@ -1,8 +1,8 @@
-export type Role = {
+export type UserRole = {
     id: string,
     roleName: string,
 }
 
-export type NewRole = {
+export type NewUserRole = {
     roleName: string
 }

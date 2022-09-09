@@ -1,8 +1,8 @@
 package capstone.kpiboard.service.role;
 
 import capstone.kpiboard.exceptions.RoleNotFoundException;
-import capstone.kpiboard.model.role.NewRole;
-import capstone.kpiboard.model.role.Role;
+import capstone.kpiboard.model.role.NewUserRole;
+import capstone.kpiboard.model.role.UserRole;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +16,11 @@ public class RoleService {
         this.roleRepo = roleRepo;
     }
 
-    public Role addNewRole(NewRole newRole) {
-        return roleRepo.save(newRole.withRandomId());
+    public UserRole addNewRole(NewUserRole newUserRole) {
+        return roleRepo.save(newUserRole.withRandomId());
     }
 
-    public List<Role> getAllRoles() {
+    public List<UserRole> getAllRoles() {
         return roleRepo.findAll();
     }
 

@@ -1,13 +1,13 @@
 import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {FormEvent, useState} from "react";
-import {Role} from "../../model/Role";
+import {UserRole} from "../../model/Role";
 import {toast} from "react-toastify";
 import {NewUser} from "../../model/AppUser";
 import '../../styling/AddUser.css'
 
 
 export type AddUserProps = {
-    roles: Role[],
+    userRoles: UserRole[],
     addNewUser: (newUser: NewUser) => Promise<void>,
 }
 
@@ -24,7 +24,7 @@ export default function AddUser(props: AddUserProps) {
             username: username,
             password: initialPassword,
             emailAddress: emailAddress,
-            role: userRole
+            userRole: userRole
         };
         props.addNewUser(newUser)
             .then(() => setUsername(""))
@@ -60,7 +60,7 @@ export default function AddUser(props: AddUserProps) {
                         id="user-role-select"
                         value={userRole}
                         onChange={event => setUserRole(event.target.value)}>
-                        {props.roles.map((role) => (
+                        {props.userRoles.map((role) => (
                             <MenuItem key={role.id} value={role.roleName}>{role.roleName}</MenuItem>))}
                     </Select>
                 </FormControl>

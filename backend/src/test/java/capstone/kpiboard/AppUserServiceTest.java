@@ -38,7 +38,8 @@ class AppUserServiceTest {
                 "Theo",
                 "$2a$12$AjFqw/97eTJs.gB5.kp/EuUuStTOUAi3D1tYsSKDA/qNQiHhzy/.y",
                 "Theo@veryImportant.com",
-                "Leiter Trucking");
+                "Leiter Trucking",
+                "USER");
         when(testAppUserRepo.save(any(AppUser.class))).thenReturn(testAppUser);
         //when
         AppUser actual = testAppUserService.addNewUser(newTestAppUser);
@@ -53,7 +54,7 @@ class AppUserServiceTest {
                 "Theo",
                 "$2a$12$AjFqw/97eTJs.gB5.kp/EuUuStTOUAi3D1tYsSKDA/qNQiHhzy/.y",
                 "Theo@veryImportant.com",
-                "Leiter Trucking");
+                "Leiter Trucking", "USER");
         User testUser = new User("Theo", "Passwort", Collections.emptyList());
         when(testAppUserRepo.findById(testAppUser.username())).thenReturn(Optional.of(testAppUser));
         //when
@@ -78,7 +79,8 @@ class AppUserServiceTest {
                 new AppUser("Theo",
                         "$2a$12$AjFqw/97eTJs.gB5.kp/EuUuStTOUAi3D1tYsSKDA/qNQiHhzy/.y",
                         "Theo@veryImportant.com",
-                        "Leiter Trucking"));
+                        "Leiter Trucking",
+                        "USER"));
         when(testAppUserRepo.findAll()).thenReturn(testList);
         //when
         List<AppUser> actual = testAppUserService.getAllUser();

@@ -1,11 +1,10 @@
 import axios from "axios";
-import {NewUser} from "../model/AppUser";
+import {AppUser, NewUser} from "../model/AppUser";
 import {useEffect, useState} from "react";
-import {Role} from "../model/Role";
 
 export default function useUser() {
 
-    const [user, setUser] = useState<Role[]>([]);
+    const [user, setUser] = useState<AppUser[]>();
 
     useEffect(() => {
         getAllUser()

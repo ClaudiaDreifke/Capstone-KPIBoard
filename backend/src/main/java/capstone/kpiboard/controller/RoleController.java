@@ -1,8 +1,8 @@
 package capstone.kpiboard.controller;
 
 import capstone.kpiboard.exceptions.RoleNotFoundException;
-import capstone.kpiboard.model.role.NewRole;
-import capstone.kpiboard.model.role.Role;
+import capstone.kpiboard.model.role.NewUserRole;
+import capstone.kpiboard.model.role.UserRole;
 import capstone.kpiboard.service.role.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +21,12 @@ public class RoleController {
 
     @PostMapping("/roles")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Role addNewRole(@RequestBody NewRole newRole) {
-        return roleService.addNewRole(newRole);
+    public UserRole addNewRole(@RequestBody NewUserRole newUserRole) {
+        return roleService.addNewRole(newUserRole);
     }
 
     @GetMapping("/roles")
-    public List<Role> getAllRoles() {
+    public List<UserRole> getAllRoles() {
         return roleService.getAllRoles();
     }
 

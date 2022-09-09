@@ -14,6 +14,8 @@ public record AppUser(
         @Email
         String emailAddress,
         @NotNull
-        String role
+        String userRole,
+        @NotNull
+        String technicalRole
 ) {
 }

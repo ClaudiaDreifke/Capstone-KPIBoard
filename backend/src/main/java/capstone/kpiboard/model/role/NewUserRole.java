@@ -4,12 +4,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public record NewRole(
+public record NewUserRole(
         @NotNull
         String roleName
 ) {
-    public Role withRandomId() {
-        return new Role(UUID.randomUUID().toString(), roleName());
+    public UserRole withRandomId() {
+        return new UserRole(UUID.randomUUID().toString(), roleName());
     }
 
 }

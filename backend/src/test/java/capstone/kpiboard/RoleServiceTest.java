@@ -1,8 +1,8 @@
 package capstone.kpiboard;
 
 import capstone.kpiboard.exceptions.RoleNotFoundException;
-import capstone.kpiboard.model.role.NewRole;
-import capstone.kpiboard.model.role.Role;
+import capstone.kpiboard.model.role.NewUserRole;
+import capstone.kpiboard.model.role.UserRole;
 import capstone.kpiboard.service.role.RoleRepo;
 import capstone.kpiboard.service.role.RoleService;
 import org.junit.jupiter.api.Assertions;
@@ -23,11 +23,11 @@ class RoleServiceTest {
     @Test
     void addNewRoleTest() {
         //given
-        NewRole newTestRole = new NewRole("Leiter Truckings");
-        Role testRole = new Role("12345", "Leiter Truckings");
-        when(testRoleRepo.save(any(Role.class))).thenReturn(testRole);
+        NewUserRole newTestRole = new NewUserRole("Leiter Truckings");
+        UserRole testRole = new UserRole("12345", "Leiter Truckings");
+        when(testRoleRepo.save(any(UserRole.class))).thenReturn(testRole);
         //when
-        Role actual = testRoleService.addNewRole(newTestRole);
+        UserRole actual = testRoleService.addNewRole(newTestRole);
         //then
         Assertions.assertEquals(testRole, actual);
     }
@@ -35,12 +35,12 @@ class RoleServiceTest {
     @Test
     void getAllRolesTest() {
         //given
-        List<Role> testList = List.of(
-                new Role("12345", "Leiter Truckings"),
-                new Role("12367", "Leiter Personal"));
+        List<UserRole> testList = List.of(
+                new UserRole("12345", "Leiter Truckings"),
+                new UserRole("12367", "Leiter Personal"));
         when(testRoleRepo.findAll()).thenReturn(testList);
         //when
-        List<Role> actual = testRoleService.getAllRoles();
+        List<UserRole> actual = testRoleService.getAllRoles();
         //then
         Assertions.assertEquals(testList, actual);
     }

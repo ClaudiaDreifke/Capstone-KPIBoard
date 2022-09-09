@@ -4,7 +4,7 @@ import {MonthValuePair} from "./MonthValuePair";
 export type Kpi = {
     id: string,
     name: string,
-    responsibleRole: string
+    ownedBy: string
     values: MonthValuePair[],
     targetForKpi: TargetForKpi,
     currentAverageValue: number,
@@ -13,6 +13,6 @@ export type Kpi = {
 
 export type NewKpi = {
     name: string,
-    responsibleRole: string,
+    ownedBy: string,
     targetForKpi: TargetForKpi,
 }
