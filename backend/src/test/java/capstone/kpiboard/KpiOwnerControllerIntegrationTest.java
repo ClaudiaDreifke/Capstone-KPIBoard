@@ -29,7 +29,7 @@ class KpiOwnerControllerIntegrationTest {
 
     @DirtiesContext
     @Test
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void addNewKpiOwnerTest() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/api/roles")
@@ -47,7 +47,7 @@ class KpiOwnerControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void getAllKpiOwnerTest() throws Exception {
 
         mockMvc.perform(get
@@ -61,7 +61,7 @@ class KpiOwnerControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void deleteKpiOwnerByIdIfExistsTest() throws Exception {
 
         String result = mockMvc.perform(post("/api/roles")
@@ -91,7 +91,7 @@ class KpiOwnerControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void deleteKpiOwnerByIdTestIfDoesntExist() throws Exception {
 
         String errorMessage = mockMvc.perform(delete("http://localhost:8080/api/roles/no-existing-id").with(csrf()))

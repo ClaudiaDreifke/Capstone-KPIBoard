@@ -29,7 +29,7 @@ class UserControllerIntegrationTest {
 
     @DirtiesContext
     @Test
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void addNewUserTest() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/api/user")
@@ -50,7 +50,7 @@ class UserControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void getAllUserTest() throws Exception {
 
         mockMvc.perform(get
@@ -63,14 +63,14 @@ class UserControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "testUser")
+    @WithMockUser(username = "testuser")
     void loginTest() throws Exception {
 
         MvcResult result = mockMvc.perform(get("/api/user/login"))
                 .andExpect(status().isOk())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assertions.assertTrue(content.contains("testUser"));
+        Assertions.assertTrue(content.contains("testuser"));
 
         mockMvc.perform(get
                         ("/api/user")
@@ -91,7 +91,7 @@ class UserControllerIntegrationTest {
 
     @Test
     void expectUnauthorized() throws Exception {
-        mockMvc.perform(get("/api/user/me")
+        mockMvc.perform(get("/api/kpis")
         ).andExpect(status().isUnauthorized());
     }
 }

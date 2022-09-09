@@ -32,7 +32,7 @@ class KpiControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void addNewKpiTest() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/api/kpis")
@@ -71,7 +71,7 @@ class KpiControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void deleteKpiByIdKpiExistsTest() throws Exception {
 
         String result = mockMvc.perform(post("/api/kpis")
@@ -110,7 +110,7 @@ class KpiControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void deleteKpiByIdTestKpiDoesntExist() throws Exception {
 
         String errorMessage = mockMvc.perform(delete("http://localhost:8080/api/kpis/no-existing-id").with(csrf()))
@@ -123,7 +123,7 @@ class KpiControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void updateKpiById() throws Exception {
 
         String result = mockMvc.perform(post("/api/kpis")
