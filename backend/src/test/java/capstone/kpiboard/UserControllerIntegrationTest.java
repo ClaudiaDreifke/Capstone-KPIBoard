@@ -79,7 +79,6 @@ class UserControllerIntegrationTest {
                 .andExpect(content().json("""
                         []
                         """));
-
     }
 
     @DirtiesContext

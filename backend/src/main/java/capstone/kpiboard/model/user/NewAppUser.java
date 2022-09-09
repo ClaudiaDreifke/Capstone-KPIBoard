@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-
 public record NewAppUser(
         @Id
         @NotNull(message = "Username ist ein Pflichtfeld")
