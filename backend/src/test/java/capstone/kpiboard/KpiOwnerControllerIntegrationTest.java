@@ -1,6 +1,6 @@
 package capstone.kpiboard;
 
-import capstone.kpiboard.model.role.UserRole;
+import capstone.kpiboard.model.roles.KpiOwner;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class RoleControllerIntegrationTest {
+class KpiOwnerControllerIntegrationTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -74,7 +74,7 @@ class RoleControllerIntegrationTest {
                 .andExpect(status().is(201))
                 .andReturn().getResponse().getContentAsString();
 
-        UserRole resultRole = objectMapper.readValue(result, UserRole.class);
+        KpiOwner resultRole = objectMapper.readValue(result, KpiOwner.class);
         String id = resultRole.id();
 
         mockMvc.perform(delete("http://localhost:8080/api/roles/" + id).with(csrf()))

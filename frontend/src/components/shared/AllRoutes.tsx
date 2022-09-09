@@ -21,9 +21,9 @@ export default function AllRoutes() {
     } = useKpi();
 
     const {
-        userRoles,
-        addNewUserRole,
-        deleteUserRoleById,
+        kpiOwners,
+        addNewKpiOwner,
+        deleteKpiOwnerById,
     } = useRole();
 
     const {
@@ -37,15 +37,15 @@ export default function AllRoutes() {
                        element={<KpiBoard kpis={kpis} targetValueUnitConvertToText={targetValueUnitConvertToText}
                                           targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/admin"}
-                       element={<KpiGalleryAdmin kpis={kpis} userRoles={userRoles} addNewKpi={addNewKpi}
+                       element={<KpiGalleryAdmin kpis={kpis} kpiOwners={kpiOwners} addNewKpi={addNewKpi}
                                                  deleteKpiById={deleteKpiById}
-                                                 addNewUserRole={addNewUserRole} addNewUser={addNewUser}
+                                                 addNewKpiOwner={addNewKpiOwner} addNewUser={addNewUser}
                                                  targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                  targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/admin/roles"}
-                       element={<RoleGalleryAdmin userRoles={userRoles} deleteUserRoleById={deleteUserRoleById}/>}/>
+                       element={<RoleGalleryAdmin kpiOwners={kpiOwners} deleteKpiOwnerById={deleteKpiOwnerById}/>}/>
                 <Route path={"/admin/change/:id"}
-                       element={<ChangeKpiAdmin kpis={kpis} userRoles={userRoles} updateKpiById={updateKpiById}/>}/>
+                       element={<ChangeKpiAdmin kpis={kpis} kpiOwners={kpiOwners} updateKpiById={updateKpiById}/>}/>
                 <Route path={"/my-kpi"}
                        element={<KpiGalleryUser kpis={kpis} targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                 targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>

@@ -1,5 +1,6 @@
 package capstone.kpiboard.model.user;
 
+import capstone.kpiboard.model.roles.TechnicalRole;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.Email;
@@ -16,6 +17,6 @@ public record AppUser(
         @NotNull
         String userRole,
         @NotNull
-        String technicalRole
+        TechnicalRole technicalRole
 ) {
 }

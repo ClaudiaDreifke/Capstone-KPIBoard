@@ -4,11 +4,11 @@ import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
 import {Kpi} from "../../model/Kpi";
 import '../../styling/ChangeKpiAdmin.css'
-import {UserRole} from "../../model/Role";
+import {KpiOwner} from "../../model/KpiOwner";
 
 export type ChangeKpiAdminProps = {
     kpis: Kpi[],
-    userRoles: UserRole[],
+    kpiOwners: KpiOwner[],
     updateKpiById: (updatedKpi: Kpi) => void;
 }
 
@@ -24,7 +24,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
     const [targetValueUnit, setTargetValueUnit] = useState<string>(kpi?.targetForKpi?.targetValueUnit || "")
 
     useEffect(() => {
-        setTargetValueOperator(kpi?.ownedBy || "")
+        setOwnedBy(kpi?.ownedBy || "")
         setTargetValueOperator(kpi?.targetForKpi?.targetValueOperator || "")
         setTargetValue(kpi?.targetForKpi?.targetValue || 0)
         setTargetValueUnit(kpi?.targetForKpi?.targetValueUnit || "")
@@ -74,8 +74,9 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         id="responsible-role-change"
                         value={ownedBy}
                         onChange={event => setOwnedBy(event.target.value)}>
-                        {props.userRoles.map((role) => (
-                            <MenuItem key={role.id} value={role.roleName}>{role.roleName}</MenuItem>))}
+                        {props.kpiOwners.map((role) => (
+                            <MenuItem key={role.id}
+                                      value={role.kpiOwnerDescription}>{role.kpiOwnerDescription}</MenuItem>))}
                     </Select>
                 </FormControl>
                 <FormControl id="form-control-change-kpi-admin">

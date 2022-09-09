@@ -11,7 +11,7 @@ public record Kpi(
         @NotNull
         String name,
         @NotNull
-        String responsibleRole,
+        String ownedBy,
         List<MonthValuePair> values,
         @NotNull
         TargetForKpi targetForKpi,

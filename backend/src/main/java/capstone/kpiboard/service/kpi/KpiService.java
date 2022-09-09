@@ -37,7 +37,7 @@ public class KpiService {
             return kpiRepo.save(new Kpi(
                     updatedKpi.id(),
                     updatedKpi.name(),
-                    updatedKpi.responsibleRole(),
+                    updatedKpi.ownedBy(),
                     updatedKpi.values(),
                     new TargetForKpi(
                             updatedKpi.targetForKpi().targetValueOperator(),

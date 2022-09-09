@@ -1,5 +1,6 @@
 package capstone.kpiboard;
 
+import capstone.kpiboard.model.roles.TechnicalRole;
 import capstone.kpiboard.model.user.AppUser;
 import capstone.kpiboard.model.user.NewAppUser;
 import capstone.kpiboard.service.user.AppUserRepo;
@@ -33,13 +34,14 @@ class AppUserServiceTest {
                 "Theo",
                 "Passwort",
                 "Theo@veryImportant.com",
-                "Leiter Trucking");
+                "Leiter Trucking",
+                TechnicalRole.USER);
         AppUser testAppUser = new AppUser(
                 "Theo",
                 "$2a$12$AjFqw/97eTJs.gB5.kp/EuUuStTOUAi3D1tYsSKDA/qNQiHhzy/.y",
                 "Theo@veryImportant.com",
                 "Leiter Trucking",
-                "USER");
+                TechnicalRole.USER);
         when(testAppUserRepo.save(any(AppUser.class))).thenReturn(testAppUser);
         //when
         AppUser actual = testAppUserService.addNewUser(newTestAppUser);
@@ -54,7 +56,8 @@ class AppUserServiceTest {
                 "Theo",
                 "$2a$12$AjFqw/97eTJs.gB5.kp/EuUuStTOUAi3D1tYsSKDA/qNQiHhzy/.y",
                 "Theo@veryImportant.com",
-                "Leiter Trucking", "USER");
+                "Leiter Trucking",
+                TechnicalRole.USER);
         User testUser = new User("Theo", "Passwort", Collections.emptyList());
         when(testAppUserRepo.findById(testAppUser.username())).thenReturn(Optional.of(testAppUser));
         //when
@@ -80,7 +83,7 @@ class AppUserServiceTest {
                         "$2a$12$AjFqw/97eTJs.gB5.kp/EuUuStTOUAi3D1tYsSKDA/qNQiHhzy/.y",
                         "Theo@veryImportant.com",
                         "Leiter Trucking",
-                        "USER"));
+                        TechnicalRole.USER));
         when(testAppUserRepo.findAll()).thenReturn(testList);
         //when
         List<AppUser> actual = testAppUserService.getAllUser();

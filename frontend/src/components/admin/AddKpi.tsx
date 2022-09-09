@@ -4,10 +4,10 @@ import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/materia
 import '../../styling/AddKpi.css'
 import {toast} from "react-toastify";
 import {NewKpi} from "../../model/Kpi";
-import {UserRole} from "../../model/Role";
+import {KpiOwner} from "../../model/KpiOwner";
 
 type AddKpiProps = {
-    userRoles: UserRole[],
+    userRoles: KpiOwner[],
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
 }
 
@@ -57,7 +57,8 @@ export default function AddKpi(props: AddKpiProps) {
                         value={responsibleRole}
                         onChange={event => setResponsibleRole(event.target.value)}>
                         {props.userRoles.map((role) => (
-                            <MenuItem key={role.id} value={role.roleName}>{role.roleName}</MenuItem>))}
+                            <MenuItem key={role.id}
+                                      value={role.kpiOwnerDescription}>{role.kpiOwnerDescription}</MenuItem>))}
                     </Select>
                 </FormControl>
                 <FormControl id="form-control-add-kpi">

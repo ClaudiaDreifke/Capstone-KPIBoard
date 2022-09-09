@@ -1,6 +1,5 @@
 package capstone.kpiboard.service.user;
 
-import capstone.kpiboard.model.role.TechnicalRole;
 import capstone.kpiboard.model.user.AppUser;
 import capstone.kpiboard.model.user.NewAppUser;
 import lombok.AllArgsConstructor;
@@ -20,13 +19,13 @@ public class AppUserService {
     private final PasswordEncoder passwordEncoder;
 
     public AppUser addNewUser(NewAppUser newAppUser) {
-        AppUser appUserWithDefaultTechnicalRole = new AppUser(newAppUser.username(), passwordEncoder.encode(newAppUser.password()), newAppUser.emailAddress(), newAppUser.userRole(), TechnicalRole.USER.toString());
-        return appUserRepo.save(appUserWithDefaultTechnicalRole);
+        AppUser appUser = new AppUser(newAppUser.username(), passwordEncoder.encode(newAppUser.password()), newAppUser.emailAddress(), newAppUser.userRole(), newAppUser.technicalRole());
+        return appUserRepo.save(appUser);
     }
 
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser appUser = appUserRepo.findById(username).orElseThrow(() -> new UsernameNotFoundException(username));
-        return new User(appUser.username(), appUser.passwordHash(), List.of(new SimpleGrantedAuthority(appUser.technicalRole())));
+        return new User(appUser.username(), appUser.passwordHash(), List.of(new SimpleGrantedAuthority(appUser.technicalRole().toString())));
     }
 
     public List<AppUser> getAllUser() {

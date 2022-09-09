@@ -1,13 +1,13 @@
 import {FormControl, TextField} from "@mui/material";
 import {FormEvent, useState} from "react";
-import {NewUserRole} from "../../model/Role";
+import {NewKpiOwner} from "../../model/KpiOwner";
 import {toast} from "react-toastify";
 
 type AddRoleProps = {
-    addNewUserRole: (newUserRole: NewUserRole) => Promise<void>;
+    addNewUserRole: (newUserRole: NewKpiOwner) => Promise<void>;
 }
 
-export default function AddRole(props: AddRoleProps) {
+export default function AddKpiOwner(props: AddRoleProps) {
 
     const [roleName, setRoleName] = useState("");
 
@@ -16,8 +16,8 @@ export default function AddRole(props: AddRoleProps) {
         if (!roleName) {
             toast.error("Bitte die Rolle eintragen!")
         } else {
-            const newUserRole: NewUserRole = {
-                roleName: roleName
+            const newUserRole: NewKpiOwner = {
+                kpiOwnerDescription: roleName
             }
             props.addNewUserRole(newUserRole)
                 .then(() => setRoleName(""))

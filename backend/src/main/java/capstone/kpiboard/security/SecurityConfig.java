@@ -1,5 +1,6 @@
 package capstone.kpiboard.security;
 
+import capstone.kpiboard.model.roles.TechnicalRole;
 import capstone.kpiboard.service.user.AppUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -28,11 +29,14 @@ public class SecurityConfig {
                 .antMatchers("/api/user/login").permitAll()
                 .antMatchers("/api/user/logout").permitAll()
                 .antMatchers("/api/user/me").authenticated()
-                .antMatchers("/api/roles/*").hasRole("ADMIN") //gesperrt ja, aber Admin nein
-                .antMatchers("/api/**").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/user").hasRole("ADMIN") //gesperrt ja, aber Admin nein
-                .antMatchers(HttpMethod.DELETE, "/api/kpis/*").hasRole("ADMIN") //gesperrt ja, aber Admin nein
-                .antMatchers(HttpMethod.POST, "/api/kpis").hasRole("ADMIN") //gesperrt ja, aber Admin nein
+                .antMatchers("/api/***").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/roles").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USer
+                .antMatchers(HttpMethod.DELETE, "/api/roles/*").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USER
+                .antMatchers(HttpMethod.POST, "/api/user").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USER
+                .antMatchers(HttpMethod.DELETE, "/api/kpis/*").hasRole(TechnicalRole.ADMIN.toString()) // gesperrt für alle
+                .antMatchers(HttpMethod.POST, "/api/kpis").hasRole(TechnicalRole.ADMIN.toString()) // nicht gesperrt für USER
+                .antMatchers(HttpMethod.PUT, "/api/kpis/*").hasRole(TechnicalRole.ADMIN.toString()) // gesperrt für alle
+                .anyRequest().denyAll()
                 .and().httpBasic()
                 .and().build();
     }
