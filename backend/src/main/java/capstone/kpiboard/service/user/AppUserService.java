@@ -19,7 +19,7 @@ public class AppUserService {
     private final PasswordEncoder passwordEncoder;
 
     public AppUser addNewUser(NewAppUser newAppUser) {
-        AppUser appUser = new AppUser(newAppUser.username(), passwordEncoder.encode(newAppUser.password()), newAppUser.emailAddress(), newAppUser.userRole(), newAppUser.technicalRole());
+        AppUser appUser = new AppUser(newAppUser.username(), passwordEncoder.encode(newAppUser.password()), newAppUser.emailAddress(), newAppUser.kpiOwner(), newAppUser.technicalRole());
         return appUserRepo.save(appUser);
     }
 

@@ -15,7 +15,7 @@ public record AppUser(
         @Email
         String emailAddress,
         @NotNull
-        String userRole,
+        String kpiOwner,
         @NotNull
         TechnicalRole technicalRole
 ) {

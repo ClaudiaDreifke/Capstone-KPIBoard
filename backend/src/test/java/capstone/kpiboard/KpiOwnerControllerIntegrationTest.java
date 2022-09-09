@@ -30,25 +30,25 @@ class KpiOwnerControllerIntegrationTest {
     @DirtiesContext
     @Test
     @WithMockUser(username = "admin", roles = "ADMIN")
-    void addNewRoleTest() throws Exception {
+    void addNewKpiOwnerTest() throws Exception {
 
         MvcResult result = mockMvc.perform(post("/api/roles")
                         .contentType(APPLICATION_JSON)
                         .content("""
                                 {
-                                "roleName": "Leiter Truckings"
+                                "kpiOwnerDescription": "Leiter Truckings"
                                 }
                                 """).with(csrf()))
                 .andExpect(status().is(201))
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assertions.assertTrue(content.contains("roleName"));
+        Assertions.assertTrue(content.contains("kpiOwnerDescription"));
         Assertions.assertTrue(content.contains("Leiter Truckings"));
     }
 
     @Test
     @WithMockUser(username = "admin", roles = "ADMIN")
-    void getAllRolesTest() throws Exception {
+    void getAllKpiOwnerTest() throws Exception {
 
         mockMvc.perform(get
                         ("/api/roles")
@@ -62,20 +62,20 @@ class KpiOwnerControllerIntegrationTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "admin", roles = "ADMIN")
-    void deleteRoleByIdRoleExistsTest() throws Exception {
+    void deleteKpiOwnerByIdIfExistsTest() throws Exception {
 
         String result = mockMvc.perform(post("/api/roles")
                         .contentType(APPLICATION_JSON)
                         .content("""
                                 {
-                                "roleName": "Leiter Truckings"
+                                "kpiOwnerDescription": "Leiter Truckings"
                                 }
                                 """).with(csrf()))
                 .andExpect(status().is(201))
                 .andReturn().getResponse().getContentAsString();
 
-        KpiOwner resultRole = objectMapper.readValue(result, KpiOwner.class);
-        String id = resultRole.id();
+        KpiOwner resultKpiOwner = objectMapper.readValue(result, KpiOwner.class);
+        String id = resultKpiOwner.id();
 
         mockMvc.perform(delete("http://localhost:8080/api/roles/" + id).with(csrf()))
                 .andExpect(status().is(204));
@@ -92,7 +92,7 @@ class KpiOwnerControllerIntegrationTest {
     @Test
     @DirtiesContext
     @WithMockUser(username = "admin", roles = "ADMIN")
-    void deleteRoleByIdTestIfRoleDoesntExist() throws Exception {
+    void deleteKpiOwnerByIdTestIfDoesntExist() throws Exception {
 
         String errorMessage = mockMvc.perform(delete("http://localhost:8080/api/roles/no-existing-id").with(csrf()))
                 .andExpect(status().is(404))

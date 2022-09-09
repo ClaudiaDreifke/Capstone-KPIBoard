@@ -40,7 +40,7 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
-                                "responsibleRole":"Leiter Truckings",
+                                "ownedBy":"Leiter Truckings",
                                 "targetForKpi":
                                 {
                                 "targetValueOperator": "GREATER",
@@ -79,7 +79,7 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
-                                "responsibleRole":"Leiter Truckings",
+                                "ownedBy":"Leiter Truckings",
                                 "targetForKpi":
                                 {
                                 "targetValueOperator": "GREATER",
@@ -131,7 +131,7 @@ class KpiControllerIntegrationTest {
                         .content("""
                                 {
                                 "name": "Anzahl Truckings",
-                                "responsibleRole":"Leiter Truckings",
+                                "ownedBy":"Leiter Truckings",
                                 "targetForKpi":
                                 {
                                 "targetValueOperator": "GREATER",
