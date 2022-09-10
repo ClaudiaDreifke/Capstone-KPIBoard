@@ -8,6 +8,7 @@ import KpiBoard from "../board/KpiBoard";
 import useRole from "../../hooks/useRole";
 import RoleGalleryAdmin from "../admin/RoleGalleryAdmin";
 import useUser from "../../hooks/useUser";
+import LoginPage from "./LoginPage";
 
 export default function AllRoutes() {
 
@@ -27,7 +28,8 @@ export default function AllRoutes() {
     } = useRole();
 
     const {
-        addNewUser
+        addNewUser,
+        login
     } = useUser();
 
     return (
@@ -51,6 +53,8 @@ export default function AllRoutes() {
                                                 targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/my-kpi/change/:id"}
                        element={<ChangeKpiUser kpis={kpis} updateKpiById={updateKpiById}/>}/>
+                <Route path={"/login"}
+                       element={<LoginPage login={login}/>}/>
             </Routes>
         </>
     )

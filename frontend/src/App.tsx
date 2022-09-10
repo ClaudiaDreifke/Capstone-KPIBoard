@@ -12,7 +12,6 @@ export default function App() {
     return (
         <main>
             <HashRouter>
-                <title>Kpi-Board</title>
                 <Header/>
                 <main>
                     <AllRoutes/>

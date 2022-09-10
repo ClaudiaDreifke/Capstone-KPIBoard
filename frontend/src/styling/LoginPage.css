@@ -1,0 +1,21 @@
+.login-page {
+    background-color: green;
+    background-image: url(/public/pictures/background-login.png);
+    background-size: cover;
+    height: 600px;
+    padding-top: 200px;
+    padding-left: 100px;
+}
+
+#login-username-input, #login-password-input {
+    background-color: white;
+}
+
+.login-form {
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr 3fr;
+    grid-template-rows: 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+    align-items: end;
+}

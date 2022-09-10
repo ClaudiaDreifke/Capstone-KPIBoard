@@ -1,6 +1,7 @@
 import axios from "axios";
 import {NewUser} from "../model/AppUser";
 import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 
 export default function useUser() {
 
@@ -25,5 +26,11 @@ export default function useUser() {
             .then(getAllUser);
     }
 
-    return {user, addNewUser}
+    const login = (username: string, password: string) => {
+        axios.get("api/user/login", {auth: {username, password}})
+            .then(response => response.data)
+            .catch(() => toast.error("Login fehlgeschlagen"))
+    }
+
+    return {user, addNewUser, login}
 }

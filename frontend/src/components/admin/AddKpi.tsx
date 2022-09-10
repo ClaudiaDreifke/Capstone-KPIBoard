@@ -46,7 +46,7 @@ export default function AddKpi(props: AddKpiProps) {
         <div className={"add-kpi"}>
             <form className={"add-kpi-form"} onSubmit={onKpiSubmit}>
                 <FormControl id="form-control-add-kpi">
-                    <TextField id="name-input" label="Name" variant="outlined" value={name}
+                    <TextField id="name-input" label="Name" variant="outlined" value={name} autoComplete={"off"}
                                onChange={event => setName(event.target.value)}/>
                 </FormControl>
                 <FormControl id="form-control-add-kpi">
