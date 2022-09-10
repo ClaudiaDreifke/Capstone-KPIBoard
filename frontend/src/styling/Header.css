@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans');
 
 Header {
+    top: 0;
+    height: 100px;
+    width: 100%;
     border-bottom: black 1px solid;
     background-color: white;
     display: grid;
@@ -8,6 +11,7 @@ Header {
     grid-template-rows: 1fr;
     justify-items: end;
     font-family: "DM Sans", sans-serif;
+    position: fixed;
 }
 
 .nav {
@@ -26,7 +30,8 @@ Header {
 
 .coffee-lover {
     margin: 10px;
-    justify-self: center
+    justify-self: center;
+    height: 80px
 }
 
 h1 {
