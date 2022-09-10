@@ -44,11 +44,12 @@ export default function AddUser(props: AddUserProps) {
         <div className={"add-user"}>
             <form className={"add-user-form"} onSubmit={onUserSubmit}>
                 <FormControl id="add-user-input">
-                    <TextField id="username-input" label="Username" variant="outlined" value={username}
+                    <TextField id="username-input" label="Benutzername" variant="outlined" value={username}
                                onChange={event => setUsername(event.target.value)}/>
                 </FormControl>
                 <FormControl id="add-user-input">
                     <TextField id="initial-password-input" label="Initial-Passwort" variant="outlined"
+                               autoComplete={"off"}
                                value={initialPassword}
                                onChange={event => setInitialPassword(event.target.value)}/>
                 </FormControl>

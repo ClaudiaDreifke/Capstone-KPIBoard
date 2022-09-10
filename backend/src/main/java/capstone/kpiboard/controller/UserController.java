@@ -3,7 +3,7 @@ package capstone.kpiboard.controller;
 import capstone.kpiboard.model.user.AppUser;
 import capstone.kpiboard.model.user.NewAppUser;
 import capstone.kpiboard.service.user.AppUserService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/api/user")
 public class UserController {
 
