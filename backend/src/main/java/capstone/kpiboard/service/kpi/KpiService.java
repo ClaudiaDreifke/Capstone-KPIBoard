@@ -5,18 +5,16 @@ import capstone.kpiboard.model.kpi.Kpi;
 import capstone.kpiboard.model.kpi.MonthValuePair;
 import capstone.kpiboard.model.kpi.NewKpi;
 import capstone.kpiboard.model.kpi.TargetForKpi;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class KpiService {
 
     private final KpiRepo kpiRepo;
-
-    public KpiService(KpiRepo kpiRepo) {
-        this.kpiRepo = kpiRepo;
-    }
 
     public Kpi addNewKpi(NewKpi newKpi) {
         return kpiRepo.save(newKpi.withValueListAndId());
@@ -37,7 +35,7 @@ public class KpiService {
             return kpiRepo.save(new Kpi(
                     updatedKpi.id(),
                     updatedKpi.name(),
-                    updatedKpi.responsibleRole(),
+                    updatedKpi.ownedBy(),
                     updatedKpi.values(),
                     new TargetForKpi(
                             updatedKpi.targetForKpi().targetValueOperator(),

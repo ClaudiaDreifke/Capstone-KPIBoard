@@ -62,7 +62,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
                 id: kpi.id,
                 name: kpi.name,
                 values: monthValuePairs,
-                responsibleRole: kpi.responsibleRole,
+                ownedBy: kpi.ownedBy,
                 targetForKpi: {
                     targetValueOperator: kpi.targetForKpi.targetValueOperator,
                     targetValue: kpi.targetForKpi.targetValue,

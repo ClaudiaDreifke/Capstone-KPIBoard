@@ -8,10 +8,10 @@ import java.util.UUID;
 public record NewKpi(
         @NotNull
         String name,
-        String responsibleRole,
+        String ownedBy,
         @NotNull
         TargetForKpi targetForKpi) {
     public Kpi withValueListAndId() {
-        return new Kpi(UUID.randomUUID().toString(), name(), responsibleRole(), new ArrayList<>(), targetForKpi(), 0);
+        return new Kpi(UUID.randomUUID().toString(), name(), ownedBy(), new ArrayList<>(), targetForKpi(), 0);
     }
 }

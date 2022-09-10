@@ -1,44 +1,44 @@
-import {NewRole, Role} from "../model/Role";
+import {KpiOwner, NewKpiOwner} from "../model/KpiOwner";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 
 export default function useRole() {
 
-    const [roles, setRoles] = useState<Role[]>([]);
+    const [kpiOwners, setKpiOwners] = useState<KpiOwner[]>([]);
 
     useEffect(() => {
-        getAllRoles()
+        getAllKpiOwner()
     }, [])
 
-    const getAllRoles = () => {
+    const getAllKpiOwner = () => {
         axios.get("/api/roles")
             .then((response) => response.data)
-            .then(setRoles)
+            .then(setKpiOwners)
     }
 
-    const addNewRole = (newRole: NewRole) => {
-        return axios.post("/api/roles", newRole)
+    const addNewKpiOwner = (newUserRole: NewKpiOwner) => {
+        return axios.post("/api/roles", newUserRole)
             .then((response) => {
                     return response.data
                 }
             )
-            .then(getAllRoles);
+            .then(getAllKpiOwner);
     }
 
-    const deleteRoleById = (id: string) => {
+    const deleteKpiOwnerById = (id: string) => {
         return axios.delete(`/api/roles/${id}`)
             .then((response) => response.status)
-            .then(getAllRoles)
+            .then(getAllKpiOwner)
             .catch(() => {
                 toast.error("Die Rolle konnte nicht gefunden werden!")
             })
     }
 
     return {
-        roles,
-        addNewRole,
-        getAllRoles,
-        deleteRoleById,
+        kpiOwners,
+        addNewKpiOwner,
+        getAllKpiOwner,
+        deleteKpiOwnerById,
     }
 }

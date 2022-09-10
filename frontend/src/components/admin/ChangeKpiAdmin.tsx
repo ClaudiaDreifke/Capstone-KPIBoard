@@ -4,11 +4,11 @@ import {toast} from "react-toastify";
 import {useNavigate, useParams} from "react-router-dom";
 import {Kpi} from "../../model/Kpi";
 import '../../styling/ChangeKpiAdmin.css'
-import {Role} from "../../model/Role";
+import {KpiOwner} from "../../model/KpiOwner";
 
 export type ChangeKpiAdminProps = {
     kpis: Kpi[],
-    roles: Role[],
+    kpiOwners: KpiOwner[],
     updateKpiById: (updatedKpi: Kpi) => void;
 }
 
@@ -18,13 +18,13 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
     const {id} = useParams();
     const kpi: Kpi | undefined = props.kpis.find((k: Kpi) => k.id === id);
 
-    const [responsibleRole, setResponsibleRole] = useState<string>(kpi?.responsibleRole || "")
+    const [ownedBy, setOwnedBy] = useState<string>(kpi?.ownedBy || "")
     const [targetValueOperator, setTargetValueOperator] = useState<string>(kpi?.targetForKpi?.targetValueOperator || "")
     const [targetValue, setTargetValue] = useState<number>(kpi?.targetForKpi?.targetValue || 0)
     const [targetValueUnit, setTargetValueUnit] = useState<string>(kpi?.targetForKpi?.targetValueUnit || "")
 
     useEffect(() => {
-        setTargetValueOperator(kpi?.responsibleRole || "")
+        setOwnedBy(kpi?.ownedBy || "")
         setTargetValueOperator(kpi?.targetForKpi?.targetValueOperator || "")
         setTargetValue(kpi?.targetForKpi?.targetValue || 0)
         setTargetValueUnit(kpi?.targetForKpi?.targetValueUnit || "")
@@ -36,7 +36,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
             const updatedKpi: Kpi = {
                 id: kpi.id,
                 name: kpi.name,
-                responsibleRole: responsibleRole,
+                ownedBy: ownedBy,
                 values: kpi.values,
                 targetForKpi: {
                     targetValueOperator: targetValueOperator,
@@ -72,10 +72,11 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                     <Select
                         labelId="responsible-role-change"
                         id="responsible-role-change"
-                        value={responsibleRole}
-                        onChange={event => setResponsibleRole(event.target.value)}>
-                        {props.roles.map((role) => (
-                            <MenuItem key={role.id} value={role.roleName}>{role.roleName}</MenuItem>))}
+                        value={ownedBy}
+                        onChange={event => setOwnedBy(event.target.value)}>
+                        {props.kpiOwners.map((role) => (
+                            <MenuItem key={role.id}
+                                      value={role.kpiOwnerDescription}>{role.kpiOwnerDescription}</MenuItem>))}
                     </Select>
                 </FormControl>
                 <FormControl id="form-control-change-kpi-admin">
