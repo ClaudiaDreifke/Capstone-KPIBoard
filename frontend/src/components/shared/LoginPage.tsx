@@ -3,6 +3,7 @@ import {FormEvent, useState} from "react";
 import '../../styling/LoginPage.css'
 import {toast} from "react-toastify";
 import {UserDetails} from "../../model/UserDetails";
+import {useNavigate} from "react-router-dom";
 
 
 type LoginPageProps = {
@@ -12,6 +13,7 @@ type LoginPageProps = {
 
 export default function LoginPage(props: LoginPageProps) {
 
+    const navigate = useNavigate()
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
@@ -23,6 +25,9 @@ export default function LoginPage(props: LoginPageProps) {
             props.login(username, password)
             setUsername("")
             setPassword("")
+            if (props.loggedInUserDetails?.technicalRole === "ADMIN") {
+                navigate("/admin")
+            } else navigate("/my-kpi")
         }
     }
 
@@ -42,8 +47,6 @@ export default function LoginPage(props: LoginPageProps) {
                 </FormControl>
                 <button type={"submit"}>Login</button>
             </form>
-
-
         </div>
     )
 }

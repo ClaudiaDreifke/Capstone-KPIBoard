@@ -50,7 +50,8 @@ export default function AllRoutes() {
                 <Route path={"/admin/change/:id"}
                        element={<ChangeKpiAdmin kpis={kpis} kpiOwners={kpiOwners} updateKpiById={updateKpiById}/>}/>
                 <Route path={"/my-kpi"}
-                       element={<KpiGalleryUser kpis={kpis} targetValueUnitConvertToText={targetValueUnitConvertToText}
+                       element={<KpiGalleryUser kpis={kpis} loggedInUserDetails={loggedInUserDetails}
+                                                targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                 targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/my-kpi/change/:id"}
                        element={<ChangeKpiUser kpis={kpis} updateKpiById={updateKpiById}
