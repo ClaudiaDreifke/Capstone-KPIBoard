@@ -3,9 +3,11 @@ import {AppUser} from "../model/AppUser";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {UserDetails} from "../model/UserDetails";
+import {useNavigate} from "react-router-dom";
 
 export default function useUser() {
 
+    const navigate = useNavigate()
     const [appUser, setAppUser] = useState<AppUser[]>();
     const [loggedInUserDetails, setLoggedInUserDetails] = useState<UserDetails>();
 
@@ -37,6 +39,14 @@ export default function useUser() {
             .then(response => response.data)
             .then(setLoggedInUserDetails)
             .catch(() => toast.error("Login fehlgeschlagen"))
+        if (loggedInUserDetails?.technicalRole === "ADMIN") {
+            navigate("/admin")
+        }
+        if (loggedInUserDetails?.technicalRole === "USER") {
+            navigate("/my-kpi")
+        } else {
+            navigate("/")
+        }
     }
 
     const getLoggedInUserDetails = () => {
