@@ -31,4 +31,8 @@ public class AppUserService {
     public List<AppUser> getAllUser() {
         return appUserRepo.findAll();
     }
+
+    public AppUser findUserByUsername(String username) {
+        return appUserRepo.findById(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
+    }
 }

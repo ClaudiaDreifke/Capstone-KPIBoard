@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle} from "@mui/material";
 import AddUser from "./AddUser";
-import {NewUser} from "../../model/AppUser";
+import {AppUser} from "../../model/AppUser";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
@@ -16,7 +16,7 @@ type KpiGalleryAdminProps = {
     deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
     addNewKpiOwner: (newUserRole: NewKpiOwner) => Promise<void>;
-    addNewUser: (newUser: NewUser) => Promise<void>;
+    addNewUser: (newUser: AppUser) => Promise<void>;
     targetValueUnitConvertToText: (stringToConvert: string) => string;
     targetValueOperatorConvertToText: (stringToConvert: string) => string;
 }

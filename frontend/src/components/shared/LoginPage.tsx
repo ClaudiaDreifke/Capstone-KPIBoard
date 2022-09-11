@@ -1,10 +1,13 @@
 import {FormControl, TextField} from "@mui/material";
-import {useState} from "react";
+import {FormEvent, useState} from "react";
 import '../../styling/LoginPage.css'
+import {toast} from "react-toastify";
+import {UserDetails} from "../../model/UserDetails";
 
 
 type LoginPageProps = {
-    login: (username: string, password: string) => void;
+    login: (username: string, password: string) => void,
+    loggedInUserDetails: UserDetails | undefined,
 }
 
 export default function LoginPage(props: LoginPageProps) {
@@ -12,11 +15,17 @@ export default function LoginPage(props: LoginPageProps) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
-    const handleLogin = () => {
-        props.login(username, password)
-        setUsername("")
-        setPassword("")
+    const handleLogin = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (username === "" || password === "") {
+            toast.error("Bitte Benutzernamen und Passwort eingeben")
+        } else {
+            props.login(username, password)
+            setUsername("")
+            setPassword("")
+        }
     }
+
 
     return (
         <div className={"login-page"}>
@@ -31,7 +40,7 @@ export default function LoginPage(props: LoginPageProps) {
                                value={password}
                                onChange={event => setPassword(event.target.value)}/>
                 </FormControl>
-                <button onSubmit={handleLogin}>Login</button>
+                <button type={"submit"}>Login</button>
             </form>
         </div>
     )

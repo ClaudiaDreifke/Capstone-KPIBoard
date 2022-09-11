@@ -1,23 +1,29 @@
 import axios from "axios";
-import {NewUser} from "../model/AppUser";
+import {AppUser} from "../model/AppUser";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
+import {UserDetails} from "../model/UserDetails";
 
 export default function useUser() {
 
-    const [user, setUser] = useState<NewUser[]>();
+    const [appUser, setAppUser] = useState<AppUser[]>();
+    const [loggedInUserDetails, setLoggedInUserDetails] = useState<UserDetails>();
 
     useEffect(() => {
         getAllUser()
     }, [])
 
+    useEffect(() => {
+        getLoggedInUserDetails();
+    }, []);
+
     const getAllUser = () => {
         axios.get("/api/user")
             .then((response) => response.data)
-            .then(setUser)
+            .then(setAppUser)
     }
 
-    const addNewUser = (newUser: NewUser) => {
+    const addNewUser = (newUser: AppUser) => {
         return axios.post("/api/user", newUser)
             .then((response) => {
                     return response.data
@@ -29,8 +35,21 @@ export default function useUser() {
     const login = (username: string, password: string) => {
         axios.get("api/user/login", {auth: {username, password}})
             .then(response => response.data)
+            .then(setLoggedInUserDetails)
             .catch(() => toast.error("Login fehlgeschlagen"))
     }
 
-    return {user, addNewUser, login}
+    const getLoggedInUserDetails = () => {
+        axios.get("api/user/me")
+            .then((response) => response.data)
+            .then(setLoggedInUserDetails)
+            .catch(() => setLoggedInUserDetails(undefined));
+    }
+
+    const logout = () => {
+        axios.get("api/user/logout")
+            .then(() => setLoggedInUserDetails(undefined));
+    }
+
+    return {appUser, loggedInUserDetails, addNewUser, getLoggedInUserDetails, login, logout}
 }

@@ -14,7 +14,8 @@ export default function Header() {
             <h1>EASY KPI</h1>
             <nav className={"menu"}>
                 <nav className={"KpiBoard"}>
-                    <NavLink className={"nav"} onClick={() => setTab("KpiBoard")} to={"/"}> Kennzahlen-Board </NavLink>
+                    <NavLink className={"nav"} onClick={() => setTab("KpiBoard")}
+                             to={"/kpi-board"}> Kennzahlen-Board </NavLink>
                 </nav>
                 <nav className={"Admin"}>
                     <NavLink className={"nav"} onClick={() => setTab("Admin")} to={"/admin"}> Admin </NavLink>

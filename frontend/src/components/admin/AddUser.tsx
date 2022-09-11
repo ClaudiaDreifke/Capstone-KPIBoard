@@ -2,13 +2,13 @@ import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/materia
 import {FormEvent, useState} from "react";
 import {KpiOwner} from "../../model/KpiOwner";
 import {toast} from "react-toastify";
-import {NewUser} from "../../model/AppUser";
+import {AppUser} from "../../model/AppUser";
 import '../../styling/AddUser.css'
 
 
 export type AddUserProps = {
     kpiOwners: KpiOwner[],
-    addNewUser: (newUser: NewUser) => Promise<void>,
+    addNewUser: (newUser: AppUser) => Promise<void>,
 }
 
 export default function AddUser(props: AddUserProps) {
@@ -21,7 +21,7 @@ export default function AddUser(props: AddUserProps) {
 
     const onUserSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const newUser: NewUser = {
+        const newUser: AppUser = {
             username: username,
             password: initialPassword,
             emailAddress: emailAddress,
