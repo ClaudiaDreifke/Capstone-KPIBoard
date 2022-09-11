@@ -18,13 +18,13 @@ export default function useUser() {
     }, []);
 
     const getAllUser = () => {
-        axios.get("/api/user")
+        axios.get("/api/users")
             .then((response) => response.data)
             .then(setAppUser)
     }
 
     const addNewUser = (newUser: AppUser) => {
-        return axios.post("/api/user", newUser)
+        return axios.post("/api/users", newUser)
             .then((response) => {
                     return response.data
                 }
@@ -33,21 +33,21 @@ export default function useUser() {
     }
 
     const login = (username: string, password: string) => {
-        axios.get("api/user/login", {auth: {username, password}})
+        axios.get("api/users/login", {auth: {username, password}})
             .then(response => response.data)
             .then(setLoggedInUserDetails)
             .catch(() => toast.error("Login fehlgeschlagen"))
     }
 
     const getLoggedInUserDetails = () => {
-        axios.get("api/user/me")
+        axios.get("api/users/me")
             .then((response) => response.data)
             .then(setLoggedInUserDetails)
             .catch(() => setLoggedInUserDetails(undefined));
     }
 
     const logout = () => {
-        axios.get("api/user/logout")
+        axios.get("api/users/logout")
             .then(() => setLoggedInUserDetails(undefined));
     }
 

@@ -42,6 +42,8 @@ export default function LoginPage(props: LoginPageProps) {
                 </FormControl>
                 <button type={"submit"}>Login</button>
             </form>
+
+
         </div>
     )
 }
