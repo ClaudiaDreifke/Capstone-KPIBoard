@@ -53,7 +53,9 @@ export default function AllRoutes() {
                        element={<KpiGalleryUser kpis={kpis} targetValueUnitConvertToText={targetValueUnitConvertToText}
                                                 targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/my-kpi/change/:id"}
-                       element={<ChangeKpiUser kpis={kpis} updateKpiById={updateKpiById}/>}/>
+                       element={<ChangeKpiUser kpis={kpis} updateKpiById={updateKpiById}
+                                               targetValueUnitConvertToText={targetValueUnitConvertToText}
+                                               targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/"}
                        element={<LoginPage login={login} loggedInUserDetails={loggedInUserDetails}/>}/>
             </Routes>

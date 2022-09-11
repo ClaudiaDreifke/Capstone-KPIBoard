@@ -3,8 +3,8 @@ import SingleKpiUser from "./SingleKpiUser";
 
 export type KpiGalleryUserProps = {
     kpis: Kpi[],
-    targetValueUnitConvertToText: (stringToConvert: string) => string;
-    targetValueOperatorConvertToText: (stringToConvert: string) => string;
+    targetValueUnitConvertToText: (stringToConvert: string | undefined) => string;
+    targetValueOperatorConvertToText: (stringToConvert: string | undefined) => string;
 }
 
 export default function KpiGalleryUser(props: KpiGalleryUserProps) {

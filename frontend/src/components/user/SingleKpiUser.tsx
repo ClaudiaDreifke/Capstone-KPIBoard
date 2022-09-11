@@ -4,8 +4,8 @@ import '../../styling/SingleKpiUser.css'
 
 type SingleKpiUserProps = {
     kpi: Kpi,
-    targetValueUnitConvertToText: (stringToConvert: string) => string;
-    targetValueOperatorConvertToText: (stringToConvert: string) => string;
+    targetValueUnitConvertToText: (stringToConvert: string | undefined) => string;
+    targetValueOperatorConvertToText: (stringToConvert: string | undefined) => string;
 }
 
 export default function SingleKpiUser(props: SingleKpiUserProps) {

@@ -45,13 +45,13 @@ export default function useKpi() {
             })
     }
 
-    const targetValueOperatorConvertToText = (stringToConvert: string) => {
+    const targetValueOperatorConvertToText = (stringToConvert: string | undefined) => {
         if (stringToConvert === "LESS") return "kleiner";
         if (stringToConvert === "GREATER") return "größer";
         else return "gleich";
     }
 
-    const targetValueUnitConvertToText = (stringToConvert: string) => {
+    const targetValueUnitConvertToText = (stringToConvert: string | undefined) => {
         if (stringToConvert === "AMOUNT") return "Stk.";
         if (stringToConvert === "MINUTES") return "Minuten";
         else return "%";
