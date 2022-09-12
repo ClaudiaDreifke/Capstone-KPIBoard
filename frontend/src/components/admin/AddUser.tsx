@@ -48,7 +48,7 @@ export default function AddUser(props: AddUserProps) {
                                onChange={event => setUsername(event.target.value)}/>
                 </FormControl>
                 <FormControl id="add-user-input">
-                    <TextField id="initial-password-input" label="Initial-Passwort" variant="outlined"
+                    <TextField id="initial-password-input" label="Initial-Passwort" variant="outlined" type={"password"}
                                autoComplete={"off"}
                                value={initialPassword}
                                onChange={event => setInitialPassword(event.target.value)}/>

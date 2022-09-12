@@ -37,16 +37,12 @@ export default function useUser() {
     const login = (username: string, password: string) => {
         axios.get("api/users/login", {auth: {username, password}})
             .then(response => response.data)
-            .then(setLoggedInUserDetails)
+            .then((da) => {
+                setLoggedInUserDetails(da);
+                console.log(da)
+            })
+            .then(() => navigate("/my-kpi"))
             .catch(() => toast.error("Login fehlgeschlagen"))
-        if (loggedInUserDetails?.technicalRole === "ADMIN") {
-            navigate("/admin")
-        }
-        if (loggedInUserDetails?.technicalRole === "USER") {
-            navigate("/my-kpi")
-        } else {
-            navigate("/")
-        }
     }
 
     const getLoggedInUserDetails = () => {
