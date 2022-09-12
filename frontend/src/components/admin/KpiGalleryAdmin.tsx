@@ -116,12 +116,13 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                         <AddKpi addNewKpi={props.addNewKpi} userRoles={props.kpiOwners}/>
                     </DialogContent>
                 </Dialog>
-                {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id}
-                                                       kpi={kpi}
-                                                       deleteKpiById={props.deleteKpiById}
-                                                       targetValueUnitConvertToText={props.targetValueUnitConvertToText}
-                                                       targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
-                )}
+                {props.kpis.sort((a, b) => a.ownedBy.localeCompare(b.ownedBy))
+                    .map(kpi => <SingleKpiAdmin key={kpi.id}
+                                                kpi={kpi}
+                                                deleteKpiById={props.deleteKpiById}
+                                                targetValueUnitConvertToText={props.targetValueUnitConvertToText}
+                                                targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
+                    )}
             </ul>
         </>
     )
