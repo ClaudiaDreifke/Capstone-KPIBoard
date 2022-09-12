@@ -5,9 +5,12 @@ import ChangeKpiUser from "../user/ChangeKpiUser";
 import KpiBoard from "../board/KpiBoard";
 import useRole from "../../hooks/useRole";
 import RoleGalleryAdmin from "../admin/RoleGalleryAdmin";
-import useUser from "../../hooks/useUser";
-import LoginPage from "./LoginPage";
 import MyKpi from "./MyKpi";
+import LoginPage from "./LoginPage";
+import React from "react";
+import useUser from "../../hooks/useUser";
+import LogoutButton from "./LogoutButton";
+import WelcomePage from "./WelcomePage";
 
 export default function AllRoutes() {
 
@@ -27,17 +30,19 @@ export default function AllRoutes() {
     } = useRole();
 
     const {
+        loggedInUserDetails,
         addNewUser,
         login,
-        loggedInUserDetails,
-    } = useUser();
+        logout
+    } = useUser()
 
     return (
         <>
             <Routes>
                 <Route path={"/kpi-board"}
                        element={<KpiBoard kpis={kpis} targetValueUnitConvertToText={targetValueUnitConvertToText}
-                                          targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
+                                          targetValueOperatorConvertToText={targetValueOperatorConvertToText}
+                                          logout={logout}/>}/>
                 <Route path={"/admin/roles"}
                        element={<RoleGalleryAdmin kpiOwners={kpiOwners} deleteKpiOwnerById={deleteKpiOwnerById}/>}/>
                 <Route path={"/admin/change/:id"}
@@ -45,7 +50,7 @@ export default function AllRoutes() {
                 <Route path={"/my-kpi"}
                        element={<MyKpi kpis={kpis} kpiOwners={kpiOwners} addNewKpi={addNewKpi}
                                        deleteKpiById={deleteKpiById} addNewKpiOwner={addNewKpiOwner}
-                                       addNewUser={addNewUser} loggedInUserDetails={loggedInUserDetails}
+                                       addNewUser={addNewUser} loggedInUserDetails={loggedInUserDetails} logout={logout}
                                        targetValueUnitConvertToText={targetValueUnitConvertToText}
                                        targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/my-kpi/change/:id"}
@@ -54,6 +59,10 @@ export default function AllRoutes() {
                                                targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/"}
                        element={<LoginPage login={login} loggedInUserDetails={loggedInUserDetails}/>}/>
+                <Route path={"welcome"}
+                       element={<WelcomePage loggedInUserDetails={loggedInUserDetails}/>}/>
+                <Route path={"/logout"}
+                       element={<LogoutButton logout={logout}/>}/>
             </Routes>
         </>
     )

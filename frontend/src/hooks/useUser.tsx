@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 export default function useUser() {
 
     const navigate = useNavigate()
+
     const [appUser, setAppUser] = useState<AppUser[]>();
     const [loggedInUserDetails, setLoggedInUserDetails] = useState<UserDetails>();
 
@@ -37,12 +38,9 @@ export default function useUser() {
     const login = (username: string, password: string) => {
         axios.get("api/users/login", {auth: {username, password}})
             .then(response => response.data)
-            .then((da) => {
-                setLoggedInUserDetails(da);
-                console.log(da)
-            })
-            .then(() => navigate("/my-kpi"))
+            .then(setLoggedInUserDetails)
             .catch(() => toast.error("Login fehlgeschlagen"))
+        navigate("/welcome")
     }
 
     const getLoggedInUserDetails = () => {

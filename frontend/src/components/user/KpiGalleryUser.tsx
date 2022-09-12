@@ -1,18 +1,21 @@
 import {Kpi} from "../../model/Kpi";
 import SingleKpiUser from "./SingleKpiUser";
 import {UserDetails} from "../../model/UserDetails";
+import LogoutButton from "../shared/LogoutButton";
 
 export type KpiGalleryUserProps = {
     kpis: Kpi[],
     loggedInUserDetails: UserDetails | undefined;
     targetValueUnitConvertToText: (stringToConvert: string | undefined) => string;
     targetValueOperatorConvertToText: (stringToConvert: string | undefined) => string;
+    logout: () => void
 }
 
 export default function KpiGalleryUser(props: KpiGalleryUserProps) {
 
     return (
         <>
+            <LogoutButton logout={props.logout}/>
             <ul className={"kpi-gallery-view"}>
                 <h2 className={"headline"}> Kennzahlen-Übersicht</h2>
 

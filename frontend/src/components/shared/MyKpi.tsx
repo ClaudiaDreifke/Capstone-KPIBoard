@@ -15,6 +15,7 @@ export type MyKpiProps = {
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
     addNewKpiOwner: (newUserRole: NewKpiOwner) => Promise<void>;
     addNewUser: (newUser: AppUser) => Promise<void>;
+    logout: () => void;
 }
 
 export default function MyKpi(props: MyKpiProps) {
@@ -29,11 +30,13 @@ export default function MyKpi(props: MyKpiProps) {
                                      deleteKpiById={props.deleteKpiById}
                                      kpiOwners={props.kpiOwners}
                                      targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}
-                                     targetValueUnitConvertToText={props.targetValueUnitConvertToText}/>
+                                     targetValueUnitConvertToText={props.targetValueUnitConvertToText}
+                                     logout={props.logout}/>
                     : <KpiGalleryUser kpis={props.kpis}
                                       loggedInUserDetails={props.loggedInUserDetails}
                                       targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}
-                                      targetValueUnitConvertToText={props.targetValueOperatorConvertToText}/>
+                                      targetValueUnitConvertToText={props.targetValueOperatorConvertToText}
+                                      logout={props.logout}/>
             }
         </>
     )

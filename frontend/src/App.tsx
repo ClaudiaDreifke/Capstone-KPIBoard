@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import './styling/App.css'
 import Footer from "./components/shared/Footer";
 
+
 export default function App() {
 
     return (

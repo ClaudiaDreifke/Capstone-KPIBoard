@@ -1,0 +1,18 @@
+.welcome-message-line1 {
+    margin: 200px 45px 0 45px;
+    font-size: large;
+}
+
+.welcome-message-line2 {
+    margin: 20px 45px 20px 45px;
+    font-size: large;
+}
+
+.link-to-my-kpi, .link-to-kpi-board {
+    margin: 20px 45px 0 45px;
+    color: #fe832d;
+}
+
+.welcome-picture {
+    margin-left: 50%;
+}
