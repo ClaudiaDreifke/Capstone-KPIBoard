@@ -17,9 +17,6 @@ export default function Header() {
                     <NavLink className={"nav"} onClick={() => setTab("KpiBoard")}
                              to={"/kpi-board"}> Kennzahlen-Board </NavLink>
                 </nav>
-                <nav className={"Admin"}>
-                    <NavLink className={"nav"} onClick={() => setTab("Admin")} to={"/admin"}> Admin </NavLink>
-                </nav>
                 <nav className={"MyKpi"}>
                     <NavLink className={"nav"} onClick={() => setTab("My-Kpi")} to={"/my-kpi"}> Meine
                         Kennzahlen </NavLink>

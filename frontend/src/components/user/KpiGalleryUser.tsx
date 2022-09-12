@@ -15,6 +15,7 @@ export default function KpiGalleryUser(props: KpiGalleryUserProps) {
         <>
             <ul className={"kpi-gallery-view"}>
                 <h2 className={"headline"}> Kennzahlen-Übersicht</h2>
+
                 {props.kpis.filter(kpi => kpi.ownedBy === props.loggedInUserDetails?.kpiOwner).map(kpi => <SingleKpiUser
                     key={kpi.id} kpi={kpi}
                     targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}
