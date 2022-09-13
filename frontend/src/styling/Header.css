@@ -8,25 +8,11 @@ Header {
     border-bottom: black 1px solid;
     background-color: white;
     display: grid;
-    grid-template-columns: 20% 70% 10%;
+    grid-template-columns: 90% 10%;
     grid-template-rows: 1fr;
     justify-items: end;
     font-family: "DM Sans", sans-serif;
     position: fixed;
-}
-
-.nav {
-    color: black;
-    font-size: medium;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-.menu {
-    align-self: end;
-    margin: 12px;
-    display: flex;
-    flex-wrap: wrap;
 }
 
 .coffee-lover {

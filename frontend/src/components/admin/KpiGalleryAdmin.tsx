@@ -9,7 +9,7 @@ import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle} from "@mui/material";
 import AddUser from "./AddUser";
 import {AppUser} from "../../model/AppUser";
-import LogoutButton from "../shared/LogoutButton";
+import NavBar from "../shared/NavBar";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
@@ -56,9 +56,8 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
     };
 
     return (
-        <>
+        <>  <NavBar logout={props.logout}/>
             <div className={"kpi-gallery-add-section"}>
-                <LogoutButton logout={props.logout}/>
                 <img src={"pictures/User-Face.png"} className={"user-logo"} alt={""} height={90}/>
                 <button className={"button-admin-add-user-1"} onClick={toggleAddUser}> + User hinzufügen</button>
                 <Dialog open={addUserIsOpen} onClose={handleAddUserClose}>

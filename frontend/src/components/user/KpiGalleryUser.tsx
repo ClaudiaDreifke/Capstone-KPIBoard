@@ -1,7 +1,7 @@
 import {Kpi} from "../../model/Kpi";
 import SingleKpiUser from "./SingleKpiUser";
 import {UserDetails} from "../../model/UserDetails";
-import LogoutButton from "../shared/LogoutButton";
+import NavBar from "../shared/NavBar";
 
 export type KpiGalleryUserProps = {
     kpis: Kpi[],
@@ -15,7 +15,7 @@ export default function KpiGalleryUser(props: KpiGalleryUserProps) {
 
     return (
         <>
-            <LogoutButton logout={props.logout}/>
+            <NavBar logout={props.logout}/>
             <ul className={"kpi-gallery-view"}>
                 <h2 className={"headline"}> Kennzahlen-Übersicht</h2>
 

@@ -1,7 +1,7 @@
 import {Kpi} from "../../model/Kpi";
 import SingleKpiBoard from "./SingleKpiBoard";
 import '../../styling/KpiBoard.css'
-import LogoutButton from "../shared/LogoutButton";
+import NavBar from "../shared/NavBar";
 
 export type KpiBoardProps = {
     kpis: Kpi[],
@@ -14,7 +14,7 @@ export default function KpiBoard(props: KpiBoardProps) {
 
     return (
         <>
-            <LogoutButton logout={props.logout}/>
+            <NavBar logout={props.logout}/>
             <section className={"kpi-board-with-headline"}>
                 <h2>Kennzahlen-Board</h2>
                 <div className={"kpi-board"}>

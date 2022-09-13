@@ -9,7 +9,6 @@ import MyKpi from "./MyKpi";
 import LoginPage from "./LoginPage";
 import React from "react";
 import useUser from "../../hooks/useUser";
-import LogoutButton from "./LogoutButton";
 import WelcomePage from "./WelcomePage";
 
 export default function AllRoutes() {
@@ -61,10 +60,8 @@ export default function AllRoutes() {
                                                targetValueOperatorConvertToText={targetValueOperatorConvertToText}/>}/>
                 <Route path={"/"}
                        element={<LoginPage login={login} loggedInUserDetails={loggedInUserDetails}/>}/>
-                <Route path={"welcome"}
+                <Route path={"/welcome"}
                        element={<WelcomePage loggedInUserDetails={loggedInUserDetails}/>}/>
-                <Route path={"/logout"}
-                       element={<LogoutButton logout={logout}/>}/>
             </Routes>
         </>
     )
