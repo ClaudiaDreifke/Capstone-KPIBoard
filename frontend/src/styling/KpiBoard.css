@@ -6,14 +6,14 @@ h2 {
 
 .kpi-board {
     display: grid;
-    grid-template-columns: 3fr repeat(12, 40px) 3fr 3fr;
+    grid-template-columns: 2fr repeat(12, 50px) 1fr 50px 1fr;
     grid-template-rows: auto;
     column-gap: 8px;
     row-gap: 8px;
 }
 
 .red, .green {
-    height: 27px;
+    height: 37px;
     border-radius: 10px;
     border: white 5px solid;
     box-shadow: 0 0 2px 0 #868582;
@@ -48,8 +48,7 @@ h2 {
     font-weight: bold;
     justify-self: start;
     align-self: center;
-    margin-bottom: 10px;
-    margin-left: 20px
+    margin: 0 20Px 10px 20px;
 }
 
 .target-value {
@@ -67,18 +66,35 @@ h2 {
     grid-column-end: 15;
     font-size: large;
     font-weight: bold;
+    justify-self: end;
+    align-self: center;
+    margin-bottom: 10px;
+
+}
+
+.actual-target-value-headline2 {
+    grid-column-start: 16;
+    grid-column-end: 16;
+    font-size: large;
+    font-weight: bold;
     justify-self: start;
     align-self: center;
     margin-bottom: 10px;
 }
 
-.actual-target-value {
-    grid-column-start: 15;
-    grid-column-end: 15;
+.actual-target-value2 {
+    grid-column-start: 16;
+    grid-column-end: 16;
     font-size: medium;
     font-weight: bold;
     justify-self: start;
     align-self: center;
+    margin-left: 30px;
+}
+
+.actual-target-value-red-green-cell {
+    grid-column-start: 16;
+    grid-column-end: 16;
 }
 
 .kpi-board-with-headline {

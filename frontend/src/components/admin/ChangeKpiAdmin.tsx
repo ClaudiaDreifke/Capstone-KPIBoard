@@ -49,7 +49,6 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         } else {
             toast.error("Die Kennzahl konnte nicht geändert werden")
         }
-        navigate("/my-kpi")
     }
 
     return (

@@ -2,11 +2,14 @@ import {Kpi, NewKpi} from "../model/Kpi";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
 
 
 export default function useKpi() {
 
     const [kpis, setKpis] = useState<Kpi[]>([]);
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         getAllKpis()
@@ -40,6 +43,7 @@ export default function useKpi() {
         return axios.put("/api/kpis/" + updatedKpi.id, updatedKpi)
             .then((response) => response.data)
             .then(getAllKpis)
+            .then(() => navigate("/my-kpi"))
             .catch(() => {
                 toast.error("Die Eingabe konnte nicht gespeichert werden!")
             })
