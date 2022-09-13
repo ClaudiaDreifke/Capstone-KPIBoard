@@ -31,6 +31,9 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
     const [addKpiIsOpen, setAddKpiIsOpen] = useState(false);
     const [addUserIsOpen, setAddUserIsOpen] = useState(false);
 
+    const kpiList = props.kpis;
+    kpiList.sort((a, b) => a.ownedBy.localeCompare(b.ownedBy));
+
     const toggleAddRole = () => {
         setAddRoleIsOpen(!addRoleIsOpen);
     }
@@ -118,13 +121,12 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                         <AddKpi addNewKpi={props.addNewKpi} userRoles={props.kpiOwners}/>
                     </DialogContent>
                 </Dialog>
-                {props.kpis.sort((a, b) => a.ownedBy.localeCompare(b.ownedBy))
-                    .map(kpi => <SingleKpiAdmin key={kpi.id}
-                                                kpi={kpi}
-                                                deleteKpiById={props.deleteKpiById}
-                                                targetValueUnitConvertToText={props.targetValueUnitConvertToText}
-                                                targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
-                    )}
+                {kpiList.map(kpi => <SingleKpiAdmin key={kpi.id}
+                                                    kpi={kpi}
+                                                    deleteKpiById={props.deleteKpiById}
+                                                    targetValueUnitConvertToText={props.targetValueUnitConvertToText}
+                                                    targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
+                )}
             </ul>
         </>
     )

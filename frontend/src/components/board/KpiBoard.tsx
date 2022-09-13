@@ -12,6 +12,9 @@ export type KpiBoardProps = {
 
 export default function KpiBoard(props: KpiBoardProps) {
 
+    const kpiList = props.kpis;
+    kpiList.sort((a, b) => a.ownedBy.localeCompare(b.ownedBy));
+
     return (
         <>
             <NavBar logout={props.logout}/>
@@ -33,10 +36,9 @@ export default function KpiBoard(props: KpiBoardProps) {
                     <div className={"month-headline12"}>Dez</div>
                     <div className={"target-value-headline"}>Zielwert</div>
                     <div className={"actual-target-value-headline"}>aktueller Durchschnittswert</div>
-                    {props.kpis.sort((a, b) => a.ownedBy.localeCompare(b.ownedBy))
-                        .map(kpi => <SingleKpiBoard key={kpi.id} kpi={kpi}
-                                                    targetValueUnitConvertToText={props.targetValueUnitConvertToText}
-                                                    targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>)}
+                    {kpiList.map(kpi => <SingleKpiBoard key={kpi.id} kpi={kpi}
+                                                        targetValueUnitConvertToText={props.targetValueUnitConvertToText}
+                                                        targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>)}
                 </div>
             </section>
         </>
