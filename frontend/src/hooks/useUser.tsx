@@ -5,7 +5,12 @@ import {toast} from "react-toastify";
 import {UserDetails} from "../model/UserDetails";
 import {useNavigate} from "react-router-dom";
 
-export default function useUser() {
+export type useUserProps = {
+    getAllKpis: () => void,
+    getAllKpiOwner: () => void,
+}
+
+export default function useUser(props: useUserProps) {
 
     const navigate = useNavigate()
 
@@ -39,8 +44,11 @@ export default function useUser() {
         axios.get("api/users/login", {auth: {username, password}})
             .then(response => response.data)
             .then(setLoggedInUserDetails)
+            .then(() => navigate("/welcome"))
+            .then(getAllUser)
+            .then(props.getAllKpis)
+            .then(props.getAllKpiOwner)
             .catch(() => toast.error("Login fehlgeschlagen"))
-        navigate("/welcome")
     }
 
     const getLoggedInUserDetails = () => {
@@ -52,7 +60,10 @@ export default function useUser() {
 
     const logout = () => {
         axios.get("api/users/logout")
-            .then(() => setLoggedInUserDetails(undefined));
+            .then(() => setLoggedInUserDetails(undefined))
+            .then(getAllUser)
+            .then(props.getAllKpis)
+            .then(props.getAllKpiOwner)
     }
 
     return {appUser, loggedInUserDetails, addNewUser, getLoggedInUserDetails, login, logout}

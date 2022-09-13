@@ -17,6 +17,7 @@ export default function AllRoutes() {
     const {
         kpis,
         addNewKpi,
+        getAllKpis,
         deleteKpiById,
         updateKpiById,
         targetValueUnitConvertToText,
@@ -25,6 +26,7 @@ export default function AllRoutes() {
 
     const {
         kpiOwners,
+        getAllKpiOwner,
         addNewKpiOwner,
         deleteKpiOwnerById,
     } = useRole();
@@ -34,7 +36,7 @@ export default function AllRoutes() {
         addNewUser,
         login,
         logout
-    } = useUser()
+    } = useUser({getAllKpis, getAllKpiOwner})
 
     return (
         <>
