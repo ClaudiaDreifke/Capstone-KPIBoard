@@ -54,6 +54,9 @@ export default function useKpi() {
     const targetValueUnitConvertToText = (stringToConvert: string | undefined) => {
         if (stringToConvert === "AMOUNT") return "Stk.";
         if (stringToConvert === "MINUTES") return "Minuten";
+        if (stringToConvert === "HOURS") return "Stunden";
+        if (stringToConvert === "DAYS") return "Tage";
+        if (stringToConvert === "EURO") return "€";
         else return "%";
     }
 

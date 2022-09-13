@@ -88,6 +88,9 @@ export default function AddKpi(props: AddKpiProps) {
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                         <MenuItem value={"MINUTES"}>Minuten</MenuItem>
+                        <MenuItem value={"HOURS"}>Stunden</MenuItem>
+                        <MenuItem value={"DAYS"}>Tage</MenuItem>
+                        <MenuItem value={"EURO"}>€</MenuItem>
                     </Select>
                     <button style={{maxWidth: 100, marginTop: 30, marginLeft: 180}} type={"submit"}>hinzufügen</button>
                 </FormControl>
