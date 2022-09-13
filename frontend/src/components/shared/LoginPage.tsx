@@ -41,6 +41,7 @@ export default function LoginPage(props: LoginPageProps) {
                 </FormControl>
                 <button type={"submit"}>Login</button>
             </form>
+            <img className={"login-page-pic"} src={"pictures/background-login.png"} alt={""} height={300}/>
         </div>
     )
 }

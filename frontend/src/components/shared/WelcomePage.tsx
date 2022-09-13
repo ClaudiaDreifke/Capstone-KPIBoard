@@ -14,8 +14,8 @@ export default function WelcomePage(props: WelcomePageProps) {
             <p className={"welcome-message-line2"}>Sie sind eingeloggt als "{props.loggedInUserDetails?.kpiOwner}" in
                 der
                 Rolle "{props.loggedInUserDetails?.technicalRole}"</p>
-            <Link to={"/my-kpi"} className={"link-to-my-kpi"}>Hier geht es zum persönlichen Bereich</Link> <br/>
-            <Link to={"/kpi-board"} className={"link-to-kpi-board"}>Hier geht es zum Kennzahlenboard</Link>
+            <Link to={"/my-kpi"} className={"link-to-my-kpi"}>Hier</Link>geht es zum persönlichen Bereich <br/>
+            <Link to={"/kpi-board"} className={"link-to-kpi-board"}>Hier</Link>geht es zum Kennzahlenboard
             <img src={"pictures/welcome-guy.png"} className={"welcome-picture"} alt={""} height={500}/>
         </>
     )
