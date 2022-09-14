@@ -20,12 +20,12 @@ export default function AddKpi(props: AddKpiProps) {
     const [targetValue, setTargetValue] = useState<string>("")
     const [targetValueUnit, setTargetValueUnit] = useState<string>("")
 
-    const kpi: Kpi | undefined = props.kpis?.find((k: Kpi) => k.name === name)
+    const kpiWithNameAlreadyExists: Kpi | undefined = props.kpis?.find((k: Kpi) => k.name === name)
 
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if (kpi?.name === name) {
-            toast.error("Es existiert bereits eine Kennzahl mit diesem Namen. Bitte geben Sie einen anderen Benutzernamen ein")
+        if (kpiWithNameAlreadyExists) {
+            toast.error("Es existiert bereits eine Kennzahl mit diesem Namen. Bitte geben Sie einen anderen Namen ein")
         }
         if (!name) {
             toast.error("Bitte einen Namen eingeben")

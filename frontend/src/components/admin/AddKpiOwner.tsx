@@ -13,7 +13,6 @@ export default function AddKpiOwner(props: AddRoleProps) {
     const [kpiOwnerDescription, setKpiOwnerDescription] = useState("");
     const kpiOwner: KpiOwner | undefined = props.kpiOwners?.find((k: KpiOwner) => k.kpiOwnerDescription === kpiOwnerDescription)
 
-
     const onRoleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!kpiOwnerDescription) {

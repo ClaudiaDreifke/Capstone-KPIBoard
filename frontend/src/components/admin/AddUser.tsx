@@ -20,14 +20,14 @@ export default function AddUser(props: AddUserProps) {
     const [kpiOwner, setKpiOwner] = useState("")
     const [technicalRole, setTechnicalRole] = useState("")
 
-    const appUser: AppUser | undefined = props.appUsers?.find((a: AppUser) => a.username === username)
+    const appUserWithUsernameAlreadyExists: AppUser | undefined = props.appUsers?.find((a: AppUser) => a.username === username)
 
     const onUserSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!username) {
             toast.error("Bitte einen Benutzernamen eingeben")
         }
-        if (appUser?.username.includes(username)) {
+        if (appUserWithUsernameAlreadyExists) {
             toast.error("Dieser Username existiert bereits, bitte geben Sie einen anderen Benutzernamen ein")
         }
         if (!initialPassword) {
