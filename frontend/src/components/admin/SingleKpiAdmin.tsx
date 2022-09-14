@@ -26,16 +26,15 @@ export default function SingleKpiAdmin(props: SingleKpiProps) {
             <p className={"responsible-role-kpi"}>Verantwortung: {props.kpi.ownedBy}</p>
             <p className={"description-single-kpi"}> Zielwert: {props.targetValueOperatorConvertToText(props.kpi.targetForKpi.targetValueOperator)
                 + " " + props.kpi.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(props.kpi.targetForKpi.targetValueUnit)}</p>
-
-            <button style={{maxWidth: 150}} onClick={() => {
+            <button className={"single-kpi-button"} onClick={() => {
                 navigate(`/admin/change/${props.kpi.id}`)
             }}>Kennzahl ändern
             </button>
-            <button style={{maxWidth: 150}} onClick={() => {
+            <button className={"single-kpi-button"} onClick={() => {
                 navigate(`/my-kpi/change/${props.kpi.id}`)
             }}>Werte ändern
             </button>
-            <button style={{maxWidth: 150}} onClick={handleClickDelete}>löschen</button>
+            <button className={"single-kpi-button"} onClick={handleClickDelete}>löschen</button>
         </section>
     )
 }

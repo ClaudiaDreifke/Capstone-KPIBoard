@@ -4,7 +4,6 @@ import '../../styling/LoginPage.css'
 import {toast} from "react-toastify";
 import {UserDetails} from "../../model/UserDetails";
 
-
 type LoginPageProps = {
     login: (username: string, password: string) => void,
     loggedInUserDetails: UserDetails | undefined,
@@ -42,7 +41,7 @@ export default function LoginPage(props: LoginPageProps) {
                 </FormControl>
                 <button type={"submit"}>Login</button>
             </form>
-            <img className={"login-page-pic"} src={"pictures/background-login.png"} alt={""} height={300}/>
+            <img className={"login-page-pic"} src={"pictures/background-login.png"} alt={""}/>
         </div>
     )
 }

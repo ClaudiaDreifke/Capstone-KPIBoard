@@ -11,3 +11,7 @@
 .description-single-kpi {
     margin: 20px;
 }
+
+.single-kpi-button {
+    max-width: 150px;
+}

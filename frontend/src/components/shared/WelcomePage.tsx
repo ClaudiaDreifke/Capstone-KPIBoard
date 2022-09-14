@@ -16,7 +16,7 @@ export default function WelcomePage(props: WelcomePageProps) {
                 Rolle "{props.loggedInUserDetails?.technicalRole}"</p>
             <Link to={"/my-kpi"} className={"link-to-my-kpi"}>Hier</Link>geht es zum persönlichen Bereich <br/>
             <Link to={"/kpi-board"} className={"link-to-kpi-board"}>Hier</Link>geht es zum Kennzahlenboard
-            <img src={"pictures/welcome-guy.png"} className={"welcome-picture"} alt={""} height={500}/>
+            <img src={"pictures/welcome-guy.png"} className={"welcome-picture"} alt={""}/>
         </>
     )
 }

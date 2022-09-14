@@ -39,15 +39,17 @@ class UserControllerIntegrationTest {
                                 "username": "Theo",
                                 "password": "Passwort",
                                 "emailAddress": "Theo@veryimportant.com",
-                                "KpiOwner": "Leiter Trucking",
+                                "kpiOwner": "Leiter Trucking",
                                 "technicalRole": "USER"
                                 }
                                 """).with(csrf()))
                 .andExpect(status().is(201))
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assertions.assertTrue(content.contains("username"));
         Assertions.assertTrue(content.contains("Theo"));
+        Assertions.assertTrue(content.contains("Theo@veryimportant.com"));
+        Assertions.assertTrue(content.contains("Leiter Trucking"));
+        Assertions.assertTrue(content.contains("USER"));
     }
 
     @Test
