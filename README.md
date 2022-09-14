@@ -31,3 +31,5 @@ The registration for new users is located inside the application to avoid misuse
 ![Bildschirmfoto 2022-09-14 um 11 53 35](https://user-images.githubusercontent.com/108395674/190124934-480ac3d3-c809-4703-8ee5-18744ec25963.png)<br>
 For password-hashing you can use e.g. https://bcrypt-generator.com/<br>
 - Login with username and password (not passwordHash) and have fun collecting KPIs 🚥<br>
+
+### If you only fancy a quick view on the application, click: https://kpiboard.herokuapp.com/ <br> Feel free to contact me for login details.
