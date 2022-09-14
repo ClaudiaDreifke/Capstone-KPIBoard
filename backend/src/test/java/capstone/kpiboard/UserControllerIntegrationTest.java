@@ -39,7 +39,7 @@ class UserControllerIntegrationTest {
                                 "username": "Theo",
                                 "password": "Passwort",
                                 "emailAddress": "Theo@veryimportant.com",
-                                "KpiOwner": "Leiter Trucking",
+                                "kpiOwner": "Leiter Trucking",
                                 "technicalRole": "USER"
                                 }
                                 """).with(csrf()))
@@ -49,6 +49,7 @@ class UserControllerIntegrationTest {
         Assertions.assertTrue(content.contains("Theo"));
         Assertions.assertTrue(content.contains("Theo@veryimportant.com"));
         Assertions.assertTrue(content.contains("Leiter Trucking"));
+        Assertions.assertTrue(content.contains("USER"));
     }
 
     @Test
