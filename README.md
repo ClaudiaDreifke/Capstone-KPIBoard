@@ -9,9 +9,10 @@ receive an impression of all processes' performances at the first view.
 <img width="1008" alt="EasyKpi-KpiBoard" src="https://user-images.githubusercontent.com/108395674/190125103-c98c390d-19d8-4424-88cc-b16887d2be48.png">
 
 ## Badges
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=coverage)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
 
 ## Project status
 The application is under construction
