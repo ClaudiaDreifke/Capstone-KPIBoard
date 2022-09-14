@@ -4,7 +4,4 @@ export type AppUser = {
     emailAddress: string,
     kpiOwner: string,
     technicalRole: string
-
 }
-
-

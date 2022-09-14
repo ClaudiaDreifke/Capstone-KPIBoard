@@ -23,7 +23,7 @@ export default function NavBar(props: NavBarProps) {
             <nav className={"my-kpi-link"}>
                 <NavLink className={"nav"} to={"/my-kpi"}> Meine Kennzahlen </NavLink>
             </nav>
-            <LogoutIcon className={"logout-button"} onClick={handleLogout}>Logout</LogoutIcon>
+            <LogoutIcon id={"logout-button"} onClick={handleLogout}>Logout</LogoutIcon>
         </nav>
     )
 }

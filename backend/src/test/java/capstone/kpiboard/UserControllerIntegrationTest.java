@@ -46,8 +46,9 @@ class UserControllerIntegrationTest {
                 .andExpect(status().is(201))
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assertions.assertTrue(content.contains("username"));
         Assertions.assertTrue(content.contains("Theo"));
+        Assertions.assertTrue(content.contains("Theo@veryimportant.com"));
+        Assertions.assertTrue(content.contains("Leiter Trucking"));
     }
 
     @Test
