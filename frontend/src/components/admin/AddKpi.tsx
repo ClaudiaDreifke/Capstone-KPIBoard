@@ -3,10 +3,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import {FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import '../../styling/AddKpi.css'
 import {toast} from "react-toastify";
-import {NewKpi} from "../../model/Kpi";
+import {Kpi, NewKpi} from "../../model/Kpi";
 import {KpiOwner} from "../../model/KpiOwner";
 
 type AddKpiProps = {
+    kpis: Kpi[],
     userRoles: KpiOwner[],
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
 }
@@ -19,27 +20,48 @@ export default function AddKpi(props: AddKpiProps) {
     const [targetValue, setTargetValue] = useState<string>("")
     const [targetValueUnit, setTargetValueUnit] = useState<string>("")
 
+    const kpi: Kpi | undefined = props.kpis?.find((k: Kpi) => k.name === name)
+
     const onKpiSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const newKpi: NewKpi = {
-            name: name,
-            ownedBy: responsibleRole,
-            targetForKpi: {
-                targetValueOperator: targetValueOperator,
-                targetValue: Number(targetValue),
-                targetValueUnit: targetValueUnit
-            }
-        };
-        props.addNewKpi(newKpi)
-            .then(() => setName(""))
-            .then(() => setResponsibleRole(""))
-            .then(() => setTargetValueOperator(""))
-            .then(() => setTargetValue(""))
-            .then(() => setTargetValueUnit(""))
-            .catch(() => {
-                    toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
+        if (kpi?.name === name) {
+            toast.error("Es existiert bereits eine Kennzahl mit diesem Namen. Bitte geben Sie einen anderen Benutzernamen ein")
+        }
+        if (!name) {
+            toast.error("Bitte einen Namen eingeben")
+        }
+        if (!responsibleRole) {
+            toast.error("Bitte eins Verantwortlichkeit eingeben")
+        }
+        if (!targetValueOperator) {
+            toast.error("Bitte ein Vorzeichen eingeben")
+        }
+        if (!targetValue) {
+            toast.error("Bitte einen Zielwert eingeben")
+        }
+        if (!targetValueUnit) {
+            toast.error("Bitte eine Einheit eingeben")
+        } else {
+            const newKpi: NewKpi = {
+                name: name,
+                ownedBy: responsibleRole,
+                targetForKpi: {
+                    targetValueOperator: targetValueOperator,
+                    targetValue: Number(targetValue),
+                    targetValueUnit: targetValueUnit
                 }
-            )
+            };
+            props.addNewKpi(newKpi)
+                .then(() => setName(""))
+                .then(() => setResponsibleRole(""))
+                .then(() => setTargetValueOperator(""))
+                .then(() => setTargetValue(""))
+                .then(() => setTargetValueUnit(""))
+                .catch(() => {
+                        toast.error("Ihre Eingabe konnte nicht gespeichert werden!")
+                    }
+                )
+        }
     }
 
     return (

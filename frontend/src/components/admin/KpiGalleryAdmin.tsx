@@ -119,7 +119,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>Kennzahl hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddKpi addNewKpi={props.addNewKpi} userRoles={props.kpiOwners}/>
+                        <AddKpi addNewKpi={props.addNewKpi} userRoles={props.kpiOwners} kpis={props.kpis}/>
                     </DialogContent>
                 </Dialog>
                 {kpiList.map(kpi => <SingleKpiAdmin key={kpi.id}
