@@ -80,7 +80,6 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                         <AddUser kpiOwners={props.kpiOwners} addNewUser={props.addNewUser} appUsers={props.appUsers}/>
                     </DialogContent>
                 </Dialog>
-                <button className={"button-admin-add-user-2"}> User bearbeiten</button>
                 <button className={"button-admin-add-role-1"} onClick={toggleAddRole}> + Rolle hinzufügen</button>
                 <Dialog open={addRoleIsOpen} onClose={handleAddRoleClose}>
                     <button style={{
@@ -95,7 +94,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>Rolle hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddKpiOwner addNewUserRole={props.addNewKpiOwner}/>
+                        <AddKpiOwner addNewUserRole={props.addNewKpiOwner} kpiOwners={props.kpiOwners}/>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-role-2"} onClick={() => navigate("/admin/roles")}> Rollen
