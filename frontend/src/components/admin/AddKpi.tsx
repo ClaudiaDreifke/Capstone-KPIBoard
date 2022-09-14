@@ -9,7 +9,7 @@ import {KpiOwner} from "../../model/KpiOwner";
 type AddKpiProps = {
     kpis: Kpi[],
     userRoles: KpiOwner[],
-    addNewKpi: (newKpi: NewKpi) => Promise<void>;
+    addNewKpi: (newKpi: NewKpi) => Promise<void>,
 }
 
 export default function AddKpi(props: AddKpiProps) {
