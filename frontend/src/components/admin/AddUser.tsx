@@ -7,6 +7,7 @@ import '../../styling/AddUser.css'
 
 
 export type AddUserProps = {
+    appUsers: AppUser[] | undefined,
     kpiOwners: KpiOwner[],
     addNewUser: (newUser: AppUser) => Promise<void>,
 }
@@ -19,25 +20,46 @@ export default function AddUser(props: AddUserProps) {
     const [kpiOwner, setKpiOwner] = useState("")
     const [technicalRole, setTechnicalRole] = useState("")
 
+    const appUser: AppUser | undefined = props.appUsers?.find((a: AppUser) => a.username === username)
+
     const onUserSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const newUser: AppUser = {
-            username: username,
-            password: initialPassword,
-            emailAddress: emailAddress,
-            kpiOwner: kpiOwner,
-            technicalRole: technicalRole
-        };
-        props.addNewUser(newUser)
-            .then(() => setUsername(""))
-            .then(() => setInitialPassword(""))
-            .then(() => setEmailAddress(""))
-            .then(() => setKpiOwner(""))
-            .then(() => setTechnicalRole(""))
-            .catch(() => {
-                    toast.error("Ihre Eingabe konnte nicht gespeichert werden! Bitte füllen Sie alle Felder korrekt aus!")
-                }
-            )
+        if (!username) {
+            toast.error("Bitte einen Benutzernamen eingeben")
+        }
+        if (appUser?.username.includes(username)) {
+            toast.error("Dieser Username existiert bereits, bitte geben Sie einen anderen Benutzernamen ein")
+        }
+        if (!initialPassword) {
+            toast.error("Bitte ein Passwort eingeben")
+        }
+        if (!emailAddress) {
+            toast.error("Bitte eine Emailadresse eingeben")
+        }
+        if (!kpiOwner) {
+            toast.error("Bitte eine Verantwortlichkeit eingeben")
+        }
+        if (!technicalRole) {
+            toast.error("Bitte eine technische Rolle eingeben")
+        } else {
+            const newUser: AppUser = {
+                username: username,
+                password: initialPassword,
+                emailAddress: emailAddress,
+                kpiOwner: kpiOwner,
+                technicalRole: technicalRole
+            };
+            props.addNewUser(newUser)
+                .then(() => setUsername(""))
+                .then(() => setInitialPassword(""))
+                .then(() => setEmailAddress(""))
+                .then(() => setKpiOwner(""))
+                .then(() => setTechnicalRole(""))
+                .catch((error) => {
+                        toast.error("Der User konnte nicht gespeichert werden!", error.response.data)
+                    }
+                )
+        }
     }
 
     return (

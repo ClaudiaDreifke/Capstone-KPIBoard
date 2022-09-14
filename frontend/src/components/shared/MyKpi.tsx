@@ -7,6 +7,7 @@ import KpiGalleryUser from "../user/KpiGalleryUser";
 
 export type MyKpiProps = {
     kpis: Kpi[],
+    appUsers: AppUser [] | undefined,
     loggedInUserDetails: UserDetails | undefined;
     targetValueUnitConvertToText: (stringToConvert: string | undefined) => string;
     targetValueOperatorConvertToText: (stringToConvert: string | undefined) => string;
@@ -24,6 +25,7 @@ export default function MyKpi(props: MyKpiProps) {
             {
                 (props.loggedInUserDetails?.technicalRole === "ADMIN") ?
                     <KpiGalleryAdmin kpis={props.kpis}
+                                     appUsers={props.appUsers}
                                      addNewKpi={props.addNewKpi}
                                      addNewKpiOwner={props.addNewKpiOwner}
                                      addNewUser={props.addNewUser}

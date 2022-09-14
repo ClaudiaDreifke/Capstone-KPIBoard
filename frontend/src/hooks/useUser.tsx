@@ -14,7 +14,7 @@ export default function useUser(props: useUserProps) {
 
     const navigate = useNavigate()
 
-    const [appUser, setAppUser] = useState<AppUser[]>();
+    const [appUsers, setAppUsers] = useState<AppUser[]>();
     const [loggedInUserDetails, setLoggedInUserDetails] = useState<UserDetails>();
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function useUser(props: useUserProps) {
     const getAllUser = () => {
         axios.get("/api/users")
             .then((response) => response.data)
-            .then(setAppUser)
+            .then(setAppUsers)
     }
 
     const addNewUser = (newUser: AppUser) => {
@@ -66,5 +66,5 @@ export default function useUser(props: useUserProps) {
             .then(props.getAllKpiOwner)
     }
 
-    return {appUser, loggedInUserDetails, addNewUser, getLoggedInUserDetails, login, logout}
+    return {appUsers, loggedInUserDetails, addNewUser, getLoggedInUserDetails, login, logout}
 }

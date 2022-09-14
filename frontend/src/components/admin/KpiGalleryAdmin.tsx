@@ -13,6 +13,7 @@ import NavBar from "../shared/NavBar";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
+    appUsers: AppUser [] | undefined,
     kpiOwners: KpiOwner[],
     deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
@@ -76,7 +77,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>User hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddUser kpiOwners={props.kpiOwners} addNewUser={props.addNewUser}/>
+                        <AddUser kpiOwners={props.kpiOwners} addNewUser={props.addNewUser} appUsers={props.appUsers}/>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-user-2"}> User bearbeiten</button>
