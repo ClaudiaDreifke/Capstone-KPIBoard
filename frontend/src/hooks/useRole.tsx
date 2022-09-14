@@ -31,7 +31,7 @@ export default function useRole() {
             .then((response) => response.status)
             .then(getAllKpiOwner)
             .catch(() => {
-                toast.error("Die Rolle konnte nicht gefunden werden!")
+                toast.error("Das Löschen war nicht erfolgreich!")
             })
     }
 

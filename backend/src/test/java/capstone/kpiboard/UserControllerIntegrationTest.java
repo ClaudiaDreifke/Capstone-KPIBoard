@@ -32,21 +32,24 @@ class UserControllerIntegrationTest {
     @WithMockUser(username = "admin", authorities = "ADMIN")
     void addNewUserTest() throws Exception {
 
-        MvcResult result = mockMvc.perform(post("/api/user")
+        MvcResult result = mockMvc.perform(post("/api/users")
                         .contentType(APPLICATION_JSON)
                         .content("""
                                 {
                                 "username": "Theo",
                                 "password": "Passwort",
                                 "emailAddress": "Theo@veryimportant.com",
-                                "role": "Leiter Trucking"
+                                "kpiOwner": "Leiter Trucking",
+                                "technicalRole": "USER"
                                 }
                                 """).with(csrf()))
                 .andExpect(status().is(201))
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assertions.assertTrue(content.contains("username"));
         Assertions.assertTrue(content.contains("Theo"));
+        Assertions.assertTrue(content.contains("Theo@veryimportant.com"));
+        Assertions.assertTrue(content.contains("Leiter Trucking"));
+        Assertions.assertTrue(content.contains("USER"));
     }
 
     @Test
@@ -54,7 +57,7 @@ class UserControllerIntegrationTest {
     void getAllUserTest() throws Exception {
 
         mockMvc.perform(get
-                        ("/api/user")
+                        ("/api/users")
                 )
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
@@ -63,29 +66,36 @@ class UserControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "testuser")
+    @DirtiesContext
+    @WithMockUser(username = "Theo", authorities = "ADMIN")
     void loginTest() throws Exception {
 
-        MvcResult result = mockMvc.perform(get("/api/user/login"))
+        mockMvc.perform(post("/api/users")
+                        .contentType(APPLICATION_JSON)
+                        .content("""
+                                {
+                                "username": "Theo",
+                                "password": "Passwort",
+                                "emailAddress": "Theo@veryimportant.com",
+                                "KpiOwner": "Leiter Trucking",
+                                "technicalRole": "USER"
+                                }
+                                """).with(csrf()))
+                .andExpect(status().is(201));
+
+        MvcResult result = mockMvc.perform(get("/api/users/login"))
                 .andExpect(status().isOk())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
-        Assertions.assertTrue(content.contains("testuser"));
+        Assertions.assertTrue(content.contains("Theo"));
 
-        mockMvc.perform(get
-                        ("/api/user")
-                )
-                .andExpect(status().isOk())
-                .andExpect(content().json("""
-                        []
-                        """));
     }
 
     @DirtiesContext
     @Test
     @WithMockUser(username = "testUser")
     void logoutTest() throws Exception {
-        mockMvc.perform(get("/api/user/logout"))
+        mockMvc.perform(get("/api/users/logout"))
                 .andExpect(status().isOk());
     }
 

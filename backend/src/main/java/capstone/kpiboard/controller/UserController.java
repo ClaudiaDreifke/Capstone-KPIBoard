@@ -2,6 +2,7 @@ package capstone.kpiboard.controller;
 
 import capstone.kpiboard.model.user.AppUser;
 import capstone.kpiboard.model.user.NewAppUser;
+import capstone.kpiboard.model.user.UserDetails;
 import capstone.kpiboard.service.user.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     private final AppUserService appUserService;
@@ -24,26 +25,25 @@ public class UserController {
         return appUserService.addNewUser(newAppUser);
     }
 
+    @GetMapping()
+    List<AppUser> getAllUser() {
+        return appUserService.getAllUser();
+    }
+
     @GetMapping("/login")
-    String login() {
-        return getUsername();
+    UserDetails login() {
+        return getUserDetails();
     }
 
     @GetMapping("/me")
-    String getUsername() {
-        return SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getName();
+    UserDetails getUserDetails() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        AppUser userFromDatabase = appUserService.findUserByUsername(username);
+        return new UserDetails(username, userFromDatabase.kpiOwner(), userFromDatabase.technicalRole());
     }
 
     @GetMapping("/logout")
     public void logout(HttpSession session) {
         session.invalidate();
-    }
-
-    @GetMapping()
-    List<AppUser> getAllUser() {
-        return appUserService.getAllUser();
     }
 }

@@ -8,7 +8,8 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {Dialog, DialogContent, DialogTitle} from "@mui/material";
 import AddUser from "./AddUser";
-import {NewUser} from "../../model/AppUser";
+import {AppUser} from "../../model/AppUser";
+import NavBar from "../shared/NavBar";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
@@ -16,9 +17,10 @@ type KpiGalleryAdminProps = {
     deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
     addNewKpiOwner: (newUserRole: NewKpiOwner) => Promise<void>;
-    addNewUser: (newUser: NewUser) => Promise<void>;
+    addNewUser: (newUser: AppUser) => Promise<void>;
     targetValueUnitConvertToText: (stringToConvert: string) => string;
     targetValueOperatorConvertToText: (stringToConvert: string) => string;
+    logout: () => void,
 }
 
 export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
@@ -28,6 +30,9 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
     const [addRoleIsOpen, setAddRoleIsOpen] = useState(false);
     const [addKpiIsOpen, setAddKpiIsOpen] = useState(false);
     const [addUserIsOpen, setAddUserIsOpen] = useState(false);
+
+    const kpiList = props.kpis;
+    kpiList.sort((a, b) => a.ownedBy.localeCompare(b.ownedBy));
 
     const toggleAddRole = () => {
         setAddRoleIsOpen(!addRoleIsOpen);
@@ -54,7 +59,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
     };
 
     return (
-        <>
+        <>  <NavBar logout={props.logout}/>
             <div className={"kpi-gallery-add-section"}>
                 <img src={"pictures/User-Face.png"} className={"user-logo"} alt={""} height={90}/>
                 <button className={"button-admin-add-user-1"} onClick={toggleAddUser}> + User hinzufügen</button>
@@ -116,11 +121,11 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                         <AddKpi addNewKpi={props.addNewKpi} userRoles={props.kpiOwners}/>
                     </DialogContent>
                 </Dialog>
-                {props.kpis.map(kpi => <SingleKpiAdmin key={kpi.id}
-                                                       kpi={kpi}
-                                                       deleteKpiById={props.deleteKpiById}
-                                                       targetValueUnitConvertToText={props.targetValueUnitConvertToText}
-                                                       targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
+                {kpiList.map(kpi => <SingleKpiAdmin key={kpi.id}
+                                                    kpi={kpi}
+                                                    deleteKpiById={props.deleteKpiById}
+                                                    targetValueUnitConvertToText={props.targetValueUnitConvertToText}
+                                                    targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>
                 )}
             </ul>
         </>

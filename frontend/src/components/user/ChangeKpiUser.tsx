@@ -11,6 +11,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export type ChangeKpiUserProps = {
     kpis: Kpi[],
     updateKpiById: (updatedKpi: Kpi) => void;
+    targetValueUnitConvertToText: (stringToConvert: string | undefined) => string;
+    targetValueOperatorConvertToText: (stringToConvert: string | undefined) => string;
 }
 
 export default function ChangeKpiUser(props: ChangeKpiUserProps) {
@@ -23,16 +25,7 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
     const [monthFromForm, setMonthFromForm] = useState<number>(0)
     const [monthValuePairs, setMonthValuePairs] = useState<MonthValuePair[]>(kpi?.values || [])
 
-    const targetValueOperatorToText = () => {
-        if (kpi?.targetForKpi.targetValueOperator === "LESS") return <>kleiner</>;
-        if (kpi?.targetForKpi.targetValueOperator === "GREATER") return <>größer</>;
-        else return <>gleich</>;
-    }
 
-    const targetValueUnitToText = () => {
-        if (kpi?.targetForKpi.targetValueUnit === "AMOUNT") return <> Stk.</>;
-        else return <>%</>;
-    }
 
     const onValueSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -96,7 +89,8 @@ export default function ChangeKpiUser(props: ChangeKpiUserProps) {
             <h2>Kennzahlenwerte bearbeiten</h2>
             <FormGroup
                 style={{marginLeft: 10, justifyContent: "start"}}>
-                <h3>Kennzahl: {kpi?.name}<br/>Zielwert: {targetValueOperatorToText()} {kpi?.targetForKpi.targetValue} {targetValueUnitToText()}
+                <h3>Kennzahl: {kpi?.name}<br/> {props.targetValueOperatorConvertToText(kpi?.targetForKpi.targetValueOperator)
+                    + " " + kpi?.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(kpi?.targetForKpi.targetValueUnit)}
                 </h3>
             </FormGroup>
             <form className={"value-input-form"} id={"value-input-form"} onSubmit={onValueSubmit}>

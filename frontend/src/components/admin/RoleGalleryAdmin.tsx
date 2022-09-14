@@ -30,7 +30,7 @@ export default function RoleGalleryAdmin(props: RoleGalleryAdminProps) {
                     </li>
             ))}
             </ul>
-            <button style={{maxWidth: 150}} onClick={() => navigate("/admin/")}>zurück</button>
+            <button style={{maxWidth: 150}} onClick={() => navigate("/my-kpi/")}>zurück</button>
         </div>
     )
 }

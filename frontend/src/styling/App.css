@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=DM+Sans');
 
 .toast-message {
-    --toastify-color-error: #fe832d;
-    --toastify-icon-color-error: #fe832d;
-    --toastify-color-progress-error: #fe832d;
+    --toastify-color-error: #e3655b;
+    --toastify-icon-color-error: #e3655b;
+    --toastify-color-progress-error: #e3655b;
     color: #868582;
     font-size: 15px;
     width: 34vw;
     padding: 10px 10px;
 }
 
-main {
+body {
     border-top: solid 1px white;
     background-color: #f8f7f3;
     font-family: "DM Sans", sans-serif;
+    height: 100%;
 }
 
 h1 {

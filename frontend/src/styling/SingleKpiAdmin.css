@@ -3,11 +3,15 @@
     margin: 1px;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 2fr 2fr 2fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr;
     justify-items: stretch;
     align-items: center;
 }
 
 .description-single-kpi {
     margin: 20px;
+}
+
+.single-kpi-admin-button {
+    max-width: 150px;
 }

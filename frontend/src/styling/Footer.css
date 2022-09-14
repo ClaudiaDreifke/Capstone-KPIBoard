@@ -1,0 +1,19 @@
+.footer {
+    bottom: 0;
+    height: 30px;
+    border-top: black solid 1px;
+    display: block;
+    padding: 5px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    position: fixed;
+}
+
+.footer-text {
+    text-align: end;
+    margin-right: 30px;
+    color: black;
+    font-size: 12px;
+    font-family: "DM Sans", sans-serif;
+}

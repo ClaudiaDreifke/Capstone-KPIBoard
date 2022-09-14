@@ -1,0 +1,20 @@
+.navigation-bar {
+    margin-top: 130px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: end;
+    align-items: center;
+}
+
+.nav {
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+#logout-button {
+    margin: 0 20px;
+}

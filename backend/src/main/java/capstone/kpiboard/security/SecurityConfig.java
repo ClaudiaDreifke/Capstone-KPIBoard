@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.POST, "/api/kpis").hasAuthority(TechnicalRole.ADMIN.toString())
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().denyAll()
+                .and().httpBasic().authenticationEntryPoint(new CustomAuthenticationEntryPoint())
                 .and().httpBasic()
                 .and().build();
     }

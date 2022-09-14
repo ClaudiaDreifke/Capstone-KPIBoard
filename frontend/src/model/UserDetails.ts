@@ -1,7 +1,5 @@
-export type AppUser = {
+export type UserDetails = {
     username: string,
-    password: string,
-    emailAddress: string,
     kpiOwner: string,
     technicalRole: string
 }

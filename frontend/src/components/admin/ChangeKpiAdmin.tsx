@@ -49,7 +49,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         } else {
             toast.error("Die Kennzahl konnte nicht geändert werden")
         }
-        navigate("/admin")
+        navigate("/my-kpi")
     }
 
     return (
@@ -63,7 +63,7 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                     fontWeight: "bold",
                     fontSize: "large",
                     marginLeft: 460,
-                }} onClick={() => navigate("/admin")}>X
+                }} onClick={() => navigate("/my-kpi")}>X
                 </button>
                 <h2>Kennzahl ändern</h2>
                 <p className={"name-change"} id="name">{kpi?.name}</p>
