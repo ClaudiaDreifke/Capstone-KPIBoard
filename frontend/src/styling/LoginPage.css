@@ -1,5 +1,5 @@
 .login-page {
-    margin: 350px 45px 0 45px;
+    margin: 200px 45px 0 45px;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 70% 30%;
@@ -22,5 +22,5 @@
 }
 
 .login-page-pic {
-    padding-top: 300px;
+    padding-top: 200px;
 }
