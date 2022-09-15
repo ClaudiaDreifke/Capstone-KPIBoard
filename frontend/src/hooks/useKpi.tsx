@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 
-
 export default function useKpi() {
 
     const [kpis, setKpis] = useState<Kpi[]>([]);
