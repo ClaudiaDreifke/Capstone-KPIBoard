@@ -1,15 +1,11 @@
 import {KpiOwner, NewKpiOwner} from "../model/KpiOwner";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 import {toast} from "react-toastify";
 
 export default function useRole() {
 
     const [kpiOwners, setKpiOwners] = useState<KpiOwner[]>([]);
-
-    useEffect(() => {
-        getAllKpiOwner()
-    }, [])
 
     const getAllKpiOwner = () => {
         axios.get("/api/roles")

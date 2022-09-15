@@ -18,10 +18,6 @@ export default function useUser(props: useUserProps) {
     const [loggedInUserDetails, setLoggedInUserDetails] = useState<UserDetails>();
 
     useEffect(() => {
-        getAllUser()
-    }, [])
-
-    useEffect(() => {
         getLoggedInUserDetails();
     }, []);
 
