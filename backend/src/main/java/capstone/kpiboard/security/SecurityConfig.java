@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/api/users/login").permitAll()
                 .antMatchers("/api/users/logout").permitAll()
-                .antMatchers("/api/users/me").permitAll()
+                .antMatchers("/api/users/me").authenticated()
                 .antMatchers(HttpMethod.GET, "/api/roles").authenticated()
                 .antMatchers(HttpMethod.POST, "/api/roles").hasAuthority(TechnicalRole.ADMIN.toString())
                 .antMatchers(HttpMethod.DELETE, "/api/roles/*").hasAuthority(TechnicalRole.ADMIN.toString())
