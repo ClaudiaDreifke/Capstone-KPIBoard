@@ -31,6 +31,7 @@ export default function AllRoutes() {
     } = useRole();
 
     const {
+        appUsers,
         loggedInUserDetails,
         addNewUser,
         login,
@@ -49,7 +50,7 @@ export default function AllRoutes() {
                 <Route path={"/admin/change/:id"}
                        element={<ChangeKpiAdmin kpis={kpis} kpiOwners={kpiOwners} updateKpiById={updateKpiById}/>}/>
                 <Route path={"/my-kpi"}
-                       element={<MyKpi kpis={kpis} kpiOwners={kpiOwners} addNewKpi={addNewKpi}
+                       element={<MyKpi kpis={kpis} kpiOwners={kpiOwners} addNewKpi={addNewKpi} appUsers={appUsers}
                                        deleteKpiById={deleteKpiById} addNewKpiOwner={addNewKpiOwner}
                                        addNewUser={addNewUser} loggedInUserDetails={loggedInUserDetails} logout={logout}
                                        targetValueUnitConvertToText={targetValueUnitConvertToText}

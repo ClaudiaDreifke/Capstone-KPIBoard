@@ -49,7 +49,6 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
         } else {
             toast.error("Die Kennzahl konnte nicht geändert werden")
         }
-        navigate("/my-kpi")
     }
 
     return (
@@ -106,6 +105,9 @@ export default function ChangeKpiAdmin(props: ChangeKpiAdminProps) {
                         <MenuItem value={"AMOUNT"}>Anzahl</MenuItem>
                         <MenuItem value={"PERCENTAGE"}>%</MenuItem>
                         <MenuItem value={"MINUTES"}>Minuten</MenuItem>
+                        <MenuItem value={"HOURS"}>Stunden</MenuItem>
+                        <MenuItem value={"DAYS"}>Tage</MenuItem>
+                        <MenuItem value={"EURO"}>€</MenuItem>
                     </Select>
                 </FormControl>
                 <button style={{marginTop: 20, marginLeft: 300, marginBottom: 20}} type={"submit"}>speichern</button>

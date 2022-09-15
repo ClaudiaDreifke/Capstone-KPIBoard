@@ -14,6 +14,13 @@ export default function SingleKpiBoard(props: SingleKpiBoardProps) {
     const currentTargetValue = props.kpi.targetForKpi.targetValue;
     const currentTargetValueOperator = props.kpi.targetForKpi.targetValueOperator;
 
+    const isActualTargetValueRedOrGreen = () => {
+        if ((currentTargetValueOperator === "GREATER" && props.kpi.currentAverageValue > currentTargetValue) ||
+            (currentTargetValueOperator === "LESS" && props.kpi.currentAverageValue < currentTargetValue) ||
+            (currentTargetValueOperator === "EQUALS" && props.kpi.currentAverageValue === currentTargetValue))
+            return true
+    }
+
     return (
         <>
             <div className={"name"}>{props.kpi.name}</div>
@@ -29,7 +36,11 @@ export default function SingleKpiBoard(props: SingleKpiBoardProps) {
             <div
                 className={"target-value"}>{props.targetValueOperatorConvertToText(props.kpi.targetForKpi.targetValueOperator)
                 + " " + props.kpi.targetForKpi.targetValue + " " + props.targetValueUnitConvertToText(props.kpi.targetForKpi.targetValueUnit)}</div>
-            <div className={"actual-target-value"}>{(props.kpi.currentAverageValue).toFixed(2)}</div>
+            {(isActualTargetValueRedOrGreen()) ?
+                <GreenCell key={props.kpi.id}/>
+                : <RedCell key={props.kpi.id}/>}
+            <div className={"actual-target-value2"}>{(props.kpi.currentAverageValue).toFixed(2)}</div>
+
         </>
     )
 }

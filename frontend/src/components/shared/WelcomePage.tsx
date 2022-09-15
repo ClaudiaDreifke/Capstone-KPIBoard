@@ -3,7 +3,7 @@ import '../../styling/WelcomePage.css'
 import {Link} from "react-router-dom";
 
 export type WelcomePageProps = {
-    loggedInUserDetails: UserDetails | undefined;
+    loggedInUserDetails: UserDetails | undefined,
 }
 
 export default function WelcomePage(props: WelcomePageProps) {
@@ -12,8 +12,7 @@ export default function WelcomePage(props: WelcomePageProps) {
         <>
             <p className={"welcome-message-line1"}>Willkommen zurück, {props.loggedInUserDetails?.username}!</p>
             <p className={"welcome-message-line2"}>Sie sind eingeloggt als "{props.loggedInUserDetails?.kpiOwner}" in
-                der
-                Rolle "{props.loggedInUserDetails?.technicalRole}"</p>
+                der Rolle "{props.loggedInUserDetails?.technicalRole}"</p>
             <Link to={"/my-kpi"} className={"link-to-my-kpi"}>Hier</Link>geht es zum persönlichen Bereich <br/>
             <Link to={"/kpi-board"} className={"link-to-kpi-board"}>Hier</Link>geht es zum Kennzahlenboard
             <img src={"pictures/welcome-guy.png"} className={"welcome-picture"} alt={""}/>

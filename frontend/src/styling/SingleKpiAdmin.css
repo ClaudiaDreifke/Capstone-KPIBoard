@@ -3,7 +3,7 @@
     margin: 1px;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 3fr 2fr 1fr 1fr 1fr;
     justify-items: stretch;
     align-items: center;
 }
@@ -12,6 +12,6 @@
     margin: 20px;
 }
 
-.single-kpi-admin-button {
+.single-kpi-button {
     max-width: 150px;
 }

@@ -4,5 +4,8 @@ public enum TargetValueUnit {
     PERCENTAGE,
     AMOUNT,
 
-    MINUTES
+    MINUTES,
+    HOURS,
+    DAYS,
+    EURO
 }

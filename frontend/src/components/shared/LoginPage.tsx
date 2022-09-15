@@ -30,6 +30,7 @@ export default function LoginPage(props: LoginPageProps) {
             <form className={"login-form"} onSubmit={handleLogin}>
                 <FormControl id="login-input">
                     <TextField id="login-username-input" label="Benutzername" variant="outlined" value={username}
+                               autoComplete={"off"}
                                onChange={event => setUsername(event.target.value)}/>
                 </FormControl>
                 <FormControl id="login-input">

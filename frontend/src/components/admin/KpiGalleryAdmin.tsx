@@ -13,6 +13,7 @@ import NavBar from "../shared/NavBar";
 
 type KpiGalleryAdminProps = {
     kpis: Kpi[],
+    appUsers: AppUser [] | undefined,
     kpiOwners: KpiOwner[],
     deleteKpiById: (id: string) => Promise<void>;
     addNewKpi: (newKpi: NewKpi) => Promise<void>;
@@ -76,10 +77,9 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>User hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddUser kpiOwners={props.kpiOwners} addNewUser={props.addNewUser}/>
+                        <AddUser kpiOwners={props.kpiOwners} addNewUser={props.addNewUser} appUsers={props.appUsers}/>
                     </DialogContent>
                 </Dialog>
-                <button className={"button-admin-add-user-2"}> User bearbeiten</button>
                 <button className={"button-admin-add-role-1"} onClick={toggleAddRole}> + Rolle hinzufügen</button>
                 <Dialog open={addRoleIsOpen} onClose={handleAddRoleClose}>
                     <button style={{
@@ -94,7 +94,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>Rolle hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddKpiOwner addNewUserRole={props.addNewKpiOwner}/>
+                        <AddKpiOwner addNewUserRole={props.addNewKpiOwner} kpiOwners={props.kpiOwners}/>
                     </DialogContent>
                 </Dialog>
                 <button className={"button-admin-add-role-2"} onClick={() => navigate("/admin/roles")}> Rollen
@@ -118,7 +118,7 @@ export default function KpiGalleryAdmin(props: KpiGalleryAdminProps) {
                     </button>
                     <DialogTitle>Kennzahl hinzufügen</DialogTitle>
                     <DialogContent>
-                        <AddKpi addNewKpi={props.addNewKpi} userRoles={props.kpiOwners}/>
+                        <AddKpi addNewKpi={props.addNewKpi} userRoles={props.kpiOwners} kpis={props.kpis}/>
                     </DialogContent>
                 </Dialog>
                 {kpiList.map(kpi => <SingleKpiAdmin key={kpi.id}

@@ -35,7 +35,8 @@ export default function KpiBoard(props: KpiBoardProps) {
                     <div className={"month-headline11"}>Nov</div>
                     <div className={"month-headline12"}>Dez</div>
                     <div className={"target-value-headline"}>Zielwert</div>
-                    <div className={"actual-target-value-headline"}>aktueller Durchschnittswert</div>
+                    <div className={"actual-target-value-headline"}>aktueller</div>
+                    <div className={"actual-target-value-headline2"}>Durchschnitt</div>
                     {kpiList.map(kpi => <SingleKpiBoard key={kpi.id} kpi={kpi}
                                                         targetValueUnitConvertToText={props.targetValueUnitConvertToText}
                                                         targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}/>)}

@@ -11,3 +11,8 @@
     min-width: 300px;
     margin: 5px;
 }
+
+.button-add-user {
+    justify-content: end;
+    margin: 40px 5px 20px 260px;
+}
