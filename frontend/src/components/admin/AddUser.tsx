@@ -102,7 +102,7 @@ export default function AddUser(props: AddUserProps) {
                         <MenuItem value={"ADMIN"}>Admin</MenuItem>
                     </Select>
                 </FormControl>
-                <button style={{maxWidth: 100, marginTop: 30, marginLeft: 180}} type={"submit"}>hinzufügen</button>
+                <button className={"button-add-user"} type={"submit"}>hinzufügen</button>
             </form>
         </div>
     )

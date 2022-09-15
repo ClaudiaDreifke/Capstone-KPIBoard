@@ -23,6 +23,7 @@ h2 {
     grid-column-start: 1;
     grid-column-end: 1;
     margin-right: 5px;
+    margin-left: 20px;
     justify-self: end;
     align-self: center;
     font-size: large;
