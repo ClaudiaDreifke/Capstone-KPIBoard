@@ -37,7 +37,7 @@ export default function MyKpi(props: MyKpiProps) {
                     : <KpiGalleryUser kpis={props.kpis}
                                       loggedInUserDetails={props.loggedInUserDetails}
                                       targetValueOperatorConvertToText={props.targetValueOperatorConvertToText}
-                                      targetValueUnitConvertToText={props.targetValueOperatorConvertToText}
+                                      targetValueUnitConvertToText={props.targetValueUnitConvertToText}
                                       logout={props.logout}/>
             }
         </>
