@@ -62,5 +62,5 @@ export default function useUser(props: useUserProps) {
             .then(props.getAllKpiOwner)
     }
 
-    return {appUsers, loggedInUserDetails, addNewUser, getLoggedInUserDetails, login, logout}
+    return {appUsers, loggedInUserDetails, addNewUser, login, logout}
 }
