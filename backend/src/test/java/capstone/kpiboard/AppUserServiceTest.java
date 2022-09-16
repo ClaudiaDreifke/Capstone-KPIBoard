@@ -62,16 +62,33 @@ class AppUserServiceTest {
     }
 
     @Test
-    void addNewUserFailsWhenValidationFails() {
+    void addNewUserFailsWhenValidationFails1() {
         //given
-        NewAppUser newFailAppUser = new NewAppUser(
+        NewAppUser newFailAppUser1 = new NewAppUser(
                 null,
                 "p",
                 "Theo",
                 null,
                 null);
         //when
-        Set<ConstraintViolation<NewAppUser>> violations = validator.validate(newFailAppUser);
+        Set<ConstraintViolation<NewAppUser>> violations = validator.validate(newFailAppUser1);
+        log.info(violations.stream().map(v -> v.getPropertyPath() + ": " + v.getInvalidValue() + ": " + v.getMessage())
+                .collect(Collectors.joining("\n")));
+        //then
+        assertFalse(violations.isEmpty());
+    }
+
+    @Test
+    void addNewUserFailsWhenValidationFails12() {
+        //given
+        NewAppUser newFailAppUser2 = new NewAppUser(
+                null,
+                null,
+                null,
+                null,
+                null);
+        //when
+        Set<ConstraintViolation<NewAppUser>> violations = validator.validate(newFailAppUser2);
         log.info(violations.stream().map(v -> v.getPropertyPath() + ": " + v.getInvalidValue() + ": " + v.getMessage())
                 .collect(Collectors.joining("\n")));
         //then
