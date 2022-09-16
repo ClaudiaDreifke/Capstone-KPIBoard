@@ -1,11 +1,10 @@
 package capstone.kpiboard.model.roles;
 
-import org.jetbrains.annotations.NotNull;
-
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 public record NewKpiOwner(
-        @NotNull
+        @NotNull(message = "Bitte einen Namen eingeben")
         String kpiOwnerDescription
 ) {
     public KpiOwner withRandomId() {
