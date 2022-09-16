@@ -69,7 +69,7 @@ class AppUserServiceTest {
                 "p",
                 "Theo",
                 null,
-                TechnicalRole.USER);
+                null);
         //when
         Set<ConstraintViolation<NewAppUser>> violations = validator.validate(newFailAppUser);
         log.info(violations.stream().map(v -> v.getPropertyPath() + ": " + v.getInvalidValue() + ": " + v.getMessage())
