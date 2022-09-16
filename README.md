@@ -9,10 +9,18 @@ receive an impression of all processes' performances at the first view.
 <img width="1008" alt="EasyKpi-KpiBoard" src="https://user-images.githubusercontent.com/108395674/190125103-c98c390d-19d8-4424-88cc-b16887d2be48.png">
 
 ## Badges
+Backend: <br>
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=coverage)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=bugs)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-backend&metric=coverage)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-backend)<br>
+
+Frontend:<br>
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-frontend&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-frontend)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-frontend&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-frontend)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-frontend&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-frontend)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=claudiadreifke_Capstone-KPIBoard-frontend&metric=bugs)](https://sonarcloud.io/summary/new_code?id=claudiadreifke_Capstone-KPIBoard-frontend)
 
 ## Project status
 The application is under construction
