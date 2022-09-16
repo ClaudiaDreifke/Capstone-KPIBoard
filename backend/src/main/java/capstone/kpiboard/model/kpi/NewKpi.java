@@ -7,6 +7,7 @@ import java.util.UUID;
 public record NewKpi(
         @NotNull(message = "Bitte einen Namen eingeben")
         String name,
+        @NotNull(message = "Bitte eine Verantwortlichkeit")
         String ownedBy,
         @NotNull
         TargetForKpi targetForKpi) {
