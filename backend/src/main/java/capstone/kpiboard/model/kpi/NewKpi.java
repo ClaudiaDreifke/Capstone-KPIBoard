@@ -1,13 +1,13 @@
 package capstone.kpiboard.model.kpi;
 
-import org.jetbrains.annotations.NotNull;
-
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public record NewKpi(
-        @NotNull
+        @NotNull(message = "Bitte einen Namen eingeben")
         String name,
+        @NotNull(message = "Bitte eine Verantwortlichkeit")
         String ownedBy,
         @NotNull
         TargetForKpi targetForKpi) {

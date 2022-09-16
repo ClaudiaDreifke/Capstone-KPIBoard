@@ -5,6 +5,7 @@ import capstone.kpiboard.model.user.AppUser;
 import capstone.kpiboard.model.user.NewAppUser;
 import capstone.kpiboard.service.user.AppUserRepo;
 import capstone.kpiboard.service.user.AppUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.userdetails.User;
@@ -12,20 +13,31 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @Service
+@Slf4j
 class AppUserServiceTest {
 
     private final AppUserRepo testAppUserRepo = mock(AppUserRepo.class);
     private final PasswordEncoder testPasswordEncoder = mock(PasswordEncoder.class);
     private final AppUserService testAppUserService = new AppUserService(testAppUserRepo, testPasswordEncoder);
+
+    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    Validator validator = factory.getValidator();
 
     @Test
     void addNewUserTest() {
@@ -47,6 +59,40 @@ class AppUserServiceTest {
         AppUser actual = testAppUserService.addNewUser(newTestAppUser);
         //then
         Assertions.assertEquals(testAppUser, actual);
+    }
+
+    @Test
+    void addNewUserFailsWhenValidationFails1() {
+        //given
+        NewAppUser newFailAppUser1 = new NewAppUser(
+                null,
+                "p",
+                "Theo",
+                null,
+                null);
+        //when
+        Set<ConstraintViolation<NewAppUser>> violations = validator.validate(newFailAppUser1);
+        log.info(violations.stream().map(v -> v.getPropertyPath() + ": " + v.getInvalidValue() + ": " + v.getMessage())
+                .collect(Collectors.joining("\n")));
+        //then
+        assertFalse(violations.isEmpty());
+    }
+
+    @Test
+    void addNewUserFailsWhenValidationFails12() {
+        //given
+        NewAppUser newFailAppUser2 = new NewAppUser(
+                null,
+                null,
+                null,
+                null,
+                null);
+        //when
+        Set<ConstraintViolation<NewAppUser>> violations = validator.validate(newFailAppUser2);
+        log.info(violations.stream().map(v -> v.getPropertyPath() + ": " + v.getInvalidValue() + ": " + v.getMessage())
+                .collect(Collectors.joining("\n")));
+        //then
+        assertFalse(violations.isEmpty());
     }
 
     @Test

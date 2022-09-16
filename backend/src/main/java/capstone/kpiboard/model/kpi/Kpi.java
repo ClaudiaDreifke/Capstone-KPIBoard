@@ -1,19 +1,19 @@
 package capstone.kpiboard.model.kpi;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.Id;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public record Kpi(
         @Id
         String id,
-        @NotNull
+        @NotNull(message = "Bitte einen Namen eingeben")
         String name,
-        @NotNull
+        @NotNull(message = "Bitte eine Verantwortlichkeit eingeben")
         String ownedBy,
         List<MonthValuePair> values,
-        @NotNull
+        @NotNull(message = "Bitte ein Zielwert eingeben")
         TargetForKpi targetForKpi,
         double currentAverageValue
 ) {
