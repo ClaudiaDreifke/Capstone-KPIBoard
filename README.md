@@ -41,6 +41,4 @@ The registration for new users is located inside the application to avoid misuse
 For password-hashing you can use e.g. https://bcrypt-generator.com/<br>
 - Login with username and password (not passwordHash) and have fun collecting KPIs 🚥<br>
 
-If you only fancy a quick view on the application, click https://kpiboard.herokuapp.com/ <br> Feel free to contact me for login details.
-
 By the way: It's build as desktop application, due to the size of the KPI-Board. So don't open it on a mobile/tablet, it won't fit the screen 😀
